@@ -5,5 +5,6 @@ public class App {
         System.out.println("Hello Java");
         //Navn
         // Mit navn er Anne :-)
+        //hfbf
     }
 }
