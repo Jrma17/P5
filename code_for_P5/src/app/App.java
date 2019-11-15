@@ -7,10 +7,14 @@ public class App {
         // Mit navn er Anne :-)
         //hfbf
         //Frederik her
+        // Test fra Annes Branch
         //Marie :D
         //Marie :)
         
         //Marie her igen
         //Frederik igen igen
+        //Frederik igen
+        // Hej med dig, jeg hedder Kaj
+        // Dubi dubi dubi dej!
     }
 }
