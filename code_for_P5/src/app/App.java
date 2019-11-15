@@ -8,7 +8,7 @@ public class App {
         //hfbf
         //Frederik her
         //Marie :)
-        //.......
+        
         //Marie her igen
         //Frederik igen
     }
