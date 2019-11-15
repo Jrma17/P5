@@ -7,7 +7,7 @@ public class App {
         // Mit navn er Anne :-)
         //hfbf
         //Frederik her
-        //Marie :)
+        //Marie :D
         //Marie her igen
         //Frederik igen
     }
