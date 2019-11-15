@@ -9,7 +9,6 @@ public class App {
         //Frederik her
         // Test fra Annes Branch
         //Marie :D
-        //Marie :)
         //.......
         //Marie her igen
         //Frederik igen igen
