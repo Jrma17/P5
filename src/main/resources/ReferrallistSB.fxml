@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView layoutX="14.0" layoutY="150.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
+        <columns>
+            <TableColumn prefWidth="60.0" text="Modt. Dato" />
+          <TableColumn prefWidth="60.0" text="Henv. Dato" />
+          <TableColumn prefWidth="60.0" text="Liggedage" />
+            <TableColumn prefWidth="60.0" text="Status" />
+            <TableColumn prefWidth="60.0" text="Tildelt" />
+            <TableColumn prefWidth="60.0" text="Henvist fra" />
+            <TableColumn prefWidth="60.0" text="Patient" />
+            <TableColumn prefWidth="60.0" text="Henv. årsag" />
+            <TableColumn prefWidth="60.0" text="Henv. id" />
+            <TableColumn prefWidth="60.0" text="Henv. type" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
