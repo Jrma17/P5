@@ -2,8 +2,14 @@ package dk.aau.controller;
 
 import javax.xml.catalog.Catalog;
 
+import dk.aau.model.PatientModel;
 import dk.aau.model.ReferralModel;
 import dk.aau.model.ReferralStatusModel;
+import dk.aau.model.VisitationModel;
+import dk.aau.view.PatientView;
+import dk.aau.view.ReferralStatusView;
+import dk.aau.view.ReferralView;
+import dk.aau.view.VisitationView;
 
 public class ReferralCtrl{
     private ReferralModel referralModel;

@@ -1,9 +1,15 @@
 package dk.aau.controller;
 
+import dk.aau.model.PatientModel;
+import dk.aau.model.ReferralModel;
 import dk.aau.model.ReferralStatusModel;
+import dk.aau.model.SortListModel;
+import dk.aau.model.VisitationModel;
+import dk.aau.view.ReferralListModel;
+import dk.aau.view.SortListView;
 
-public class ReferralListCtrl{
-    private ReferralListView referralListView;
+public class ReferralListCtrl {
+    private ReferralListModel referralListView;
     private ReferralStatusModel referralStatusModel;
     private int waitingDays;
     private ReferralModel referralModel;
@@ -15,6 +21,7 @@ public class ReferralListCtrl{
 
 
     public int calculateWaitingDays(){
+        return waitingDays;
 
     }
     public void detectInputFromSortListView(){

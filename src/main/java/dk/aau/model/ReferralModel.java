@@ -1,6 +1,8 @@
 package dk.aau.model;
 
-public class ReferralModel{
+import java.util.Date;
+
+public class ReferralModel {
     private Date referralSentDate;
     private Date referralRecievedDate;
     private String referredBy;
