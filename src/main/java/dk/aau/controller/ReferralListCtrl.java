@@ -10,5 +10,29 @@ public class ReferralListCtrl{
     private PatientModel patientModel;
     private VisitationModel visitationModel;
     private SortListModel sortListModel;
-    
+    private SortListView sortListView;
+    private ReferralCtrl referralCtrl;
+
+
+    public int calculateWaitingDays(){
+
+    }
+    public void detectInputFromSortListView(){
+
+    }
+    public void sortListBy(){
+
+    }
+    public void recieveReferralList(){
+
+    }
+    public void detectInputFromReferralListView(){
+
+    }
+    public void generateReferralListView(){
+
+    }
+    public void updateReferralListView(){
+        
+    }
 }
