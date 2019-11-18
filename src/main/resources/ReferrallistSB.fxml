@@ -1,16 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="376.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView layoutX="14.0" layoutY="150.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
+      <AnchorPane layoutX="-1.0" layoutY="31.0" prefHeight="76.0" prefWidth="1001.0" style="-fx-background-color: cornflowerblue;">
+         <children>
+            <DatePicker layoutX="85.0" layoutY="35.0" prefHeight="10.0" prefWidth="200.0" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="716.0" AnchorPane.topAnchor="40.0" />
+            <DatePicker layoutX="358.0" layoutY="32.0" prefHeight="10.0" prefWidth="200.0" AnchorPane.leftAnchor="419.0" AnchorPane.rightAnchor="382.0" AnchorPane.topAnchor="40.0" />
+            <Label layoutY="40.0" text="Fra dato:" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="938.0" AnchorPane.topAnchor="43.0" />
+            <Label layoutX="592.0" layoutY="46.0" text="Til dato: " AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="604.0" AnchorPane.topAnchor="43.0" />
+            <RadioButton layoutX="445.0" layoutY="11.0" mnemonicParsing="false" text="Henvisningsdato" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="10.0" />
+            <RadioButton layoutX="269.0" layoutY="11.0" mnemonicParsing="false" text="Modtaget dato" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="10.0" />
+            <Label layoutX="4.0" layoutY="11.0" text="Filtrer på: " AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="11.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="-1.0" layoutY="1.0" prefHeight="30.0" prefWidth="1001.0" style="-fx-background-color: slateblue;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="X" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label minHeight="-Infinity" minWidth="-Infinity" text="Henvisningsoversigt" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+            <Line endY="30.5" startX="1000.0" startY="30.5" AnchorPane.topAnchor="31.0" />
+         </children>
+      </AnchorPane>
+      <TableView layoutX="-1.0" layoutY="107.0" prefHeight="393.0" prefWidth="1001.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="107.0">
         <columns>
-            <TableColumn prefWidth="100.0" text="Modt. Dato" />
-          <TableColumn prefWidth="100.0" text="Henv. Dato" />
+            <TableColumn prefWidth="100.0" style="-fx-background-color: darklightblue;" text="Modt. dato" />
+          <TableColumn prefWidth="100.0" text="Henv. dato" />
           <TableColumn prefWidth="100.0" text="Liggedage" />
             <TableColumn prefWidth="100.0" text="Status" />
             <TableColumn prefWidth="100.0" text="Tildelt" />
@@ -21,6 +43,5 @@
             <TableColumn prefWidth="100.0" text="Henv. type" />
         </columns>
       </TableView>
-      <Label layoutX="8.0" layoutY="4.0" text="Henvisningsoversigt" />
    </children>
 </AnchorPane>
