@@ -14,9 +14,10 @@ public class ReferralListModel {
 
 
     //Getter og Setter
-    public int calculateWaitingDays(ReferralSentDate, todaysDate)
+    public int calculateWaitingDays(Date ReferralSentDate, Date todaysDate)
     {
-        return int; 
+        return waitingDays;
+         
     } 
 
     public ReferralModel getReferralModel() {
