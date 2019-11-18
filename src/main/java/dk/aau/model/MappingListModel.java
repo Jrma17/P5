@@ -6,6 +6,8 @@ public class MappingListModel{
     private String allMappedIcpcToIcd;
     private String selectedIcdCode;
 
+
+    //Getter og Setter
     public String getSelectedIcpc() {
         return selectedIcpc;
     }

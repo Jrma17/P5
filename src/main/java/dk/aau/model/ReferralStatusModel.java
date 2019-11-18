@@ -11,6 +11,8 @@ public class ReferralStatusModel{
     private String assigned = "Ingen";
     private String visitator;
 
+
+    //Getter og Setter
     public Date getDate() {
         return date;
     }
