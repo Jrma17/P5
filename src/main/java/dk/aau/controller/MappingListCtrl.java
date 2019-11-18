@@ -8,7 +8,38 @@ public class MappingListCtrl{
     private MappingListView mappingListView;
     private ReferralCtrl referralctrl;
 
+    public void detectInputFromMappingListView(){
+
+    }
+
+    public String detectIcpcFromVisitationView(){
+
+    }
     
+    public void mapIcpcToIcd(){
+
+    }
+
+    public void generateDropDownMenu(){
+
+    }
+
+    public void updateDropDownMenu(){
+        
+    }
+
+    public void detectScroll(){
+
+    }
+
+    public int detectSelectedIcdCode(){
+
+    }
+
+    public void updateVisitationView(){
+        
+    }
+
 
 
 }
