@@ -1,6 +1,10 @@
 package dk.aau.controller;
 
-public class CatalogCtrl{
+import dk.aau.model.CatalogModel;
+import dk.aau.view.CatalogView;
+import dk.aau.view.VisitationView;
+
+public class CatalogCtrl {
     private VisitationView visitationView;
     private CatalogModel catalogModel;
     private CatalogView catalogview;
@@ -23,6 +27,7 @@ public class CatalogCtrl{
     }
 
     public int detectSelectedIcdCode(){
+        return 0;
 
     }
 

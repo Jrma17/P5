@@ -1,11 +1,13 @@
 package dk.aau.controller;
 
 import dk.aau.model.MappingListModel;
+import dk.aau.view.MappningsListView;
+import dk.aau.view.VisitationView;
 
-public class MappingListCtrl{
+public class MappingListCtrl {
     private VisitationView visitationView;
     private MappingListModel mappingListModel;
-    private MappingListView mappingListView;
+    private MappningsListView mappingListView;
     private ReferralCtrl referralctrl;
 
     public void detectInputFromMappingListView(){
@@ -13,6 +15,7 @@ public class MappingListCtrl{
     }
 
     public String detectIcpcFromVisitationView(){
+        return null;
 
     }
     
@@ -33,6 +36,7 @@ public class MappingListCtrl{
     }
 
     public int detectSelectedIcdCode(){
+        return 0;
 
     }
 
