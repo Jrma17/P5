@@ -21,7 +21,7 @@ public class ReferralListCtrl {
     private SortListView sortListView;
     private ReferralCtrl referralCtrl;
 
-    private MainApp mainApp;
+    private App App;
 
     @FXML
     private TableView<ReferralListModel> referralListTable;
@@ -30,7 +30,7 @@ public class ReferralListCtrl {
     @FXML
     private TableColumn<ReferralListModel, String> referredDateColumn;
     @FXML
-    private TableColumn<ReferralListModel, String> layDaysColumn;
+    private TableColumn<ReferralListModel, int> layDaysColumn;
     @FXML
     private TableColumn<ReferralListModel, String> statusColumn;
     @FXML
@@ -77,8 +77,17 @@ public class ReferralListCtrl {
     @FXML
     private void initialize() {
         // Initialize the person table with the two columns.
-        firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().patientProperty());
-        lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().referralIDProperty());
+        recievedDateColumn.setCellValueFactory(cellData -> cellData.getValue().patientProperty());
+        referredDateColumn.setCellValueFactory(cellData -> cellData.getValue().referralIDProperty());
+        layDaysColumn.setCellValueFactory(cellData -> cellData.getValue().layDaysProperty().asObject());
+        statusColumn.setCellValueFactory(cellData -> cellData.getValue().patientProperty());
+        assignedColumn.setCellValueFactory(cellData -> cellData.getValue().referralIDProperty());
+        referredFromColumn.setCellValueFactory(cellData -> cellData.getValue().patientProperty());
+        patientColumn.setCellValueFactory(cellData -> cellData.getValue().referralIDProperty());
+        referralCauseColumn.setCellValueFactory(cellData -> cellData.getValue().patientProperty());
+        referralIDColumn.setCellValueFactory(cellData -> cellData.getValue().referralIDProperty());
+        referralTypeColumn.setCellValueFactory(cellData -> cellData.getValue().referralIDProperty());
+        
     }
         /**
      * Is called by the main application to give a reference back to itself.
