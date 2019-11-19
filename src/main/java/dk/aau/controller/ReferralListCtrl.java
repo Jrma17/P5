@@ -30,7 +30,7 @@ public class ReferralListCtrl {
     @FXML
     private TableColumn<ReferralListModel, String> referredDateColumn;
     @FXML
-    private TableColumn<ReferralListModel, int> layDaysColumn;
+    private TableColumn<ReferralListModel, String> layDaysColumn;
     @FXML
     private TableColumn<ReferralListModel, String> statusColumn;
     @FXML
@@ -79,7 +79,7 @@ public class ReferralListCtrl {
         // Initialize the person table with the two columns.
         recievedDateColumn.setCellValueFactory(cellData -> cellData.getValue().patientProperty());
         referredDateColumn.setCellValueFactory(cellData -> cellData.getValue().referralIDProperty());
-        layDaysColumn.setCellValueFactory(cellData -> cellData.getValue().layDaysProperty().asObject());
+        layDaysColumn.setCellValueFactory(cellData -> cellData.getValue().layDaysProperty());
         statusColumn.setCellValueFactory(cellData -> cellData.getValue().patientProperty());
         assignedColumn.setCellValueFactory(cellData -> cellData.getValue().referralIDProperty());
         referredFromColumn.setCellValueFactory(cellData -> cellData.getValue().patientProperty());
@@ -94,12 +94,12 @@ public class ReferralListCtrl {
      * 
      * @param mainApp
      */
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
+    public void setApp(App App) {
+        this.App = App;
 
         // Add observable list data to the table
-        personTable.setItems(mainApp.getPersonData());
-
+        referralListTable.setItems(App.getreferralList());
+    }
 
     public int calculateWaitingDays(){
         return waitingDays;
