@@ -3,6 +3,7 @@
  */
 package dk.aau;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import dk.aau.model.*;
 import dk.aau.view.*;
@@ -19,15 +20,15 @@ public class App {
     }
     private ObservableList<ReferralListModel> referralList = FXCollections.observableArrayList();
 
-    referralList.add(new ReferralListModel("Hans", "233492-1233"));
-        personData.add(new Person("Ruth", "290506-1236"));
-        personData.add(new Person("Heinz", "311200-9561"));
-        personData.add(new Person("Cornelia", "290483-2096"));
-        personData.add(new Person("Werner", "192835-1023"));
-        personData.add(new Person("Lydia", "101039-5302"));
-        personData.add(new Person("Anna", "240140-1028"));
-        personData.add(new Person("Stefan", "120594-5961"));
-        personData.add(new Person("Martin", "150919-5910"));
+        referralList.add(new ReferralListModel("Hans", "233492-1233"));
+        referralList.add(new ReferralListModel("Ruth", "290506-1236")) ;
+        referralList.add(new ReferralListModel("Heinz", "311200-9561"));
+        referralList.add(new ReferralListModel("Cornelia", "290483-2096"));
+        referralList.add(new ReferralListModel("Werner", "192835-1023"));
+        referralList.add(new ReferralListModel("Lydia", "101039-5302"));
+        referralList.add(new ReferralListModel("Anna", "240140-1028"));
+        referralList.add(new ReferralListModel("Stefan", "120594-5961"));
+        referralList.add(new ReferralListModel("Martin", "150919-5910"));
 
         public ObservableList<ReferralListModel> getreferralList() {
             return referralList;
