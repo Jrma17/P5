@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Separator layoutX="3.0" layoutY="-1.0" prefHeight="102.0" prefWidth="948.0" />
+      <Separator layoutX="-10.0" prefHeight="102.0" prefWidth="948.0" />
       <Separator layoutX="4.0" layoutY="249.0" prefHeight="87.0" prefWidth="948.0" />
       <Button layoutX="843.0" layoutY="15.0" mnemonicParsing="false" text="Rediger forløb">
          <font>
@@ -84,18 +84,18 @@
       <TextField layoutX="181.0" layoutY="146.0" prefHeight="18.0" prefWidth="219.0" />
       <TextField layoutX="181.0" layoutY="181.0" prefHeight="26.0" prefWidth="219.0" />
       <TextField layoutX="203.0" layoutY="216.0" prefHeight="26.0" prefWidth="193.0" />
-      <Label layoutX="19.0" layoutY="317.0" text="Dato:" />
-      <Label layoutX="20.0" layoutY="358.0" text="Enhed:" />
-      <Label layoutX="19.0" layoutY="401.0" text="Patientretighed:" />
-      <Label layoutX="20.0" layoutY="445.0" text="Status:" />
-      <DatePicker layoutX="118.0" layoutY="313.0" prefHeight="26.0" prefWidth="100.0" />
-      <TextField layoutX="118.0" layoutY="355.0" maxHeight="2.0" prefHeight="0.0" prefWidth="100.0">
+      <Label layoutX="20.0" layoutY="317.0" text="Dato:" />
+      <Label layoutX="21.0" layoutY="358.0" text="Enhed:" />
+      <Label layoutX="20.0" layoutY="401.0" text="Patientretighed:" />
+      <Label layoutX="21.0" layoutY="445.0" text="Status:" />
+      <DatePicker layoutX="119.0" layoutY="313.0" prefHeight="26.0" prefWidth="100.0" />
+      <TextField layoutX="119.0" layoutY="355.0" maxHeight="2.0" prefHeight="0.0" prefWidth="100.0">
          <font>
             <Font size="10.0" />
          </font>
       </TextField>
-      <ComboBox editable="true" layoutX="119.0" layoutY="396.0" prefHeight="26.0" prefWidth="494.0" />
-      <ComboBox editable="true" layoutX="119.0" layoutY="440.0" prefHeight="26.0" prefWidth="219.0" />
+      <ComboBox editable="true" layoutX="120.0" layoutY="396.0" prefHeight="26.0" prefWidth="494.0" />
+      <ComboBox editable="true" layoutX="120.0" layoutY="440.0" prefHeight="26.0" prefWidth="219.0" />
       <Label layoutX="342.0" layoutY="358.0" text="Visitator:" />
       <Label layoutX="386.0" layoutY="445.0" text="Tildelt:" />
       <ComboBox editable="true" layoutX="441.0" layoutY="440.0" prefHeight="26.0" prefWidth="174.0" />

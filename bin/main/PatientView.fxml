@@ -6,25 +6,25 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.aau.controller.ReferralCtrl">
    <children>
       <Separator layoutX="1.0" prefHeight="102.0" prefWidth="948.0" AnchorPane.bottomAnchor="496.6" AnchorPane.topAnchor="1.0" />
-      <Label layoutX="25.0" layoutY="22.0" text="CPR-nr: " textOverrun="WORD_ELLIPSIS" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+      <Label fx:id="cprNumber" layoutX="25.0" layoutY="22.0" text="CPR-nr: " textOverrun="WORD_ELLIPSIS" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
          <font>
             <Font name="System Bold" size="10.0" />
          </font>
       </Label>
-      <Label layoutX="77.0" layoutY="22.0" text="Label" AnchorPane.topAnchor="15.0">
+      <Label fx:id="ID" layoutX="77.0" layoutY="22.0" text="Label" AnchorPane.topAnchor="15.0">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label layoutX="118.0" layoutY="22.0" text="Label" AnchorPane.topAnchor="15.0">
+      <Label fx:id="name" layoutX="118.0" layoutY="22.0" text="Label" AnchorPane.topAnchor="15.0">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label layoutX="154.0" layoutY="22.0" text="Label" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="15.0">
+      <Label fx:id="adress" layoutX="154.0" layoutY="22.0" text="Label" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="15.0">
          <font>
             <Font size="10.0" />
          </font>
