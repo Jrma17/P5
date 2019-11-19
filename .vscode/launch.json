@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - MainApp",
+            "request": "launch",
+            "mainClass": "dk.aau.MainApp",
+            "projectName": "P5"
+        }
+    ]
+}

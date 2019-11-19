@@ -1,7 +1,7 @@
 package dk.aau.view;
 
 
-public class ReferralListModel {
-    private Table ReferralList;
+ public class ReferralListModel {
+//     private Table ReferralList;
     
-}
+ }

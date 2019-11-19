@@ -1,5 +1,5 @@
-package dk.aau.view;
+ package dk.aau.view;
 
-public class CatalogView{
-    private Scroll Pane selectedIcpc;
+ public class CatalogView{
+//     private Scroll Pane selectedIcpc;
 }
