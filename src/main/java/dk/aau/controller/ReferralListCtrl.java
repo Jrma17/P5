@@ -3,6 +3,7 @@ package dk.aau.controller;
 import dk.aau.model.*;
 import dk.aau.model.ReferralListModel;
 import dk.aau.view.*;
+import dk.aau.App;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -23,24 +24,48 @@ public class ReferralListCtrl {
     private MainApp mainApp;
 
     @FXML
-    private TableView<ReferralListModel> personTable;
+    private TableView<ReferralListModel> referralListTable;
     @FXML
-    private TableColumn<ReferralListModel, String> firstNameColumn;
+    private TableColumn<ReferralListModel, String> recievedDateColumn;
     @FXML
-    private TableColumn<ReferralListModel, String> lastNameColumn;
+    private TableColumn<ReferralListModel, String> referredDateColumn;
+    @FXML
+    private TableColumn<ReferralListModel, String> layDaysColumn;
+    @FXML
+    private TableColumn<ReferralListModel, String> statusColumn;
+    @FXML
+    private TableColumn<ReferralListModel, String> assignedColumn;
+    @FXML
+    private TableColumn<ReferralListModel, String> referredFromColumn;
+    @FXML
+    private TableColumn<ReferralListModel, String> patientColumn;
+    @FXML
+    private TableColumn<ReferralListModel, String> referralCauseColumn;
+    @FXML
+    private TableColumn<ReferralListModel, String> referralIDColumn;
+    @FXML
+    private TableColumn<ReferralListModel, String> referralTypeColumn;
 
     @FXML
-    private Label firstNameLabel;
+    private Label recievedDateLabel;
     @FXML
-    private Label lastNameLabel;
+    private Label referredDateLabel;
     @FXML
-    private Label streetLabel;
+    private Label layDaysLabel;
     @FXML
-    private Label postalCodeLabel;
+    private Label statusLabel;
     @FXML
-    private Label cityLabel;
+    private Label assignedLabel;
     @FXML
-    private Label birthdayLabel;7
+    private Label referredFromLabel;
+    @FXML
+    private Label patientLabel;
+    @FXML
+    private Label referralCauseLabel;
+    @FXML
+    private Label referralIDLabel;
+    @FXML
+    private Label referralTypeLabel;
 
     public ReferralListCtrl() {
     }
@@ -55,6 +80,16 @@ public class ReferralListCtrl {
         firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().patientProperty());
         lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().referralIDProperty());
     }
+        /**
+     * Is called by the main application to give a reference back to itself.
+     * 
+     * @param mainApp
+     */
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+
+        // Add observable list data to the table
+        personTable.setItems(mainApp.getPersonData());
 
 
     public int calculateWaitingDays(){
@@ -78,31 +113,5 @@ public class ReferralListCtrl {
     }
     public void updateReferralListView(){
         
-    }
-}
-
-
-
-    // Reference to the main application.
-    
-
-    /**
-     * The constructor.
-     * The constructor is called before the initialize() method.
-     */
-    
-
-    
-
-    /**
-     * Is called by the main application to give a reference back to itself.
-     * 
-     * @param mainApp
-     */
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-
-        // Add observable list data to the table
-        personTable.setItems(mainApp.getPersonData());
     }
 }
