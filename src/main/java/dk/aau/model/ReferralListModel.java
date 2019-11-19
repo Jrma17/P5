@@ -23,7 +23,7 @@ public class ReferralListModel {
     //Fra java fx tutorial
     private final ObjectProperty<LocalDate> recievedDate;
     private final ObjectProperty<LocalDate> referredDate;
-    private final IntegerProperty layDays;
+    private final StringProperty layDays;
     private final StringProperty status;
     private final StringProperty assigned;
     private final StringProperty referredFrom;
@@ -40,7 +40,7 @@ public class ReferralListModel {
     public ReferralListModel(String patient, String referralID) {
         this.recievedDate = new SimpleObjectProperty<LocalDate>(LocalDate.of(1999, 2, 21));
         this.referredDate = new SimpleObjectProperty<LocalDate>(LocalDate.of(1998, 2, 21));
-        this.layDays = new SimpleIntegerProperty(1234);
+        this.layDays = new SimpleStringProperty("1234");
         this.status = new SimpleStringProperty("Modtaget");
         this.assigned = new SimpleStringProperty("Alle");
         
@@ -78,15 +78,15 @@ public class ReferralListModel {
         return referredDate;
     }
 
-    public int getLayDays() {
+    public String getLayDays() {
         return layDays.get();
     }
 
-    public void setLayDays(int layDays) {
+    public void setLayDays(String layDays) {
         this.layDays.set(layDays);
     }
     
-    public IntegerProperty layDaysProperty() {
+    public StringProperty layDaysProperty() {
         return layDays;
     }
 

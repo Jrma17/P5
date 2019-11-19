@@ -3,35 +3,100 @@
  */
 package dk.aau;
 
+import java.io.IOException;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import dk.aau.model.*;
 import dk.aau.view.*;
 import dk.aau.controller.*;
 
+public class App extends Application {
+    private Stage primaryStage;
+    private BorderPane rootLayout;
+    private ObservableList<ReferralListModel> referralList = FXCollections.observableArrayList();
 
-public class App {
-    public String getGreeting() {
-        return "Hello world.";
+    public App(){
+        referralList.add(new ReferralListModel("Hans","233492-1233"));
+        referralList.add(new ReferralListModel("Ruth","290506-1236"));
+        referralList.add(new ReferralListModel("Heinz","311200-9561"));
+        referralList.add(new ReferralListModel("Cornelia","290483-2096"));
+        referralList.add(new ReferralListModel("Werner","192835-1023"));
+        referralList.add(new ReferralListModel("Lydia","101039-5302"));
+        referralList.add(new ReferralListModel("Anna","240140-1028"));
+        referralList.add(new ReferralListModel("Stefan","120594-5961"));
+        referralList.add(new ReferralListModel("Martin","150919-5910"));
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle("AddressApp");
+
+        initRootLayout();
+
+        showReferralList();
+    }
+
+    /**
+     * Initializes the root layout.
+     */
+    public void initRootLayout() {
+        try {
+            // Load root layout from fxml file.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("view/RootLayout.fxml"));
+            rootLayout = (BorderPane) loader.load();
+
+            // Show the scene containing the root layout.
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showReferralList() {
+        try {
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("view/ReferralListView.fxml"));
+            AnchorPane referralList = (AnchorPane) loader.load();
+
+            // Set person overview into the center of root layout.
+            rootLayout.setCenter(referralList);
+
+            // Give the controller access to the main app.
+            ReferralListCtrl controller = loader.getController();
+            controller.setApp(this);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Returns the main stage.
+     * 
+     * @return
+     */
+    public Stage getPrimaryStage() {
+        return primaryStage;
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        launch(args);
     }
-    private ObservableList<ReferralListModel> referralList = FXCollections.observableArrayList();
 
-        referralList.add(new ReferralListModel("Hans", "233492-1233"));
-        referralList.add(new ReferralListModel("Ruth", "290506-1236")) ;
-        referralList.add(new ReferralListModel("Heinz", "311200-9561"));
-        referralList.add(new ReferralListModel("Cornelia", "290483-2096"));
-        referralList.add(new ReferralListModel("Werner", "192835-1023"));
-        referralList.add(new ReferralListModel("Lydia", "101039-5302"));
-        referralList.add(new ReferralListModel("Anna", "240140-1028"));
-        referralList.add(new ReferralListModel("Stefan", "120594-5961"));
-        referralList.add(new ReferralListModel("Martin", "150919-5910"));
-
-        public ObservableList<ReferralListModel> getreferralList() {
-            return referralList;
-        }
+    public ObservableList<ReferralListModel> getreferralList() {
+        return referralList;
+    }
 }
-
