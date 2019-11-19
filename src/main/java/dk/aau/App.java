@@ -3,6 +3,12 @@
  */
 package dk.aau;
 
+import javafx.collections.ObservableList;
+import dk.aau.model.*;
+import dk.aau.view.*;
+import dk.aau.controller.*;
+
+
 public class App {
     public String getGreeting() {
         return "Hello world.";
@@ -11,4 +17,20 @@ public class App {
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
     }
+    private ObservableList<ReferralListModel> referralList = FXCollections.observableArrayList();
+
+    referralList.add(new ReferralListModel("Hans", "233492-1233"));
+        personData.add(new Person("Ruth", "290506-1236"));
+        personData.add(new Person("Heinz", "311200-9561"));
+        personData.add(new Person("Cornelia", "290483-2096"));
+        personData.add(new Person("Werner", "192835-1023"));
+        personData.add(new Person("Lydia", "101039-5302"));
+        personData.add(new Person("Anna", "240140-1028"));
+        personData.add(new Person("Stefan", "120594-5961"));
+        personData.add(new Person("Martin", "150919-5910"));
+
+        public ObservableList<ReferralListModel> getreferralList() {
+            return referralList;
+        }
 }
+

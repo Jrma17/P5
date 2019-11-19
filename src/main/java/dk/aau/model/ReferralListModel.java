@@ -41,16 +41,16 @@ public class ReferralListModel {
         this.recievedDate = new SimpleObjectProperty<LocalDate>(LocalDate.of(1999, 2, 21));
         this.referredDate = new SimpleObjectProperty<LocalDate>(LocalDate.of(1998, 2, 21));
         this.layDays = new SimpleIntegerProperty(1234);
-        this.status = new SimpleStringProperty(status);
-        this.assigned = new SimpleStringProperty(assigned);
+        this.status = new SimpleStringProperty("Modtaget");
+        this.assigned = new SimpleStringProperty("Alle");
         
         // Some initial dummy data, just for convenient testing.
         this.referredFrom = new SimpleStringProperty("Lægehuset");
 
         this.patient = new SimpleStringProperty(patient);
-        this.referralCause = new SimpleStringProperty(referralCause);
+        this.referralCause = new SimpleStringProperty("referralCause");
         this.referralID = new SimpleStringProperty(referralID);
-        this.referralType = new SimpleStringProperty(referralType);
+        this.referralType = new SimpleStringProperty("referralType");
         
     }
 
@@ -167,7 +167,7 @@ public class ReferralListModel {
     }
 
     public void setReferralType(String referralType) {
-        this.referralID.set(referralID);
+        this.referralID.set(referralType);
     }
     
     public StringProperty referralTypeProperty() {
