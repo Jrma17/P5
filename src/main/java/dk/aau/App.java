@@ -54,15 +54,14 @@ public class App extends Application {
     public void initRootLayout() {
         try {
             // Load root layout from fxml file.
-            //FXMLLoader loader = new FXMLLoader();
-            AnchorPane rootLayout = (AnchorPane) FXMLLoader.load(App.class.getResource("RefListRootLayout.fxml"));
-
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("/RefListRootLayout.fxml"));
+            rootLayout = (AnchorPane) loader.load();
+            
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
-            //ReferralListCtrl controller = loader.getController();
-            //controller.setApp(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
