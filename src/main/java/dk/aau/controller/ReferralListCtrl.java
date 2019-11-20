@@ -85,30 +85,6 @@ public class ReferralListCtrl {
     }
 
     private App app;
-
-    /**
-     * Initializes the controller class. This method is automatically called
-     * after the fxml file has been loaded.
-     */
-    @FXML
-    private void initialize() {
-        // Opstilling af kolonnerne i tabellen
-        recievedDateColumn.setCellValueFactory(cellData -> cellData.getValue().recievedDateProperty());
-        referredDateColumn.setCellValueFactory(cellData -> cellData.getValue().referredDateProperty());
-        layDaysColumn.setCellValueFactory(cellData -> cellData.getValue().layDaysProperty());
-        statusColumn.setCellValueFactory(cellData -> cellData.getValue().statusProperty());
-        assignedColumn.setCellValueFactory(cellData -> cellData.getValue().assignedProperty());
-        referredFromColumn.setCellValueFactory(cellData -> cellData.getValue().referredFromProperty());
-        patientColumn.setCellValueFactory(cellData -> cellData.getValue().patientProperty());
-        referralCauseColumn.setCellValueFactory(cellData -> cellData.getValue().referralCauseProperty());
-        referralIDColumn.setCellValueFactory(cellData -> cellData.getValue().referralIDProperty());
-        referralTypeColumn.setCellValueFactory(cellData -> cellData.getValue().referralTypeProperty());
-        //Load af data
-        referralListTableView.setItems(getReferralList());
-    }
-
-// recievedDate,  referredDate,  layDays,  status,  assigned,  referredFrom, patient,  referralCause,  referralID,  referralType
-
     public ObservableList<ReferralListModel> getReferralList() {
         ObservableList<ReferralListModel> referrals = FXCollections.observableArrayList();
         referrals.add(new ReferralListModel("1/1-2019", "1/1-2019", "30", "Modtaget", "Alle", "Lægehus A",
@@ -133,6 +109,30 @@ public class ReferralListCtrl {
         // Add observable list data to the table
         referralListTableView.setItems(getReferralList());
     }
+
+    /**
+     * Initializes the controller class. This method is automatically called
+     * after the fxml file has been loaded.
+     */
+    @FXML
+    private void initialize() {
+        // Opstilling af kolonnerne i tabellen
+        recievedDateColumn.setCellValueFactory(cellData -> cellData.getValue().recievedDateProperty());
+        referredDateColumn.setCellValueFactory(cellData -> cellData.getValue().referredDateProperty());
+        layDaysColumn.setCellValueFactory(cellData -> cellData.getValue().layDaysProperty());
+        statusColumn.setCellValueFactory(cellData -> cellData.getValue().statusProperty());
+        assignedColumn.setCellValueFactory(cellData -> cellData.getValue().assignedProperty());
+        referredFromColumn.setCellValueFactory(cellData -> cellData.getValue().referredFromProperty());
+        patientColumn.setCellValueFactory(cellData -> cellData.getValue().patientProperty());
+        referralCauseColumn.setCellValueFactory(cellData -> cellData.getValue().referralCauseProperty());
+        referralIDColumn.setCellValueFactory(cellData -> cellData.getValue().referralIDProperty());
+        referralTypeColumn.setCellValueFactory(cellData -> cellData.getValue().referralTypeProperty());
+        //Load af data
+        referralListTableView.setItems(getReferralList());
+    }
+
+
+
 
 
     //Metoder fra MVC'en
