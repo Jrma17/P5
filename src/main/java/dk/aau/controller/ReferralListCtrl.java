@@ -1,7 +1,6 @@
 package dk.aau.controller;
 
 import dk.aau.model.*;
-import dk.aau.model.ReferralListModel;
 import dk.aau.view.*;
 //import dk.aau.App;
 import dk.aau.MainApp;

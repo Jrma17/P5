@@ -4,13 +4,13 @@ import javax.xml.catalog.Catalog;
 
 import dk.aau.MainApp;
 import dk.aau.model.PatientModel;
-import dk.aau.model.ReferralModel;
-import dk.aau.model.ReferralStatusModel;
-import dk.aau.model.VisitationModel;
-import dk.aau.view.PatientView;
-import dk.aau.view.ReferralStatusView;
-import dk.aau.view.ReferralView;
-import dk.aau.view.VisitationView;
+// import dk.aau.model.ReferralModel;
+// import dk.aau.model.ReferralStatusModel;
+// import dk.aau.model.VisitationModel;
+// import dk.aau.view.PatientView;
+// import dk.aau.view.ReferralStatusView;
+// import dk.aau.view.ReferralView;
+// import dk.aau.view.VisitationView;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -23,7 +23,7 @@ public class ReferralCtrl{
     // private ReferralModel referralModel;
     // private ReferralStatusModel referralStatusModel;
     // private VisitationModel visitationModel;
-    // private PatientModel patientmodel;
+     private PatientModel patientmodel;
     // private ReferralView referralview;
     // private ReferralStatusView referralStatusView;
     // private VisitationView visitationview;
@@ -31,6 +31,7 @@ public class ReferralCtrl{
     // private MappingListCtrl mappingListCtrl;
     // private CatalogCtrl catalogCtrl;
 
+    MainCtrl mainCtrl;
     //Patientview
     @FXML
     private Label cprNumber;
@@ -98,27 +99,17 @@ public class ReferralCtrl{
     @FXML
     private TextField diagnosisText;
 
+    @FXML public void initialize(MainCtrl mainCtrl){
+        this.mainCtrl = mainCtrl;
+    }
+
     private MainApp mainApp;
-
-    // //Patientview - Skal hente oplysninger fra database og vise dem i henvisning
-    // @FXML
-    // private Label cprNumber;
-    // @FXML
-    // private Label name;
-    // @FXML
-    // private Label adress;
-
-    // /**
-    //  * Is called by the main application to give a reference back to itself.
-    //  * 
-    //  * @param mainApp
-    //  */
-    // public void setMainApp(MainApp mainApp) {
-    //     this.mainApp = mainApp;
-
     
-    // }
-    
+    public void initialize(){
+        getPatient(patientmodel);
+    }
+
+
     public void getPatient(PatientModel patient){
         //Skriver patientinfo i labels
         // cprNumber.setText(patient.getCprNumber());
@@ -129,13 +120,8 @@ public class ReferralCtrl{
         adress.setText("erty");
     }
     
-   //ReferralButton
-//    @FXML
-//    private Button closeButton;
-//    @FXML
-//    private Button saveButton;
-//    @FXML
-//    private Button saveCloseButton;
+    
+    
 
 
 

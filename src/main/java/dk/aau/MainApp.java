@@ -51,23 +51,6 @@ public class MainApp extends Application {
         }
     }
 
-    /**
-     * Shows the person overview inside the root layout.
-     */
-    // public void showReferralButton() {
-    //      try {
-    //          // Load person overview.
-    //          FXMLLoader loader = new FXMLLoader();
-    //          loader.setLocation(MainApp.class.getResource("/view/ReferralButton.fxml"));
-    //          AnchorPane ReferralButton = (AnchorPane) loader.load();
-            
-    //          // Set person overview into the center of root layout.
-    //          mainView.setBottom(ReferralButton);
-    //      } catch (IOException e) {
-    //          e.printStackTrace();
-    //      }
-    //  }
-    
      
     /**
      * Returns the main stage.
