@@ -109,7 +109,7 @@ public class ReferralListCtrl {
 
 // recievedDate,  referredDate,  layDays,  status,  assigned,  referredFrom, patient,  referralCause,  referralID,  referralType
 
-    public static ObservableList<ReferralListModel> getReferralList() {
+    public ObservableList<ReferralListModel> getReferralList() {
         ObservableList<ReferralListModel> referrals = FXCollections.observableArrayList();
         referrals.add(new ReferralListModel("1/1-2019", "1/1-2019", "30", "Modtaget", "Alle", "Lægehus A",
                 "Hans 233492-1233", "Årsag 1", "ICPC-kode", "A"));
@@ -131,7 +131,7 @@ public class ReferralListCtrl {
         this.app = app;
 
         // Add observable list data to the table
-        referralListTableView.setItems(ReferralListCtrl.getReferralList());
+        referralListTableView.setItems(getReferralList());
     }
 
 
