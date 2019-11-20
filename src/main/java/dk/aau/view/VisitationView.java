@@ -1,4 +1,6 @@
 package dk.aau.view;
+import javafx.scene.control.*;
+
 
  public class VisitationView{
 //     private Textaera note;

@@ -1,7 +1,6 @@
 package dk.aau.model;
 
 import java.util.Date;
-import java.time.LocalDate;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
@@ -21,9 +20,9 @@ public class ReferralListModel {
     private Date todaysDate;
 
     //Fra java fx tutorial
-    private final ObjectProperty<LocalDate> recievedDate;
-    private final ObjectProperty<LocalDate> referredDate;
-    private final IntegerProperty layDays;
+    private final StringProperty recievedDate;
+    private final StringProperty referredDate;
+    private final StringProperty layDays;
     private final StringProperty status;
     private final StringProperty assigned;
     private final StringProperty referredFrom;
@@ -33,60 +32,55 @@ public class ReferralListModel {
     private final StringProperty referralType;
 
 
-    public ReferralListModel() {
-        this(null, null);
-    }
 
-    public ReferralListModel(String patient, String referralID) {
-        this.recievedDate = new SimpleObjectProperty<LocalDate>(LocalDate.of(1999, 2, 21));
-        this.referredDate = new SimpleObjectProperty<LocalDate>(LocalDate.of(1998, 2, 21));
-        this.layDays = new SimpleIntegerProperty(1234);
+
+    public ReferralListModel(String recievedDate, String referredDate, String layDays, String status, String assigned, String referredFrom, String patient, String referralCause, String referralID, String referralType) {
+        this.recievedDate = new SimpleStringProperty("21/11-2019");
+        this.referredDate = new SimpleStringProperty("10/10-2019");
+        this.layDays = new SimpleStringProperty("1234");
         this.status = new SimpleStringProperty("Modtaget");
         this.assigned = new SimpleStringProperty("Alle");
-        
-        // Some initial dummy data, just for convenient testing.
         this.referredFrom = new SimpleStringProperty("Lægehuset");
-
         this.patient = new SimpleStringProperty(patient);
         this.referralCause = new SimpleStringProperty("referralCause");
-        this.referralID = new SimpleStringProperty(referralID);
+        this.referralID = new SimpleStringProperty("referralID");
         this.referralType = new SimpleStringProperty("referralType");
         
     }
 
-    public LocalDate getRecievedDate() {
+    public String getRecievedDate() {
         return recievedDate.get();
     }
 
-    public void setRecievedDate(LocalDate recievedDate) {
+    public void setRecievedDate(String recievedDate) {
         this.recievedDate.set(recievedDate);
     }
     
-    public ObjectProperty<LocalDate> recievedDateProperty() {
+    public StringProperty recievedDateProperty() {
         return recievedDate;
     }
     
-    public LocalDate getReferredDate() {
+    public String getReferredDate() {
         return referredDate.get();
     }
 
-    public void setReferredDate(LocalDate referredDate) {
+    public void setReferredDate(String referredDate) {
         this.referredDate.set(referredDate);
     }
     
-    public ObjectProperty<LocalDate> referredDateProperty() {
+    public StringProperty referredDateProperty() {
         return referredDate;
     }
 
-    public int getLayDays() {
+    public String getLayDays() {
         return layDays.get();
     }
 
-    public void setLayDays(int layDays) {
+    public void setLayDays(String layDays) {
         this.layDays.set(layDays);
     }
     
-    public IntegerProperty layDaysProperty() {
+    public StringProperty layDaysProperty() {
         return layDays;
     }
 
@@ -113,7 +107,6 @@ public class ReferralListModel {
     public StringProperty assignedProperty() {
         return assigned;
     }
-
 
     public String getReferredFrom() {
         return referredFrom.get();
