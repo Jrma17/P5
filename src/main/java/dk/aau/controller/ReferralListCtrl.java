@@ -81,12 +81,11 @@ public class ReferralListCtrl {
     @FXML
     private Button closeButton;
 
-    public ReferralListCtrl() {
-    }
-
     private App app;
-    public ObservableList<ReferralListModel> getReferralList() {
-        ObservableList<ReferralListModel> referrals = FXCollections.observableArrayList();
+
+    private ObservableList<ReferralListModel> referrals = FXCollections.observableArrayList();
+
+    public App(){
         referrals.add(new ReferralListModel("1/1-2019", "1/1-2019", "30", "Modtaget", "Alle", "Lægehus A",
                 "Hans 233492-1233", "Årsag 1", "ICPC-kode", "A"));
         referrals.add(new ReferralListModel("12/1-2019", "12/1-2019", "0", "Visiteret", "Alle", "Lægehus B",
@@ -103,14 +102,8 @@ public class ReferralListCtrl {
         return referrals;
     }
 
-    public void setApp(App app) {
-        this.app = app;
-
-        // Add observable list data to the table
-        referralListTableView.setItems(getReferralList());
+    public ReferralListCtrl(){
     }
-
-    public ReferralListCtrl{
 
     /**
      * Initializes the controller class. This method is automatically called
@@ -132,10 +125,12 @@ public class ReferralListCtrl {
         //Load af data
         referralListTableView.setItems(getReferralList());
     }
-    }
+    public void setApp(App app) {
+        this.app = app;
+        // Add observable list data to the table
+        referralListTableView.setItems(ReferralListCtrl.getReferralList());
+    } 
 }
-
-
 
 
     //Metoder fra MVC'en
@@ -162,4 +157,3 @@ public class ReferralListCtrl {
         
     }
     */
-}
