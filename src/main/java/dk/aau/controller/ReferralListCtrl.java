@@ -110,6 +110,8 @@ public class ReferralListCtrl {
         referralListTableView.setItems(getReferralList());
     }
 
+    public ReferralListCtrl{
+
     /**
      * Initializes the controller class. This method is automatically called
      * after the fxml file has been loaded.
@@ -130,7 +132,8 @@ public class ReferralListCtrl {
         //Load af data
         referralListTableView.setItems(getReferralList());
     }
-
+    }
+}
 
 
 
