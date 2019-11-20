@@ -1,11 +1,20 @@
 package dk.aau.model;
 
-public class PatientModel {
-    private String name;
-    private String adress;
-    private String cprNumber;
 
-    //Getter og Setter
+
+public class PatientModel {
+    private static String name;
+    private static String adress;
+    private static String cprNumber;
+
+    // Constructor
+    public PatientModel(String name, String adress, String cprNumber) {
+        this.name = name;
+        this.adress = adress;
+        this.cprNumber = cprNumber;
+    }
+
+    // Getter og Setter
     public String getName() {
         return name;
     }
@@ -29,5 +38,7 @@ public class PatientModel {
     public void setCprNumber(String cprNumber) {
         this.cprNumber = cprNumber;
     }
+
+    
     
 }

@@ -8,13 +8,13 @@
    <children>
       <ButtonBar layoutX="326.0" layoutY="553.0" prefHeight="40.0" prefWidth="595.0">
          <buttons>
-            <Button fx:id="AppendixButton" minWidth="74.0" mnemonicParsing="false" prefHeight="13.0" text="Vis bilag" />
-            <Button fx:id="CorrespondenceButton" mnemonicParsing="false" prefHeight="9.0" text="Opret korrespondance" />
-            <Button fx:id="HistoryButton" mnemonicParsing="false" text="Vis historik" />
-            <Button fx:id="CancelButton" mnemonicParsing="false" text="Anuller" />
-            <Button fx:id="CloseButton" mnemonicParsing="false" text="Luk" />
-            <Button fx:id="SaveButton" mnemonicParsing="false" text="Gem" />
-            <Button fx:id="SaveCloseButton" mnemonicParsing="false" text="Gem og Luk" />
+            <Button fx:id="appendixButton" minWidth="74.0" mnemonicParsing="false" prefHeight="13.0" text="Vis bilag" />
+            <Button fx:id="correspondenceButton" mnemonicParsing="false" prefHeight="9.0" text="Opret korrespondance" />
+            <Button fx:id="historyButton" mnemonicParsing="false" text="Vis historik" />
+            <Button fx:id="cancelButton" mnemonicParsing="false" text="Anuller" />
+            <Button fx:id="closeButton" mnemonicParsing="false" text="Luk" />
+            <Button fx:id="saveButton" mnemonicParsing="false" text="Gem" />
+            <Button fx:id="saveCloseButton" mnemonicParsing="false" text="Gem og Luk" />
          </buttons>
       </ButtonBar>
    </children>

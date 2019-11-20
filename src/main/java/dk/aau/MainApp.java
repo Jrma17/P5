@@ -1,6 +1,9 @@
 package dk.aau;
+
 import java.io.IOException;
 
+import dk.aau.controller.MainCtrl;
+import dk.aau.controller.ReferralCtrl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -39,6 +42,10 @@ public class MainApp extends Application {
             Scene scene = new Scene(mainView);
             primaryStage.setScene(scene);
             primaryStage.show();
+             // Give the controller access to the main app.
+             MainCtrl controller = loader.getController();
+             controller.setMainApp(this);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
