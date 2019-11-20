@@ -35,16 +35,16 @@ public class ReferralListModel {
 
 
     public ReferralListModel(String recievedDate, String referredDate, String layDays, String status, String assigned, String referredFrom, String patient, String referralCause, String referralID, String referralType) {
-        this.recievedDate = new SimpleStringProperty("21/11-2019");
-        this.referredDate = new SimpleStringProperty("10/10-2019");
-        this.layDays = new SimpleStringProperty("1234");
-        this.status = new SimpleStringProperty("Modtaget");
-        this.assigned = new SimpleStringProperty("Alle");
-        this.referredFrom = new SimpleStringProperty("Lægehuset");
+        this.recievedDate = new SimpleStringProperty(recievedDate);
+        this.referredDate = new SimpleStringProperty(referredDate);
+        this.layDays = new SimpleStringProperty(layDays);
+        this.status = new SimpleStringProperty(status);
+        this.assigned = new SimpleStringProperty(assigned);
+        this.referredFrom = new SimpleStringProperty(referredFrom);
         this.patient = new SimpleStringProperty(patient);
-        this.referralCause = new SimpleStringProperty("referralCause");
-        this.referralID = new SimpleStringProperty("referralID");
-        this.referralType = new SimpleStringProperty("referralType");
+        this.referralCause = new SimpleStringProperty(referralCause);
+        this.referralID = new SimpleStringProperty(referralID);
+        this.referralType = new SimpleStringProperty(referralType);
         
     }
 
