@@ -1,6 +1,7 @@
 package dk.aau.view;
+import javafx.scene.control.*;
 
 public class MappingListView{
-    private Scroll Pane selectedIcd;
+    private ScrollBar Pane selectedIcd;
     private Button exit;
 }

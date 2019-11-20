@@ -1,5 +1,7 @@
 package dk.aau.view;
 
+import javafx.scene.control.*;
+
 public class ReferralView {
     private Text referralSentDateValue;
     private Text referralRecievedDateValue;

@@ -1,7 +1,8 @@
 package dk.aau.view;
+import javafx.scene.control.*;
 
 public class VisitationView{
-    private Textaera note;
+    private TextArea note;
     private Textfield pharse;
     private Button insertPharse;
     private Textfield diagnosisCodeIcpc;

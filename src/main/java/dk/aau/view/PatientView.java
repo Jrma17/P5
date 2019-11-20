@@ -1,7 +1,8 @@
 package dk.aau.view;
+import javafx.scene.control.*;
 
 public class PatientView {
-    private Text name;
-    private Text adress;
-    private Text cprNumber; 
+    private TextArea name;
+    private TextArea adress;
+    private TextArea cprNumber;
 }

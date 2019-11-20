@@ -21,18 +21,9 @@ import dk.aau.controller.*;
 public class App extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
-    private ObservableList<ReferralListModel> referralList = FXCollections.observableArrayList();
 
     public App(){
-        referralList.add(new ReferralListModel("Hans","233492-1233"));
-        referralList.add(new ReferralListModel("Ruth","290506-1236"));
-        referralList.add(new ReferralListModel("Heinz","311200-9561"));
-        referralList.add(new ReferralListModel("Cornelia","290483-2096"));
-        referralList.add(new ReferralListModel("Werner","192835-1023"));
-        referralList.add(new ReferralListModel("Lydia","101039-5302"));
-        referralList.add(new ReferralListModel("Anna","240140-1028"));
-        referralList.add(new ReferralListModel("Stefan","120594-5961"));
-        referralList.add(new ReferralListModel("Martin","150919-5910"));
+
     }
 
     @Override
@@ -75,8 +66,8 @@ public class App extends Application {
             rootLayout.setCenter(referralList);
 
             // Give the controller access to the main app.
-            ReferralListCtrl controller = loader.getController();
-            controller.setApp(this);
+            //ReferralListCtrl controller = loader.getController();
+            //controller.setApp(this);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -96,7 +87,5 @@ public class App extends Application {
         launch(args);
     }
 
-    public ObservableList<ReferralListModel> getreferralList() {
-        return referralList;
-    }
+
 }
