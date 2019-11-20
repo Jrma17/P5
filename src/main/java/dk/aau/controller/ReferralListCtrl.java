@@ -109,19 +109,23 @@ public class ReferralListCtrl {
 
 // recievedDate,  referredDate,  layDays,  status,  assigned,  referredFrom, patient,  referralCause,  referralID,  referralType
 
-    public ObservableList<ReferralListModel> getReferralList() {
+    public static ObservableList<ReferralListModel> getReferralList() {
         ObservableList<ReferralListModel> referrals = FXCollections.observableArrayList();
-        referrals.add(new ReferralListModel("1/1-2019","1/1-2019","30","Modtaget","Alle","Lægehus A","Hans 233492-1233","Årsag 1","ICPC-kode","A"));
-        referrals.add(new ReferralListModel("12/1-2019","12/1-2019","0","Visiteret","Alle","Lægehus B","Ruth 290506-1236","Årsag 1","ICD10-kode","B"));
-        referrals.add(new ReferralListModel("2/1-2019","2/1-2019","29","Modtaget","Alle","Lægehus C","Heinz 311200-9561","Årsag 1","ICPC-kode","C"));
-        referrals.add(new ReferralListModel("4/1-2019","1/1-2019","27","Modtaget","Alle","Lægehus D","Cornelia 290483-2096","Årsag 1","ICPC-kode","D"));
-        referrals.add(new ReferralListModel("7/1-2019","6/1-2019","24","Modtaget","Alle","Lægehus E","Werner 192835-1023", "Årsag 1","ICPC-kode","E"));
-        referrals.add(new ReferralListModel("20/1-2019","19/1-2019","0","Visiteret","Alle","Lægehus F","Lydia 101039-5302","Årsag 1", "ICD10-kode","F"));
+        referrals.add(new ReferralListModel("1/1-2019", "1/1-2019", "30", "Modtaget", "Alle", "Lægehus A",
+                "Hans 233492-1233", "Årsag 1", "ICPC-kode", "A"));
+        referrals.add(new ReferralListModel("12/1-2019", "12/1-2019", "0", "Visiteret", "Alle", "Lægehus B",
+                "Ruth 290506-1236", "Årsag 1", "ICD10-kode", "B"));
+        referrals.add(new ReferralListModel("2/1-2019", "2/1-2019", "29", "Modtaget", "Alle", "Lægehus C",
+                "Heinz 311200-9561", "Årsag 1", "ICPC-kode", "C"));
+        referrals.add(new ReferralListModel("4/1-2019", "1/1-2019", "27", "Modtaget", "Alle", "Lægehus D",
+                "Cornelia 290483-2096", "Årsag 1", "ICPC-kode", "D"));
+        referrals.add(new ReferralListModel("7/1-2019", "6/1-2019", "24", "Modtaget", "Alle", "Lægehus E",
+                "Werner 192835-1023", "Årsag 1", "ICPC-kode", "E"));
+        referrals.add(new ReferralListModel("20/1-2019", "19/1-2019", "0", "Visiteret", "Alle", "Lægehus F",
+                "Lydia 101039-5302", "Årsag 1", "ICD10-kode", "F"));
 
         return referrals;
     }
-
-
 
     public void setApp(App app) {
         this.app = app;
