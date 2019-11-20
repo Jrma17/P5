@@ -84,6 +84,8 @@ public class ReferralListCtrl {
     public ReferralListCtrl() {
     }
 
+    private App app;
+
     /**
      * Initializes the controller class. This method is automatically called
      * after the fxml file has been loaded.
@@ -118,6 +120,16 @@ public class ReferralListCtrl {
 
         return referrals;
     }
+
+
+
+    public void setApp(App app) {
+        this.app = app;
+
+        // Add observable list data to the table
+        referralListTableView.setItems(ReferralListCtrl.getReferralList());
+    }
+
 
     //Metoder fra MVC'en
     /*public int calculateWaitingDays(){
