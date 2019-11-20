@@ -1,7 +1,9 @@
 package dk.aau.view;
 import javafx.scene.control.*;
 
+
 public class SortListView {
+    /*
     private On/Off Button referralRecieveDate;
     private On/Off Button refferalSentDate;
     private Dropdown Menu status;
@@ -13,4 +15,5 @@ public class SortListView {
     private Button clear;
     private Button search;
     private Button saveProfile;
+    */
 }

@@ -7,6 +7,7 @@ import dk.aau.App;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -114,6 +115,8 @@ public class ReferralListCtrl {
         referrals.add(new ReferralListModel("4/1-2019","1/1-2019","27","Modtaget","Alle","Lægehus D","Cornelia 290483-2096","Årsag 1","ICPC-kode","D"));
         referrals.add(new ReferralListModel("7/1-2019","6/1-2019","24","Modtaget","Alle","Lægehus E","Werner 192835-1023", "Årsag 1","ICPC-kode","E"));
         referrals.add(new ReferralListModel("20/1-2019","19/1-2019","0","Visiteret","Alle","Lægehus F","Lydia 101039-5302","Årsag 1", "ICD10-kode","F"));
+
+        return referrals;
     }
 
     //Metoder fra MVC'en
@@ -139,5 +142,5 @@ public class ReferralListCtrl {
     public void updateReferralListView(){
         
     }
-    */Q
+    */
 }
