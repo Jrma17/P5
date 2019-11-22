@@ -50,10 +50,6 @@ public class ReferralListCtrl {
     @FXML
     private Button searchButton;
 
-    //Knapper i rootLayout
-    @FXML
-    private Button closeButton;
-
     private App app;
 
     
@@ -76,8 +72,9 @@ public class ReferralListCtrl {
         referralCauseColumn.setCellValueFactory(cellData -> cellData.getValue().referralCauseProperty());
         referralIDColumn.setCellValueFactory(cellData -> cellData.getValue().referralIDProperty());
         referralTypeColumn.setCellValueFactory(cellData -> cellData.getValue().referralTypeProperty());
-        
+
     }
+    
     public void setApp (App app){
         this.app = app;
 

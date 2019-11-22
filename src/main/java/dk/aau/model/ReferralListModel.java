@@ -1,23 +1,19 @@
 package dk.aau.model;
 
-import java.util.Date;
-
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class ReferralListModel {
 
-    private ReferralModel referralModel;
-    private int waitingDays;
-    private ReferralStatusModel referralStatusModel;
-    private PatientModel patientModel;
-    private VisitationModel visitationModel;
-    private SortListModel sortListModel;
-    private Date todaysDate;
+    /*
+    private final ReferralModel referralModel;
+    private final int waitingDays;
+    private final ReferralStatusModel referralStatusModel;
+    private final PatientModel patientModel;
+    private final VisitationModel visitationModel;
+    private final SortListModel sortListModel;
+    private final Date todaysDate;
+    */
 
     //Fra java fx tutorial
     private final StringProperty recievedDate;
@@ -31,8 +27,9 @@ public class ReferralListModel {
     private final StringProperty referralID;
     private final StringProperty referralType;
 
-
-
+    public ReferralListModel(){
+        this(null, null, null, null, null, null, null, null, null, null);
+    } 
 
     public ReferralListModel(String recievedDate, String referredDate, String layDays, String status, String assigned, String referredFrom, String patient, String referralCause, String referralID, String referralType) {
         this.recievedDate = new SimpleStringProperty(recievedDate);
@@ -173,6 +170,7 @@ public class ReferralListModel {
 
     
     //Getter og Setter
+    /*
     public int calculateWaitingDays(Date ReferralSentDate, Date todaysDate)
     {
         return waitingDays;
@@ -234,7 +232,7 @@ public class ReferralListModel {
     public void setTodaysDate(Date todaysDate) {
         this.todaysDate = todaysDate;
     }
-
+    */
 
 
 }
