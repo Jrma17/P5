@@ -55,7 +55,7 @@ public class App extends Application {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(App.class.getResource("RefListRootLayout.fxml"));
+            loader.setLocation(App.class.getResource("/ReferralListView.fxml"));
             rootLayout = (AnchorPane) loader.load();
             
             // Show the scene containing the root layout.
