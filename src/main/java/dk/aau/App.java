@@ -2,22 +2,20 @@ package dk.aau;
 
 import java.io.IOException;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.RadioButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import dk.aau.model.*;
-import dk.aau.view.*;
-import dk.aau.controller.*;
+
 
 public class App extends Application {
     private Stage primaryStage;
     private AnchorPane rootLayout;
+
     private ObservableList<ReferralListModel> referrals = FXCollections.observableArrayList();
 
 
@@ -33,7 +31,7 @@ public class App extends Application {
         referrals.add(new ReferralListModel("7/1-2019", "6/1-2019", "24", "Modtaget", "Alle", "Lægehus E",
                 "Werner 192835-1023", "Årsag 1", "ICPC-kode", "E"));
         referrals.add(new ReferralListModel("20/1-2019", "19/1-2019", "0", "Visiteret", "Alle", "Lægehus F",
-                "Lydia 101039-5302", "Årsag 1", "ICD10-kode", "F"));
+                "Lydia 101039-5302", "Årsag 1", "ICD10-kode", "F"));    
     }
     
     public ObservableList<ReferralListModel> getReferrals(){
@@ -55,7 +53,7 @@ public class App extends Application {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(App.class.getResource("RefListRootLayout.fxml"));
+            loader.setLocation(App.class.getResource("/ReferralListView.fxml"));
             rootLayout = (AnchorPane) loader.load();
             
             // Show the scene containing the root layout.
