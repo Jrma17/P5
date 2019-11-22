@@ -1,6 +1,10 @@
 package dk.aau.controller;
 
 import dk.aau.model.*;
+
+import java.time.LocalDate;
+import java.util.Comparator;
+
 import dk.aau.App;
 
 import javafx.fxml.FXML;
@@ -22,9 +26,9 @@ public class ReferralListCtrl {
     @FXML
     private TableView<ReferralListModel> referralListTableView;
     @FXML
-    private TableColumn<ReferralListModel, String> recievedDateColumn;
+    private TableColumn<ReferralListModel, LocalDate> recievedDateColumn;
     @FXML
-    private TableColumn<ReferralListModel, String> referredDateColumn;
+    private TableColumn<ReferralListModel, LocalDate> referredDateColumn;
     @FXML
     private TableColumn<ReferralListModel, String> layDaysColumn;
     @FXML
@@ -49,6 +53,15 @@ public class ReferralListCtrl {
     private RadioButton sortByStatusBtn;
     @FXML
     private Button searchButton;
+    //Når klapper trykkes
+    @FXML 
+    private void handleSortByDate(){
+        App.getReferrals.sort(Comparator.comparing(ReferralListModel::getText));  
+        Comparator<ReferralListModel> comparator = Comparator.comparingInt(ReferralListModel::getRecievedDate);
+    }
+    @FXML 
+    private void handleSortByStatus(){   
+    }
 
     private App app;
 

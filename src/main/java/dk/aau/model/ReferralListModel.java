@@ -1,5 +1,9 @@
 package dk.aau.model;
 
+import java.time.LocalDate;
+
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -16,8 +20,8 @@ public class ReferralListModel {
     */
 
     //Fra java fx tutorial
-    private final StringProperty recievedDate;
-    private final StringProperty referredDate;
+    private final ObjectProperty<LocalDate> recievedDate;
+    private final ObjectProperty<LocalDate> referredDate;
     private final StringProperty layDays;
     private final StringProperty status;
     private final StringProperty assigned;
@@ -31,9 +35,9 @@ public class ReferralListModel {
         this(null, null, null, null, null, null, null, null, null, null);
     } 
 
-    public ReferralListModel(String recievedDate, String referredDate, String layDays, String status, String assigned, String referredFrom, String patient, String referralCause, String referralID, String referralType) {
-        this.recievedDate = new SimpleStringProperty(recievedDate);
-        this.referredDate = new SimpleStringProperty(referredDate);
+    public ReferralListModel(LocalDate recievedDate, LocalDate referredDate, String layDays, String status, String assigned, String referredFrom, String patient, String referralCause, String referralID, String referralType) {
+        this.recievedDate = new SimpleObjectProperty<LocalDate>(LocalDate.of(2019, 1, 20));
+        this.referredDate = new SimpleObjectProperty<LocalDate>(LocalDate.of(2019, 1, 30));
         this.layDays = new SimpleStringProperty(layDays);
         this.status = new SimpleStringProperty(status);
         this.assigned = new SimpleStringProperty(assigned);
@@ -45,27 +49,27 @@ public class ReferralListModel {
         
     }
 
-    public String getRecievedDate() {
+    public LocalDate getRecievedDate() {
         return recievedDate.get();
     }
 
-    public void setRecievedDate(String recievedDate) {
+    public void setRecievedDate(LocalDate recievedDate) {
         this.recievedDate.set(recievedDate);
     }
     
-    public StringProperty recievedDateProperty() {
+    public final ObjectProperty<LocalDate> recievedDateProperty() {
         return recievedDate;
     }
     
-    public String getReferredDate() {
+    public LocalDate getReferredDate() {
         return referredDate.get();
     }
 
-    public void setReferredDate(String referredDate) {
+    public void setReferredDate(LocalDate referredDate) {
         this.referredDate.set(referredDate);
     }
     
-    public StringProperty referredDateProperty() {
+    public ObjectProperty<LocalDate> referredDateProperty() {
         return referredDate;
     }
 
