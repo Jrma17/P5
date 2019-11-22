@@ -33,7 +33,7 @@ repositories {
     mavenCentral()
 }
 
-mainClassName = 'dk.aau.App'
+mainClassName = 'dk.aau.Fapp'
 version = '0.0.1'
 
 javafx {
