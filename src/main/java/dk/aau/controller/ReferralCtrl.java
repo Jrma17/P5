@@ -1,9 +1,18 @@
 package dk.aau.controller;
 
+import java.net.URL;
+import java.util.Observable;
+import java.util.ResourceBundle;
+
 import javax.xml.catalog.Catalog;
 
 import dk.aau.MainApp;
 import dk.aau.model.PatientModel;
+<<<<<<< Updated upstream
+=======
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+>>>>>>> Stashed changes
 // import dk.aau.model.ReferralModel;
 // import dk.aau.model.ReferralStatusModel;
 // import dk.aau.model.VisitationModel;
@@ -31,45 +40,58 @@ public class ReferralCtrl{
     // private MappingListCtrl mappingListCtrl;
     // private CatalogCtrl catalogCtrl;
 
-    MainCtrl mainCtrl;
+     
+       
     //Patientview
-    @FXML
-    private Label cprNumber;
-    @FXML
-    private Label name;
-    @FXML
-    private Label adress;
-    //ReferralButton
-    @FXML
-    private Button appendixButton;
-    @FXML
-    private Button correspondenceButton;
-    @FXML
-    private Button historyButton;
-    @FXML
-    private Button cancelButton;
-    @FXML
-    private Button closeButton;
-    @FXML
-    private Button saveButton;
-    @FXML
-    private Button saveCloseButton;
+     @FXML
+     private Label cprNumber;
+     @FXML
+     private Label name;
+     @FXML
+     private Label adress;
+
+     //ReferralView
+     @FXML
+     private Label course;
+     @FXML
+     private Label responsibleUnit;
+     @FXML
+     private Button editCourse;//Bruges ikke
+     @FXML 
+     private TextArea anamnesis;
+     @FXML
+     private Label referralID;
+     @FXML
+     private Label referralSentDate;
+     @FXML
+     private Label referralRecievedDate;
+     @FXML
+     private Label referredBy;
+     @FXML
+     private Label referralType;
+     @FXML
+     private ComboBox waitingGroup; //Bruges ikke
+     @FXML
+     private TextField diagnosisText; //Bruges ikke
+     @FXML
+     private Button catalogButton; //Bruges ikke
+
     //VisitationView
     @FXML
-    private TextField diagnosisCodeIcpc;
+    private TextField diagnosisCodeICPC;
     @FXML
-    private TextField referralDiagnosisCodeIcd;
+    private TextField referralDiagnosisCodeICD;
     @FXML
     private TextArea note;
     @FXML
-    private TextField phrase; 
-    //Mangler en
+    private ComboBox phrase;
+
     //ReferralStatusView
     @FXML
     private DatePicker date;
     @FXML
     private TextField unit;
-    @FXML
+    @FXML 
     private ComboBox patientPrivilege;
     @FXML
     private ComboBox status;
@@ -77,48 +99,76 @@ public class ReferralCtrl{
     private ComboBox assigned;
     @FXML
     private TextField visitator;
-    //ReferralView
-    @FXML
-    private Label course;
-    @FXML
-    private Label responsibleUnit;
-    @FXML
-    private Button editCourse;
-    @FXML
-    private TextArea anamnesis;
-    @FXML
-    private Label referralID;
-    @FXML
-    private Label referralSent;
-    @FXML
-    private Label referredBy;
-    @FXML
-    private Label referralType;
-    @FXML
-    private ComboBox waitingGroup;
-    @FXML
-    private TextField diagnosisText;
 
-    @FXML public void initialize(MainCtrl mainCtrl){
-        this.mainCtrl = mainCtrl;
-    }
 
-    private MainApp mainApp;
+    //Liste med input til ventegruppe-combobox
+    ObservableList<String> waitingGroupList = FXCollections.observableArrayList("ALM ALMINDELIGT AMBULAT", "ALS NEUROMED.PTT.MED ALS", "DEL DAGPAT.REUMA"); 
+    ObservableList<String> StatusList = FXCollections.observableArrayList("Anulleret", "Modtaget", "Visiteret", "Klar til visitering", "Afventer", "Faerdigbehandlet", "Omvisiteret(RN)", "Visteret(Haster)", "Omvisiteret(Eksternt)", "Tilsyn - Faerdigbehandlet"); 
+    ObservableList<String> assignedList = FXCollections.observableArrayList("Erna", "Jakob", "Andrea"); 
+    ObservableList<String> patientPrivilegeList = FXCollections.observableArrayList("Udredning", "Behandling", "Kontrol");
+    ObservableList<String> phraseList = FXCollections.observableArrayList("JournalNotat", "Akut indlaeggelse");  
     
-    public void initialize(){
-        getPatient(patientmodel);
+    public ReferralCtrl(){
+
+     }
+     public void getPatient(){
+         //Skriver patientinfo i labels
+         //name.setText(patient.getName());
+         //adress.setText(patient.getAdress());
+         //cprNumber.setText(patient.getCprNumber());
+         cprNumber.setText("1234-5678");
+         name.setText("Abcde");
+         adress.setText("ertyui");
     }
 
+    public void getReferral(){
+        //Skriver text i label
+        course.setText("ghjk");
+        responsibleUnit.setText("eth");
+        referralID.setText("ghjkl");
+        referralSentDate.setText("1234");
+        referralRecievedDate.setText("2435");
+        referredBy.setText("ertgh");
+        referralType.setText("sdfgh");
+        anamnesis.setText("dfghjkl");
 
-    public void getPatient(PatientModel patient){
-        //Skriver patientinfo i labels
-        // cprNumber.setText(patient.getCprNumber());
-        // name.setText(patient.getName());
-        // adress.setText(patient.getAdress());
-        cprNumber.setText("1234");
-        name.setText("Julie");
-        adress.setText("erty");
+        //Skriver i combobox
+        waitingGroup.setValue("Vaelg ventegruppe");
+        waitingGroup.setItems(waitingGroupList);
+    
     }
+
+    public void getVisitation(){
+        phrase.setItems(phraseList);
+
+    }
+
+    public void getReferralStatus(){
+        status.setValue("Vaelg status");
+        status.setItems(StatusList);
+        assigned.setValue("Vaelg tildelt");
+        assigned.setItems(assignedList);
+        patientPrivilege.setValue("Vaelg patientrettighed");
+        patientPrivilege.setItems(patientPrivilegeList);
+
+    }
+
+     public void initialize(){
+            
+        getPatient();
+        getReferral();
+        getReferralStatus();
+        
+     }
+
+
+
+    
+
+    
+   
+    
+}
     
     
     
@@ -126,44 +176,4 @@ public class ReferralCtrl{
 
 
  
-    //Metoder
-
-    public void detectInputFromReferralView(){
-
-    }
-    public void detectInputFromReferralStatusView(){
-
-    }
-    public void detectInputFromVisitationView(){
-
-    }
-    public void detectInputFromPatientView(){
-
-    }
-    public void generateReferralView(){
-
-    }
-    public void generateReferralStatusView(){
-
-    }
-    public void generateVisitationView(){
-
-    }
-    public void generatePatientView(){
-
-    }
-    public void updateReferralView(){
-
-    }
-    public void updateReferralStatusView(){
-
-    }
-    public void updateVisitationView(){
-
-    }
-    public void updatePatientView(){
-
-    }
-
     
-}

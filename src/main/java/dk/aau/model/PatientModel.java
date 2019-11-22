@@ -7,14 +7,21 @@ public class PatientModel {
     private static String adress;
     private static String cprNumber;
 
+<<<<<<< Updated upstream
     // Constructor
+=======
+>>>>>>> Stashed changes
     public PatientModel(String name, String adress, String cprNumber) {
         this.name = name;
         this.adress = adress;
         this.cprNumber = cprNumber;
     }
 
+<<<<<<< Updated upstream
     // Getter og Setter
+=======
+    //Getter og Setter
+>>>>>>> Stashed changes
     public String getName() {
         return name;
     }
