@@ -8,11 +8,8 @@ import javax.xml.catalog.Catalog;
 
 import dk.aau.MainApp;
 import dk.aau.model.PatientModel;
-<<<<<<< Updated upstream
-=======
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
->>>>>>> Stashed changes
 // import dk.aau.model.ReferralModel;
 // import dk.aau.model.ReferralStatusModel;
 // import dk.aau.model.VisitationModel;
@@ -103,22 +100,27 @@ public class ReferralCtrl{
 
     //Liste med input til ventegruppe-combobox
     ObservableList<String> waitingGroupList = FXCollections.observableArrayList("ALM ALMINDELIGT AMBULAT", "ALS NEUROMED.PTT.MED ALS", "DEL DAGPAT.REUMA"); 
+    //Liste med input til Status-combobox
     ObservableList<String> StatusList = FXCollections.observableArrayList("Anulleret", "Modtaget", "Visiteret", "Klar til visitering", "Afventer", "Faerdigbehandlet", "Omvisiteret(RN)", "Visteret(Haster)", "Omvisiteret(Eksternt)", "Tilsyn - Faerdigbehandlet"); 
+    //Liste med input til Tildelt-combobox
     ObservableList<String> assignedList = FXCollections.observableArrayList("Erna", "Jakob", "Andrea"); 
+    //Liste med input til Patientrettighed-combobox
     ObservableList<String> patientPrivilegeList = FXCollections.observableArrayList("Udredning", "Behandling", "Kontrol");
+    //Liste med input til frase-combobox
     ObservableList<String> phraseList = FXCollections.observableArrayList("JournalNotat", "Akut indlaeggelse");  
     
     public ReferralCtrl(){
 
      }
-     public void getPatient(){
+     public void getPatient(PatientModel patient){
          //Skriver patientinfo i labels
-         //name.setText(patient.getName());
-         //adress.setText(patient.getAdress());
-         //cprNumber.setText(patient.getCprNumber());
-         cprNumber.setText("1234-5678");
-         name.setText("Abcde");
-         adress.setText("ertyui");
+        
+         name.setText(patient.getName());
+         adress.setText(patient.getAdress());
+         cprNumber.setText(patient.getCprNumber());
+         //cprNumber.setText("1234-5678");
+         //name.setText("Abcde");
+         //adress.setText("ertyui");
     }
 
     public void getReferral(){
@@ -132,18 +134,20 @@ public class ReferralCtrl{
         referralType.setText("sdfgh");
         anamnesis.setText("dfghjkl");
 
-        //Skriver i combobox
+        //Laver liste i combobox + skriver tekst i feltet
         waitingGroup.setValue("Vaelg ventegruppe");
         waitingGroup.setItems(waitingGroupList);
     
     }
 
     public void getVisitation(){
+        //Laver liste i combobox + skriver tekst i feltet
         phrase.setItems(phraseList);
 
     }
 
     public void getReferralStatus(){
+        //Laver liste i combobox + skriver tekst i feltet
         status.setValue("Vaelg status");
         status.setItems(StatusList);
         assigned.setValue("Vaelg tildelt");
@@ -155,9 +159,10 @@ public class ReferralCtrl{
 
      public void initialize(){
             
-        getPatient();
+        getPatient(MainApp.getPatientData().get(0));
         getReferral();
         getReferralStatus();
+        
         
      }
 

@@ -11,12 +11,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.aau.controller.ReferralCtrl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="952.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.aau.controller.ReferralCtrl">
    <children>
-      <Separator layoutX="1.0" prefHeight="102.0" prefWidth="948.0" />
-      <ComboBox fx:id="waitingGroup" editable="true" layoutX="124.0" layoutY="136.0" prefHeight="26.0" prefWidth="474.0" />
-      <ButtonBar layoutX="336.0" layoutY="563.0" prefHeight="40.0" prefWidth="595.0">
+      <Separator layoutX="1.0" prefHeight="102.0" prefWidth="948.0" AnchorPane.bottomAnchor="496.6" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="1.0" />
+      <ComboBox fx:id="waitingGroup" editable="true" layoutX="111.0" layoutY="125.0" prefHeight="26.0" prefWidth="474.0" AnchorPane.topAnchor="125.0" />
+      <ButtonBar layoutX="319.0" layoutY="546.0" prefHeight="50.0" prefWidth="616.0">
          <buttons>
             <Button fx:id="AppendixButton" minWidth="74.0" mnemonicParsing="false" prefHeight="13.0" text="Vis bilag" />
             <Button fx:id="CorrespondenceButton" mnemonicParsing="false" prefHeight="9.0" text="Opret korrespondance" />
@@ -24,223 +23,175 @@
             <Button fx:id="CancelButton" mnemonicParsing="false" text="Anuller" />
             <Button fx:id="CloseButton" mnemonicParsing="false" text="Luk" />
             <Button fx:id="SaveButton" mnemonicParsing="false" text="Gem" />
-            <Button fx:id="SaveCloseButton" mnemonicParsing="false" text="Gem og Luk" />
+            <Button fx:id="SaveCloseButton" minWidth="25.0" mnemonicParsing="false" prefHeight="26.0" text="Gem og Luk" />
          </buttons>
       </ButtonBar>
-      <ComboBox fx:id="status" editable="true" layoutX="140.0" layoutY="460.0" prefHeight="26.0" prefWidth="219.0" />
-      <Label layoutX="460.0" layoutY="24.0" text="Forløb:" textOverrun="WORD_ELLIPSIS">
+      <ComboBox fx:id="status" editable="true" layoutX="140.0" layoutY="460.0" prefHeight="26.0" prefWidth="219.0" AnchorPane.bottomAnchor="125.0" AnchorPane.leftAnchor="115.0" />
+      <Label layoutX="460.0" layoutY="24.0" text="Forløb:" textOverrun="WORD_ELLIPSIS" AnchorPane.topAnchor="15.0">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label fx:id="course" layoutX="498.0" layoutY="24.0" text="Label">
+      <Label fx:id="course" layoutX="498.0" layoutY="24.0" text="Label" AnchorPane.topAnchor="15.0">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label layoutX="627.0" layoutY="23.0" text="Ansvar.enhed:">
+      <Label layoutX="627.0" layoutY="23.0" text="Ansvar.enhed:" AnchorPane.topAnchor="15.0">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label layoutX="627.0" layoutY="23.0" text="Ansvar.enhed:">
+      <Label fx:id="responsibleUnit" layoutX="699.0" layoutY="24.0" text="Label" AnchorPane.topAnchor="15.0">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label fx:id="responsibleUnit" layoutX="699.0" layoutY="24.0" text="Label">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
-      <Button fx:id="editCourse" layoutX="847.0" layoutY="20.0" mnemonicParsing="false" text="Rediger forløb">
+      <Button fx:id="editCourse" layoutX="847.0" layoutY="20.0" mnemonicParsing="false" text="Rediger forløb" AnchorPane.topAnchor="15.0">
          <font>
             <Font size="10.0" />
          </font>
       </Button>
-      <TextArea fx:id="anamnesis" editable="false" layoutX="627.0" layoutY="97.0" prefHeight="191.0" prefWidth="301.0" />
-      <Label layoutX="627.0" layoutY="72.0" text="Anamese:">
+      <TextArea fx:id="anamnesis" editable="false" layoutX="627.0" layoutY="97.0" prefHeight="191.0" prefWidth="301.0" AnchorPane.leftAnchor="627.0" AnchorPane.topAnchor="87.0" />
+      <Label layoutX="627.0" layoutY="72.0" text="Anamese:" AnchorPane.leftAnchor="627.0" AnchorPane.topAnchor="62.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="803.0" layoutY="72.0" text="Henv.id:">
+      <Label layoutX="803.0" layoutY="72.0" text="Henv.id:" AnchorPane.leftAnchor="803.0" AnchorPane.topAnchor="62.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="referralID" layoutX="858.0" layoutY="72.0" text="Label" />
-      <Label layoutX="34.0" layoutY="78.0" text="Henvisningsdato: ">
+      <Label fx:id="referralID" layoutX="858.0" layoutY="72.0" text="Label" AnchorPane.topAnchor="62.0" />
+      <Label layoutX="34.0" layoutY="78.0" text="Henvisningsdato: " AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="68.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="referralSentDate" layoutX="128.0" layoutY="78.0" text="Label" />
-      <Label layoutX="200.0" layoutY="78.0" text="Modtagelsedato:">
+      <Label fx:id="referralSentDate" layoutX="128.0" layoutY="78.0" text="Label" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="68.0" />
+      <Label layoutX="200.0" layoutY="78.0" text="Modtagelsedato:" AnchorPane.leftAnchor="390.0" AnchorPane.topAnchor="68.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="referralRecievedDate" layoutX="297.0" layoutY="78.0" text="Label" />
-      <Label layoutX="40.0" layoutY="112.0" text="Henvist af:">
+      <Label fx:id="referralRecievedDate" layoutX="297.0" layoutY="78.0" text="Label" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="68.0" />
+      <Label layoutX="40.0" layoutY="112.0" text="Henvist af:" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="100.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="referredBy" layoutX="116.0" layoutY="112.0" text="Label" />
-      <Label layoutX="359.0" layoutY="112.0" text="Type:">
+      <Label fx:id="referredBy" layoutX="116.0" layoutY="112.0" text="Label" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="100.0" />
+      <Label layoutX="359.0" layoutY="112.0" text="Type:" AnchorPane.leftAnchor="390.0" AnchorPane.topAnchor="100.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="referralType" layoutX="398.0" layoutY="112.0" text="Label" />
-      <Label layoutX="40.0" layoutY="140.0" text="Ventegruppe:">
+      <Label fx:id="referralType" layoutX="398.0" layoutY="112.0" text="Label" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="100.0" />
+      <Label layoutX="40.0" layoutY="140.0" text="Ventegruppe:" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="130.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="33.0" layoutY="170.0" text="Diagnosetekst i henvisningen:">
+      <Label layoutX="33.0" layoutY="170.0" text="Diagnosetekst i henvisningen:" AnchorPane.leftAnchor="15.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="diagnosisText" layoutX="201.0" layoutY="166.0" prefHeight="26.0" prefWidth="382.0" />
-      <Button fx:id="catalogButton" layoutX="433.0" layoutY="238.0" mnemonicParsing="false" text="Katalog" />
-      <Label fx:id="cprNumber" layoutX="87.0" layoutY="32.0" text="Label">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
-      <Label fx:id="name" layoutX="128.0" layoutY="32.0" text="Label">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
-      <Label fx:id="adress" layoutX="164.0" layoutY="32.0" text="Label">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
-      <Label layoutX="40.0" layoutY="337.0" text="Dato:">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="41.0" layoutY="378.0" text="Enhed:">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="40.0" layoutY="421.0" text="Patientretighed:">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="41.0" layoutY="465.0" text="Status:">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <DatePicker fx:id="date" layoutX="139.0" layoutY="333.0" prefHeight="26.0" prefWidth="100.0" />
-      <TextField fx:id="unit" layoutX="140.0" layoutY="375.0" maxHeight="2.0" prefHeight="0.0" prefWidth="100.0">
+      <TextField fx:id="diagnosisText" layoutX="201.0" layoutY="166.0" prefHeight="26.0" prefWidth="396.0" />
+      <Button fx:id="catalogButton" layoutX="552.0" layoutY="236.0" mnemonicParsing="false" text="Katalog" />
+      <TextField fx:id="unit" layoutX="140.0" layoutY="375.0" maxHeight="2.0" prefHeight="0.0" prefWidth="100.0" AnchorPane.bottomAnchor="195.0" AnchorPane.leftAnchor="115.0">
          <font>
             <Font size="10.0" />
          </font>
       </TextField>
-      <ComboBox fx:id="patientPrivilege" editable="true" layoutX="140.0" layoutY="416.0" prefHeight="26.0" prefWidth="488.0" />
-      <Label layoutX="362.0" layoutY="378.0" text="Visitator:">
+      <Label layoutX="362.0" layoutY="378.0" text="Visitator:" AnchorPane.bottomAnchor="204.4" AnchorPane.leftAnchor="390.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="406.0" layoutY="465.0" text="Tildelt:">
+      <Label layoutX="40.0" layoutY="337.0" text="Dato:" AnchorPane.bottomAnchor="230.0" AnchorPane.leftAnchor="15.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <ComboBox fx:id="assigned" editable="true" layoutX="461.0" layoutY="460.0" prefHeight="26.0" prefWidth="182.0" />
-      <TextField fx:id="visitator" layoutX="422.0" layoutY="375.0" maxHeight="23.0" prefHeight="23.0" prefWidth="181.0">
+      <Label layoutX="41.0" layoutY="378.0" text="Enhed:" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="15.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="421.0" text="Patientretighed:" AnchorPane.leftAnchor="15.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="41.0" layoutY="465.0" text="Status:" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="15.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="date" layoutX="139.0" layoutY="333.0" prefHeight="26.0" prefWidth="100.0" AnchorPane.bottomAnchor="225.0" AnchorPane.leftAnchor="115.0" />
+      <ComboBox fx:id="patientPrivilege" editable="true" layoutX="140.0" layoutY="416.0" prefHeight="26.0" prefWidth="503.0" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="115.0" />
+      <Label layoutX="406.0" layoutY="465.0" text="Tildelt:" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="390.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="assigned" editable="true" layoutX="461.0" layoutY="460.0" prefHeight="26.0" prefWidth="159.0" AnchorPane.bottomAnchor="125.0" />
+      <TextField fx:id="visitator" layoutX="455.0" layoutY="375.0" maxHeight="23.0" prefHeight="23.0" prefWidth="159.0">
          <font>
             <Font size="10.0" />
          </font>
       </TextField>
-      <Label layoutX="40.0" layoutY="337.0" text="Dato:" AnchorPane.leftAnchor="40.0">
+      <Label layoutX="40.0" layoutY="206.0" text="ICPC-2-DK diagnosekode:" AnchorPane.leftAnchor="15.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="41.0" layoutY="378.0" text="Enhed:">
+      <Label layoutX="34.0" layoutY="240.0" text="ICD-10 henvisningsdiagnosekode:" AnchorPane.leftAnchor="15.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="40.0" layoutY="421.0" text="Patientretighed:">
+      <Label layoutX="34.0" layoutY="270.0" text="Planlagte procedure:" AnchorPane.leftAnchor="15.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="41.0" layoutY="465.0" text="Status:">
+      <TextField fx:id="diagnosisCodeICPC" layoutX="174.0" layoutY="201.0" prefHeight="26.0" prefWidth="422.0" />
+      <TextField fx:id="referralDiagnosisCodeICD" layoutX="223.0" layoutY="236.0" prefHeight="26.0" prefWidth="325.0" />
+      <TextArea fx:id="note" layoutX="650.0" layoutY="390.0" prefHeight="156.0" prefWidth="290.0" />
+      <Label layoutX="650.0" layoutY="339.0" text="Vælg frase: ">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <DatePicker fx:id="date" layoutX="139.0" layoutY="333.0" prefHeight="26.0" prefWidth="100.0" />
-      <TextField fx:id="unit" layoutX="140.0" layoutY="375.0" maxHeight="2.0" prefHeight="0.0" prefWidth="100.0">
+      <Label layoutX="652.0" layoutY="361.0" text="Visitationsnotat:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Separator layoutY="315.0" prefHeight="18.0" prefWidth="950.0" AnchorPane.bottomAnchor="266.6" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="315.0" />
+      <ComboBox fx:id="phrase" editable="true" layoutX="725.0" layoutY="335.0" prefHeight="26.0" prefWidth="204.0" />
+      <Label fx:id="cprNumber" layoutX="97.0" layoutY="42.0" text="Label" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="15.0">
          <font>
             <Font size="10.0" />
          </font>
-      </TextField>
-      <ComboBox fx:id="patientPrivilege" editable="true" layoutX="140.0" layoutY="416.0" prefHeight="26.0" prefWidth="488.0" />
-      <Label layoutX="362.0" layoutY="378.0" text="Visitator:">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
       </Label>
-      <Label layoutX="406.0" layoutY="465.0" text="Tildelt:">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <ComboBox fx:id="assigned" editable="true" layoutX="461.0" layoutY="460.0" prefHeight="26.0" prefWidth="182.0" />
-      <TextField fx:id="visitator" layoutX="422.0" layoutY="375.0" maxHeight="23.0" prefHeight="23.0" prefWidth="181.0">
+      <Label fx:id="name" layoutX="138.0" layoutY="42.0" text="Label" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="15.0">
          <font>
             <Font size="10.0" />
          </font>
-      </TextField>
-      <Label layoutX="40.0" layoutY="206.0" text="ICPC-2-DK diagnosekode:">
+      </Label>
+      <Label fx:id="adress" layoutX="174.0" layoutY="42.0" text="Label" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="15.0">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font size="10.0" />
          </font>
       </Label>
-      <Label layoutX="34.0" layoutY="240.0" text="ICD-10 henvisningsdiagnosekode:">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="34.0" layoutY="270.0" text="Planlagte procedure:">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <TextField fx:id="diagnosisCodeICPC" layoutX="201.0" layoutY="201.0" prefHeight="26.0" prefWidth="219.0" />
-      <TextField fx:id="referralDiagnosisCodeICD" layoutX="223.0" layoutY="236.0" prefHeight="26.0" prefWidth="193.0" />
-      <TextArea fx:id="note" layoutX="650.0" layoutY="390.0" prefHeight="166.0" prefWidth="302.0" />
-      <Label layoutX="657.0" layoutY="324.0" text="Vælg frase: ">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="650.0" layoutY="369.0" text="Visitationsnotat:">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Separator layoutY="300.0" prefHeight="18.0" prefWidth="950.0" />
-      <Label layoutX="35.0" layoutY="32.0" text="CPR-nr: " textOverrun="WORD_ELLIPSIS">
+      <Label layoutX="45.0" layoutY="42.0" text="CPR-nr: " textOverrun="WORD_ELLIPSIS" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
          <font>
             <Font name="System Bold" size="10.0" />
          </font>
       </Label>
-      <ComboBox fx:id="phrase" editable="true" layoutX="728.0" layoutY="321.0" prefHeight="26.0" prefWidth="204.0" />
    </children>
 </AnchorPane>
