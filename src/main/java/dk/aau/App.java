@@ -22,7 +22,7 @@ public class App extends Application {
 
 
     public App(){
-        referrals.add(new ReferralListModel(LocalDate.of(2019, 01, 20) , (2019, 01, 19), "30", "Modtaget", "Alle", "Lægehus A",
+        referrals.add(new ReferralListModel(LocalDate.of(2019, 01, 20), (2019, 01, 19), "30", "Modtaget", "Alle", "Lægehus A",
                 "Hans 233492-1233", "Årsag 1", "ICPC-kode", "A"));
         referrals.add(new ReferralListModel("12/1-2019", "12/1-2019", "0", "Visiteret", "Alle", "Lægehus B",
                 "Ruth 290506-1236", "Årsag 1", "ICD10-kode", "B"));
