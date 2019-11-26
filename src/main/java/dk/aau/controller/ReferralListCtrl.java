@@ -1,23 +1,27 @@
 package dk.aau.controller;
 
-import dk.aau.model.*;
-import dk.aau.App;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
+import dk.aau.MainApp;
+import dk.aau.model.ReferralListModel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
-public class ReferralListCtrl {
-    /* //Attributter fra MVC'en
-    private ReferralListModel referralListModel;
-    private ReferralStatusModel referralStatusModel;
-    private int waitingDays;
-    private ReferralModel referralModel;
-    private PatientModel patientModel;
-    private VisitationModel visitationModel;
-    private SortListModel sortListModel;
-    private SortListView sortListView;
-    private ReferralCtrl referralCtrl;
-*/
+public class ReferralListCtrl implements Initializable {
 
     @FXML
     private TableView<ReferralListModel> referralListTableView;
@@ -42,69 +46,87 @@ public class ReferralListCtrl {
     @FXML
     private TableColumn<ReferralListModel, String> referralTypeColumn;
 
-    //Knapper i sortListView
-    @FXML
-    private RadioButton sortByDateBtn;
-    @FXML
-    private RadioButton sortByStatusBtn;
-    @FXML
-    private Button searchButton;
+    // Reference to the main application.
+    private MainApp mainApp;
 
-    private App app;
-
-    
-    public ReferralListCtrl(){
-    }
-    /**
-     * Initializes the controller class. This method is automatically called
-     * after the fxml file has been loaded.
+    /***
+     * The constructor. The constructor is called before the initialize() method.
      */
-    @FXML
-    private void initialize() {
-        // Opstilling af kolonnerne i tabellen
-        recievedDateColumn.setCellValueFactory(cellData -> cellData.getValue().recievedDateProperty());
-        referredDateColumn.setCellValueFactory(cellData -> cellData.getValue().referredDateProperty());
-        layDaysColumn.setCellValueFactory(cellData -> cellData.getValue().layDaysProperty());
-        statusColumn.setCellValueFactory(cellData -> cellData.getValue().statusProperty());
-        assignedColumn.setCellValueFactory(cellData -> cellData.getValue().assignedProperty());
-        referredFromColumn.setCellValueFactory(cellData -> cellData.getValue().referredFromProperty());
-        patientColumn.setCellValueFactory(cellData -> cellData.getValue().patientProperty());
-        referralCauseColumn.setCellValueFactory(cellData -> cellData.getValue().referralCauseProperty());
-        referralIDColumn.setCellValueFactory(cellData -> cellData.getValue().referralIDProperty());
-        referralTypeColumn.setCellValueFactory(cellData -> cellData.getValue().referralTypeProperty());
+    public ReferralListCtrl() {
+    }
+
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        recievedDateColumn.setCellValueFactory(new PropertyValueFactory<ReferralListModel, String>("recievedDate"));
+        referredDateColumn.setCellValueFactory(new PropertyValueFactory<ReferralListModel, String>("referredDate"));
+        layDaysColumn.setCellValueFactory(new PropertyValueFactory<ReferralListModel, String>("layDays"));
+        statusColumn.setCellValueFactory(new PropertyValueFactory<ReferralListModel, String>("status"));
+        assignedColumn.setCellValueFactory(new PropertyValueFactory<ReferralListModel, String>("assigned"));
+        referredFromColumn.setCellValueFactory(new PropertyValueFactory<ReferralListModel, String>("referredFrom"));
+        patientColumn.setCellValueFactory(new PropertyValueFactory<ReferralListModel, String>("patient"));
+        referralCauseColumn.setCellValueFactory(new PropertyValueFactory<ReferralListModel, String>("referralCause"));
+        referralIDColumn.setCellValueFactory(new PropertyValueFactory<ReferralListModel, String>("referralID"));
+        referralTypeColumn.setCellValueFactory(new PropertyValueFactory<ReferralListModel, String>("referralType"));
+
+        referralListTable.setItems(getReferralListData());
 
     }
-    
-    public void setApp (App app){
-        this.app = app;
 
-        referralListTableView.setItems(app.getReferrals());
+    /**
+     * Returns the data as an observable list of Persons.
+     * 
+     * @return
+     */
+    public ObservableList<ReferralListModel> getReferralListData() {
+        ObservableList<ReferralListModel> referralListData = FXCollections.observableArrayList();
+        referralListData.add(new ReferralListModel("1/1-2019", "1/12-2019", "30", "Modtaget", "Alle", "Laegehus A",
+                "Hans 233492-1233", "Aarsag 1", "ICPC-kode", "A"));
+        referralListData.add(new ReferralListModel("12/1-2019", "12/1-2019", "0", "Visiteret", "Alle", "Laegehus B",
+                "Ruth 290506-1236", "Aarsag 1", "ICD10-kode", "B"));
+        referralListData.add(new ReferralListModel("2/1-2019", "2/1-2019", "29", "Modtaget", "Alle", "Laegehus C",
+                "Heinz 311200-9561", "Aarsag 1", "ICPC-kode", "C"));
+        referralListData.add(new ReferralListModel("4/1-2019", "1/1-2019", "27", "Modtaget", "Alle", "Laegehus D",
+                "Cornelia 290483-2096", "Aarsag 1", "ICPC-kode", "D"));
+        referralListData.add(new ReferralListModel("7/1-2019", "6/1-2019", "24", "Modtaget", "Alle", "Laegehus E",
+                "Werner 192835-1023", "Aarsag 1", "ICPC-kode", "E"));
+        referralListData.add(new ReferralListModel("20/1-2019", "19/1-2019", "0", "Visiteret", "Alle", "Laegehus F",
+                "Lydia 101039-5302", "Aarsag 1", "ICD10-kode", "F"));
+
+        return referralListData;
+    }
+
+
+    /*
+     * Denne funktion henter "referralView" og gør den til den nye scene, når der
+     * trykkes på knappen. ("Knappen" den den knap som vælges i scene-builder, hvor
+     * denne funktion tilknyttes)
+     */
+    // public void handleButton(ActionEvent event) throws IOException {
+
+    //     Parent ReferralViewParent = FXMLLoader.load(getClass().getResource("/ReferralView.fxml"));
+    //     Scene ReferralViewScene = new Scene(ReferralViewParent);
+
+    //     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+    //     window.setScene(ReferralViewScene);
+    //     window.show();
+    // }
+
+
+    @FXML
+    public void clickItem(MouseEvent event) throws IOException {
+        if (event.getClickCount() == 2) // Checking double click
+        {
+            Parent ReferralViewParent = FXMLLoader.load(getClass().getResource("/ReferralView.fxml"));
+        Scene ReferralViewScene = new Scene(ReferralViewParent);
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(ReferralViewScene);
+        window.show();
+        }
     }
 
 }
-
-
-    //Metoder fra MVC'en
-    /*public int calculateWaitingDays(){
-        return waitingDays;
-
-    }
-    public void detectInputFromSortListView(){
-
-    }
-    public void sortListBy(){
-
-    }
-    public void recieveReferralList(){
-
-    }
-    public void detectInputFromReferralListView(){
-
-    }
-    public void generateReferralListView(){
-
-    }
-    public void updateReferralListView(){
-        
-    }
-    */
