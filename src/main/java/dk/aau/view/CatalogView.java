@@ -1,5 +1,8 @@
  package dk.aau.view;
 
- public class CatalogView{
-//     private Scroll Pane selectedIcpc;
+import javafx.scene.control.*;
+
+
+public class CatalogView{
+    //private ScrollBar Pane scrollbar;
 }

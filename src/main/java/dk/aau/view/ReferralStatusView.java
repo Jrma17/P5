@@ -1,10 +1,14 @@
 package dk.aau.view;
 
- public class ReferralStatusView {
-//     private Datepicker date;
-//     private Textfield unit;
-//     private Dropdown Menu patientPrivilege;
-//     private Dropdown Menu status;
-//     private Dropdown Menu assigned;
-//     private Textfield visitator; 
- }
+import javafx.scene.control.*;
+import javafx.scene.text.Text;
+
+
+public class ReferralStatusView {
+    private DatePicker date;
+    private Text unit;
+    private SplitMenuButton patientPrivilege;
+    private SplitMenuButton status;
+    private SplitMenuButton assigned;
+    private Text visitator;
+}
