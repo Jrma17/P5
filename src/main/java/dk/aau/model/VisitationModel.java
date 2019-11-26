@@ -7,7 +7,16 @@ public class VisitationModel{
     private String referralDiagnosisCodeICD = "Ingen";
     private String scheduledProcedure;
 
+    public VisitationModel() {
+        this(null);
+    }
 
+    public VisitationModel(String diagnosisCodeICPC) {
+
+        this.diagnosisCodeICPC = diagnosisCodeICPC;
+
+    }
+    
     //Getter og Setter
     public String getNote() {
         return note;
