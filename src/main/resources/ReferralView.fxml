@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -21,8 +22,8 @@
             <Button fx:id="CorrespondenceButton" mnemonicParsing="false" prefHeight="9.0" text="Opret korrespondance" />
             <Button fx:id="HistoryButton" mnemonicParsing="false" text="Vis historik" />
             <Button fx:id="CancelButton" mnemonicParsing="false" text="Anuller" />
-            <Button fx:id="CloseButton" mnemonicParsing="false" text="Luk" />
-            <Button fx:id="SaveButton" mnemonicParsing="false" text="Gem" />
+            <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeButtonAction" text="Luk" />
+            <Button fx:id="saveButton" mnemonicParsing="false" text="Gem" />
             <Button fx:id="SaveCloseButton" minWidth="25.0" mnemonicParsing="false" prefHeight="26.0" text="Gem og Luk" />
          </buttons>
       </ButtonBar>
@@ -193,5 +194,7 @@
             <Font name="System Bold" size="10.0" />
          </font>
       </Label>
+      <ScrollBar layoutX="918.0" layoutY="88.0" orientation="VERTICAL" prefHeight="191.0" prefWidth="14.0" />
+      <ScrollBar layoutX="928.0" layoutY="389.0" orientation="VERTICAL" prefHeight="156.0" prefWidth="14.0" />
    </children>
 </AnchorPane>
