@@ -1,4 +1,3 @@
-package dk.aau.view;
 
 
 public class ReferralListView {

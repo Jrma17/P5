@@ -49,7 +49,6 @@ public class ReferralListModel {
         this.referralCause = new SimpleStringProperty(referralCause);
         this.referralID = new SimpleStringProperty(referralID);
         this.referralType = new SimpleStringProperty(referralType);
-
     }
 
     public String getRecievedDate() {
@@ -71,7 +70,6 @@ public class ReferralListModel {
     public void setReferredDate(String referredDate) {
         this.referredDate.set(referredDate);
     }
-
     public StringProperty referredDateProperty() {
         return referredDate;
     }
@@ -83,7 +81,6 @@ public class ReferralListModel {
     public void setLayDays(String layDays) {
         this.layDays.set(layDays);
     }
-
     public StringProperty layDaysProperty() {
         return layDays;
     }

@@ -24,7 +24,7 @@ import javafx.stage.Stage;
 public class ReferralListCtrl implements Initializable {
 
     @FXML
-    private TableView<ReferralListModel> referralListTable;
+    private TableView<ReferralListModel> referralListTableView;
     @FXML
     private TableColumn<ReferralListModel, String> recievedDateColumn;
     @FXML
