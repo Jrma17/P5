@@ -1,5 +1,7 @@
 package dk.aau.model;
 
+
+
 public class PatientModel {
     private String name;
     private String address;
