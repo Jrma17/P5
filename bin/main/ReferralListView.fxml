@@ -45,7 +45,7 @@
                         <ToggleGroup fx:id="filtrer" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="sortByStatusBtn" mnemonicParsing="false" text="Status" toggleGroup="$filtrer">
+                  <RadioButton fx:id="sortByStatusBtn" mnemonicParsing="false" onAction="#handleSortByStatus" text="Status" toggleGroup="$filtrer">
                      <HBox.margin>
                         <Insets left="40.0" top="10.0" />
                      </HBox.margin>

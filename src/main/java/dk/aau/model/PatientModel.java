@@ -3,15 +3,12 @@ package dk.aau.model;
 
 
 public class PatientModel {
-    private static String name;
-    private static String adress;
-    private static String cprNumber;
-
-    public PatientModel(String name, String adress, String cprNumber) {
-        this.name = name;
-        this.adress = adress;
-        this.cprNumber = cprNumber;
-    }
+    private String name;
+    private String address;
+    private String cprNumber;
+    private int postcode;
+    private String city;
+    
 
     //Getter og Setter
     public String getName() {
@@ -22,12 +19,12 @@ public class PatientModel {
         this.name = name;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
     public void setAdress(String adress) {
-        this.adress = adress;
+        this.address = address;
     }
 
     public String getCprNumber() {
@@ -38,6 +35,12 @@ public class PatientModel {
         this.cprNumber = cprNumber;
     }
 
-    
+    public int getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(int postcode) {
+        this.postcode = postcode;
+    }
     
 }
