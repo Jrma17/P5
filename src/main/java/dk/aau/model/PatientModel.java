@@ -4,6 +4,9 @@ public class PatientModel {
     private String name;
     private String address;
     private String cprNumber;
+    private int postcode;
+    private String city;
+    
 
     //Getter og Setter
     public String getName() {
@@ -28,6 +31,14 @@ public class PatientModel {
 
     public void setCprNumber(String cprNumber) {
         this.cprNumber = cprNumber;
+    }
+
+    public int getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(int postcode) {
+        this.postcode = postcode;
     }
     
 }
