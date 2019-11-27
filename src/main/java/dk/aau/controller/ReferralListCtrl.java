@@ -14,7 +14,7 @@ import dk.aau.model.*;
 import java.time.LocalDate;
 import java.util.Comparator;
 
-import dk.aau.App;
+import dk.aau.MainApp;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +22,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -71,6 +73,7 @@ public class ReferralListCtrl implements Initializable {
     @FXML
     private Button searchButton;
     //Når klapper trykkes
+    /*
     @FXML 
     private void handleSortByDate(){
         App.getReferrals.sort(Comparator.comparing(ReferralListModel::getText));  
@@ -79,6 +82,7 @@ public class ReferralListCtrl implements Initializable {
     @FXML 
     private void handleSortByStatus(){   
     }
+    */
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
