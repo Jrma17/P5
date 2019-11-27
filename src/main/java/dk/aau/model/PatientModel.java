@@ -2,7 +2,7 @@ package dk.aau.model;
 
 public class PatientModel {
     private String name;
-    private String adress;
+    private String address;
     private String cprNumber;
 
     //Getter og Setter
@@ -14,12 +14,12 @@ public class PatientModel {
         this.name = name;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
     public void setAdress(String adress) {
-        this.adress = adress;
+        this.address = address;
     }
 
     public String getCprNumber() {
