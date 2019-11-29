@@ -26,12 +26,12 @@ public class PatientModel {
         this.name = name;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
     public void setAdress(String adress) {
-        this.adress = adress;
+        this.address = address;
     }
 
     public String getCprNumber() {
@@ -42,6 +42,12 @@ public class PatientModel {
         this.cprNumber = cprNumber;
     }
 
-    
+    public int getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(int postcode) {
+        this.postcode = postcode;
+    }
     
 }

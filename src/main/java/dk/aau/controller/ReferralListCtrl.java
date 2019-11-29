@@ -26,9 +26,9 @@ public class ReferralListCtrl implements Initializable {
     @FXML
     private TableView<ReferralListModel> referralListTable;
     @FXML
-    private TableColumn<ReferralListModel, String> recievedDateColumn;
+    private TableColumn<ReferralListModel, LocalDate> recievedDateColumn;
     @FXML
-    private TableColumn<ReferralListModel, String> referredDateColumn;
+    private TableColumn<ReferralListModel, LocalDate> referredDateColumn;
     @FXML
     private TableColumn<ReferralListModel, String> layDaysColumn;
     @FXML
@@ -56,6 +56,22 @@ public class ReferralListCtrl implements Initializable {
     }
 
 
+    //Knapper i sortListView
+    @FXML
+    private RadioButton sortByDateBtn;
+    @FXML
+    private RadioButton sortByStatusBtn;
+    @FXML
+    private Button searchButton;
+    //Når klapper trykkes
+    @FXML 
+    private void handleSortByDate(){
+        App.getReferrals.sort(Comparator.comparing(ReferralListModel::getText));  
+        Comparator<ReferralListModel> comparator = Comparator.comparingInt(ReferralListModel::getRecievedDate);
+    }
+    @FXML 
+    private void handleSortByStatus(){   
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

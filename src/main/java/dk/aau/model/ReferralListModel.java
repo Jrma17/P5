@@ -50,11 +50,11 @@ public class ReferralListModel {
 
     }
 
-    public String getRecievedDate() {
+    public LocalDate getRecievedDate() {
         return recievedDate.get();
     }
 
-    public void setRecievedDate(String recievedDate) {
+    public void setRecievedDate(LocalDate recievedDate) {
         this.recievedDate.set(recievedDate);
     }
 
@@ -66,7 +66,7 @@ public class ReferralListModel {
         return referredDate.get();
     }
 
-    public void setReferredDate(String referredDate) {
+    public void setReferredDate(LocalDate referredDate) {
         this.referredDate.set(referredDate);
     }
 
