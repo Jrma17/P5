@@ -2,9 +2,11 @@ package dk.aau.model;
 
 import java.util.Date;
 
+import javafx.scene.control.Button;
+
 public class ReferralModel {
-    private Date referralSentDate;
-    private Date referralRecievedDate;
+    private String referralSentDate;
+    private String referralRecievedDate;
     private String referredBy;
     private String waitingGroup;
     private String diagnosisText;
@@ -13,22 +15,42 @@ public class ReferralModel {
     private String anamnesis;
     private String referralType;
     private String responsibleUnit;
+    private Button saveButton;
 
+    /**
+     * Default constructor.
+     */
+    public ReferralModel() {
+        this(null, null, null, null, null, null, null, null, null);
+    }
+    public ReferralModel(String referralSentDate, String referralRecievedDate, String referredBy, String diagnosisText,
+             String course, String referralID, String anamnesis, String referralType,
+            String responsibleUnit) {
+        this.referralSentDate = referralSentDate;
+        this.referralRecievedDate = referralRecievedDate;
+        this.referredBy = referredBy;
+        this.diagnosisText = diagnosisText;
+        this.course = course;
+        this.referralID = referralID;
+        this.anamnesis = anamnesis;
+        this.referralType = referralType;
+        this.responsibleUnit = responsibleUnit;
+    }
 
-    //Getter og Setter
-    public Date getReferralSentDate() {
+	//Getter og Setter
+    public String getReferralSentDate() {
         return referralSentDate;
     }
 
-    public void setReferralSentDate(Date referralSentDate) {
+    public void setReferralSentDate(String referralSentDate) {
         this.referralSentDate = referralSentDate;
     }
 
-    public Date getReferralRecievedDate() {
+    public String getReferralRecievedDate() {
         return referralRecievedDate;
     }
 
-    public void setReferralRecievedDate(Date referralRecievedDate) {
+    public void setReferralRecievedDate(String referralRecievedDate) {
         this.referralRecievedDate = referralRecievedDate;
     }
 
@@ -95,4 +117,5 @@ public class ReferralModel {
     public void setResponsibleUnit(String responsibleUnit) {
         this.responsibleUnit = responsibleUnit;
     }
+    
 }
