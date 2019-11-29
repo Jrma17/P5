@@ -33,10 +33,22 @@ repositories {
     mavenCentral()
 }
 
-mainClassName = 'dk.aau.App'
+
+mainClassName = 'dk.aau.MainApp'
 version = '0.0.1'
 
 javafx {
     version = "11.0.2"
     modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+dependencies {
+    // This dependency is used by the application.
+    implementation 'com.google.guava:guava:28.0-jre'
+
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.16'
 }

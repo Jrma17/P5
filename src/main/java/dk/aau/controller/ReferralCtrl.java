@@ -2,9 +2,10 @@ package dk.aau.controller;
 
 import java.io.IOException;
 import dk.aau.MainApp;
-import dk.aau.model.PatientModel;
-import dk.aau.model.ReferralModel;
+//import dk.aau.model.PatientModel;
+//import dk.aau.model.ReferralModel;
 import dk.aau.model.VisitationModel;
+//import dk.aau.controller.ReferralHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,7 +32,7 @@ public class ReferralCtrl{
     // private ReferralModel referralModel;
     // private ReferralStatusModel referralStatusModel;
     // private VisitationModel visitationModel;
-     private PatientModel patientmodel;
+     //private PatientModel patientmodel;
     // private ReferralView referralview;
     // private ReferralStatusView referralStatusView;
     // private VisitationView visitationview;
@@ -117,34 +118,34 @@ public class ReferralCtrl{
     ObservableList<String> patientPrivilegeList = FXCollections.observableArrayList("Udredning", "Behandling",
             "Kontrol");
     // Liste med input til frase-combobox
-    ObservableList<String> phraseList = FXCollections.observableArrayList("JournalNotat", "Akut indlaeggelse");
+    ObservableList<String> phraseList = FXCollections.observableArrayList("Journal Notat", "Akut indlaeggelse");
 
     // Construtor
     public ReferralCtrl() {
     }
+    
 
-    public void getPatient(PatientModel patient) {
+     public void getPatient() {
         // Skriver patientinfo i labels
 
-        name.setText(patient.getName());
-        adress.setText(patient.getAdress());
-        cprNumber.setText(patient.getCprNumber());
-        // cprNumber.setText("1234-5678");
-        // name.setText("Abcde");
-        // adress.setText("ertyui");
-    }
+         name.setText(MainApp.patientModel.getName());
+         adress.setText(MainApp.patientModel.getAdress());
+         cprNumber.setText(MainApp.patientModel.getCprNumber());
+    
+     }
 
-    public void getReferral(ReferralModel referral) {
+    public void getReferral() {
         // Skriver text i label
-        course.setText(referral.getCourse());
-        responsibleUnit.setText(referral.getResponsibleUnit());
-        referralID.setText(referral.getReferralID());
-        referralSentDate.setText(referral.getReferralSentDate());
-        referralRecievedDate.setText(referral.getReferralRecievedDate());
-        referredBy.setText(referral.getReferredBy());
-        referralType.setText(referral.getReferralType());
-        anamnesis.setText(referral.getAnamnesis());
-        diagnosisText.getText();
+        
+         course.setText(MainApp.referralModel.getCourse());
+         responsibleUnit.setText(MainApp.referralModel.getResponsibleUnit());
+         referralID.setText(MainApp.referralModel.getReferralID());
+        referralSentDate.setText(MainApp.referralModel.getReferralSentDate());
+        referralRecievedDate.setText(MainApp.referralModel.getReferralRecievedDate());
+         referredBy.setText(MainApp.referralModel.getReferredBy());
+         referralType.setText(MainApp.referralModel.getReferralType());
+         anamnesis.setText(MainApp.referralModel.getAnamnesis());
+         diagnosisText.setText(MainApp.referralModel.getDiagnosisText());
 
         // Laver liste i combobox + skriver tekst i feltet
         waitingGroup.setValue("Vaelg ventegruppe");
@@ -152,14 +153,21 @@ public class ReferralCtrl{
 
     }
 
-    public void getVisitation(VisitationModel visitation) {
+    public void getVisitation() {
         // Laver liste i combobox + skriver tekst i feltet
-        // phrase.setItems(phraseList);
-        // if(){
+        phrase.setValue("Vaelg frase");
+         phrase.setItems(phraseList);
+        //Hvis pladsen i array er optaget skrive dette eller tomt felt.
+        // if(MainApp.getVisitationData().get(0) != null){
+            // diagnosisCodeICPC.setText(visitation.getDiagnosisCodeICPC());
 
-        // }
-        diagnosisCodeICPC.setText(visitation.getDiagnosisCodeICPC());
-        anamnesis.setText(visitation.getDiagnosisCodeICPC());
+         //}
+         //else{
+           // diagnosisCodeICPC.setText("");
+         //}
+        
+        //anamnesis.setText(visitation.getDiagnosisCodeICPC());
+        //MainApp.getVisitationData().get(0);
         
         // System.out.println(MainApp.getVisitationData().get(0));
 
@@ -194,36 +202,32 @@ public class ReferralCtrl{
         window.show();
 
     }
-    public void saveButton1(){
-        saveButton.setOnAction((Event -> {
-            // System.out.println(diagnosisCodeICPC.getText());
 
-            MainApp.getVisitationData().add(new VisitationModel(diagnosisCodeICPC.getText()));
-        }));
-    }
-
+    // public void saveButton1(){
+    //     saveButton.setOnAction((Event -> {
+    //         String ICPC = diagnosisCodeICPC.getText();
+    //          System.out.println(diagnosisCodeICPC.getText());
+    //         ReferralHandler.addICPC(ICPC);
+    //         MainApp.getVisitationData().add(new VisitationModel(diagnosisCodeICPC.getText()));
+    //         //getVisitation(MainApp.getVisitationData().get(0));
+    //     }));
+    // }
+    
     public void initialize() {
 
-        getPatient(MainApp.getPatientData().get(0));
-        getReferral(MainApp.getReferralData().get(0));
+        getPatient();
+        getReferral();
         getReferralStatus();
-        saveButton1();
-        //getVisitation(MainApp.getVisitationData().get(2));
-
-        
-        
-
-    }
-
-
-
-    
-
-    
+        //saveButton1();
+        getVisitation();
    
-    
+
+       
+        
+
+    }    
+
 }
-    
     
     
 

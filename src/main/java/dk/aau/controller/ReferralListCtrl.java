@@ -8,14 +8,7 @@ import dk.aau.MainApp;
 import dk.aau.model.ReferralListModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import dk.aau.model.*;
-
-import java.time.LocalDate;
-import java.util.Comparator;
-
-import dk.aau.App;
-
+//import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,7 +24,7 @@ import javafx.stage.Stage;
 public class ReferralListCtrl implements Initializable {
 
     @FXML
-    private TableView<ReferralListModel> referralListTableView;
+    private TableView<ReferralListModel> referralListTable;
     @FXML
     private TableColumn<ReferralListModel, LocalDate> recievedDateColumn;
     @FXML
@@ -93,6 +86,7 @@ public class ReferralListCtrl implements Initializable {
         referralIDColumn.setCellValueFactory(new PropertyValueFactory<ReferralListModel, String>("referralID"));
         referralTypeColumn.setCellValueFactory(new PropertyValueFactory<ReferralListModel, String>("referralType"));
 
+        
         referralListTable.setItems(getReferralListData());
 
     }

@@ -1,13 +1,11 @@
 package dk.aau.model;
 
-import java.time.LocalDate;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
+
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 
 public class ReferralListModel {
 
@@ -49,6 +47,7 @@ public class ReferralListModel {
         this.referralCause = new SimpleStringProperty(referralCause);
         this.referralID = new SimpleStringProperty(referralID);
         this.referralType = new SimpleStringProperty(referralType);
+
     }
 
     public LocalDate getRecievedDate() {
@@ -70,6 +69,7 @@ public class ReferralListModel {
     public void setReferredDate(LocalDate referredDate) {
         this.referredDate.set(referredDate);
     }
+
     public StringProperty referredDateProperty() {
         return referredDate;
     }
@@ -81,6 +81,7 @@ public class ReferralListModel {
     public void setLayDays(String layDays) {
         this.layDays.set(layDays);
     }
+
     public StringProperty layDaysProperty() {
         return layDays;
     }
@@ -168,4 +169,5 @@ public class ReferralListModel {
     public StringProperty referralTypeProperty() {
         return referralType;
     }
+
 }

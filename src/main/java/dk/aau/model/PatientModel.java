@@ -3,12 +3,19 @@ package dk.aau.model;
 
 
 public class PatientModel {
-    private String name;
-    private String address;
-    private String cprNumber;
-    private int postcode;
-    private String city;
-    
+    private  String name;
+    private  String adress;
+    private  String cprNumber;
+
+    public PatientModel(){
+        this(null, null, null);
+    }
+
+    public PatientModel(String name, String adress, String cprNumber) {
+        this.name = name;
+        this.adress = adress;
+        this.cprNumber = cprNumber;
+    }
 
     //Getter og Setter
     public String getName() {

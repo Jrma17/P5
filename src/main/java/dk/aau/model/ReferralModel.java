@@ -20,21 +20,21 @@ public class ReferralModel {
     /**
      * Default constructor.
      */
-    public ReferralModel() {
-        this(null, null, null, null, null, null, null, null, null);
-    }
-    public ReferralModel(String referralSentDate, String referralRecievedDate, String referredBy, String diagnosisText,
-             String course, String referralID, String anamnesis, String referralType,
-            String responsibleUnit) {
+     public ReferralModel() {
+         this(null, null, null, null, null, null, null, null, null, null);
+     }
+    public ReferralModel(String referralSentDate, String referralRecievedDate, String referredBy, String referralType, String waitingGroup, String diagnosisText,
+             String course, String referralID, String responsibleUnit, String anamnesis) {
         this.referralSentDate = referralSentDate;
         this.referralRecievedDate = referralRecievedDate;
         this.referredBy = referredBy;
+        this.referralType = referralType;        
+        this.waitingGroup = waitingGroup;
         this.diagnosisText = diagnosisText;
         this.course = course;
+        this.responsibleUnit = responsibleUnit;
         this.referralID = referralID;
         this.anamnesis = anamnesis;
-        this.referralType = referralType;
-        this.responsibleUnit = responsibleUnit;
     }
 
 	//Getter og Setter
