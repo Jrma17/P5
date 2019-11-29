@@ -3,9 +3,13 @@ package dk.aau.model;
 
 
 public class PatientModel {
-    private static String name;
-    private static String adress;
-    private static String cprNumber;
+    private  String name;
+    private  String adress;
+    private  String cprNumber;
+
+    public PatientModel(){
+        this(null, null, null);
+    }
 
     public PatientModel(String name, String adress, String cprNumber) {
         this.name = name;

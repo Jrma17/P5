@@ -1,13 +1,12 @@
 package dk.aau.controller;
 
 import dk.aau.model.CatalogModel;
-import dk.aau.view.CatalogView;
-import dk.aau.view.VisitationView;
+
 
 public class CatalogCtrl {
-    private VisitationView visitationView;
+    
     private CatalogModel catalogModel;
-    private CatalogView catalogview;
+    
 
 
     public void generateCatalogView(){
