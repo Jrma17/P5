@@ -1,7 +1,6 @@
 package dk.aau.model;
 
-
-
+import java.time.LocalDate;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -50,11 +49,11 @@ public class ReferralListModel {
 
     }
 
-    public LocalDate getRecievedDate() {
+    public String getRecievedDate() {
         return recievedDate.get();
     }
 
-    public void setRecievedDate(LocalDate recievedDate) {
+    public void setRecievedDate(String recievedDate) {
         this.recievedDate.set(recievedDate);
     }
 
@@ -66,7 +65,7 @@ public class ReferralListModel {
         return referredDate.get();
     }
 
-    public void setReferredDate(LocalDate referredDate) {
+    public void setReferredDate(String referredDate) {
         this.referredDate.set(referredDate);
     }
 

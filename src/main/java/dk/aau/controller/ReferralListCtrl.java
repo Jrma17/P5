@@ -2,8 +2,11 @@ package dk.aau.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
+import dk.aau.App;
 import dk.aau.MainApp;
 import dk.aau.model.ReferralListModel;
 import javafx.collections.FXCollections;
@@ -15,6 +18,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -64,19 +69,19 @@ public class ReferralListCtrl implements Initializable {
     @FXML
     private Button searchButton;
     //Når klapper trykkes
-    @FXML 
-    private void handleSortByDate(){
-        App.getReferrals.sort(Comparator.comparing(ReferralListModel::getText));  
-        Comparator<ReferralListModel> comparator = Comparator.comparingInt(ReferralListModel::getRecievedDate);
-    }
+    //@FXML 
+    // private void handleSortByDate(){
+    //     App.getReferrals.sort(Comparator.comparing(ReferralListModel::getText));  
+    //     Comparator<ReferralListModel> comparator = Comparator.comparingInt(ReferralListModel::getRecievedDate);
+    // }
     @FXML 
     private void handleSortByStatus(){   
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        recievedDateColumn.setCellValueFactory(new PropertyValueFactory<ReferralListModel, String>("recievedDate"));
-        referredDateColumn.setCellValueFactory(new PropertyValueFactory<ReferralListModel, String>("referredDate"));
+        //recievedDateColumn.setCellValueFactory(new PropertyValueFactory<ReferralListModel, String>("recievedDate"));
+        //referredDateColumn.setCellValueFactory(new PropertyValueFactory<ReferralListModel, String>("referredDate"));
         layDaysColumn.setCellValueFactory(new PropertyValueFactory<ReferralListModel, String>("layDays"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<ReferralListModel, String>("status"));
         assignedColumn.setCellValueFactory(new PropertyValueFactory<ReferralListModel, String>("assigned"));

@@ -8,7 +8,7 @@ public class VisitationModel{
     private String scheduledProcedure;
 
     public VisitationModel() {
-        this(null);
+        
     }
 
     public VisitationModel(String diagnosisCodeICPC) {

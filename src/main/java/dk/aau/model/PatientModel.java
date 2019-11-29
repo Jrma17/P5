@@ -4,8 +4,9 @@ package dk.aau.model;
 
 public class PatientModel {
     private  String name;
-    private  String adress;
+    private  String address;
     private  String cprNumber;
+    private  int postcode;
 
     public PatientModel(){
         this(null, null, null);
@@ -13,8 +14,9 @@ public class PatientModel {
 
     public PatientModel(String name, String adress, String cprNumber) {
         this.name = name;
-        this.adress = adress;
+        this.address = adress;
         this.cprNumber = cprNumber;
+        
     }
 
     //Getter og Setter

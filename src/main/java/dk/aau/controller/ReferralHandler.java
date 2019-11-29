@@ -70,7 +70,7 @@ public class ReferralHandler {
 
     public static ReferralModel readReferral() {
 
-        String sqlQuery = "SELECT referralSentDate, referralRecievedDate, referredBy, referralType, waitingGroup, diagnosisText, course, responsibleUnit, referralID, Anamnesis FROM Henvisning"; // Vælger
+        String sqlQuery = "SELECT referralSentDate, referralRecievedDate, referredBy, referralType, waitingGroup, diagnosisText, course, responsibleUnit, referralID, anamnesis FROM Referral"; // Vælger
                                                                                                                                                                                                   // first-
                                                                                                                                                                                                   // og
                                                                                                                                                                                                   // lastname
@@ -122,13 +122,8 @@ public class ReferralHandler {
 
     public static ReferralListModel readReferralList() {
 
-        String sqlQuery = "SELECT referralSentDate, referralRecievedDate, referredBy, referralType, waitingGroup, diagnosisText, course, responsibleUnit, referralID, Anamnesis FROM Henvisning"; // Vælger
-                                                                                                                                                                                                  // first-
-                                                                                                                                                                                                  // og
-                                                                                                                                                                                                  // lastname
-                                                                                                                                                                                                  // fra
-                                                                                                                                                                                                  // listen
-                                                                                                                                                                                                  // "persons
+        String sqlQuery = "SELECT referralSentDate, referralRecievedDate, referredBy, referralType, waitingGroup, diagnosisText, course, responsibleUnit, referralID, anamnesis FROM Referral"; // Vælger
+                                                                                                                                                                                      // "persons
         ArrayList referralList = databaseReaderHelperFunction(sqlQuery); // Anvender hjælperfunktionen til at definere
                                                                          // et ResultSet med resultatet af forespørgslen
 
@@ -149,6 +144,28 @@ public class ReferralHandler {
 
     }
 
+    public static VisitationModel readVisitation() {
+
+        String sqlQuery = "SELECT note, phrase, diagnosisCodeICPC, scheduledProcedure FROM Visitation"; // Vælger
+                                                                                                                                                                                      // "persons
+        ArrayList referralList = databaseReaderHelperFunction(sqlQuery); // Anvender hjælperfunktionen til at definere
+                                                                         // et ResultSet med resultatet af forespørgslen
+
+        VisitationModel visitationModel = null;
+        for (Object referral : referralList) {
+            ArrayList<Object> visitationData = (ArrayList<Object>) referral;
+            //String note = (String) visitationData.get(0);
+           // String rphrase = (String) visitationData.get(1);
+            String diagnosisCodeICPC = (String) visitationData.get(3);
+           // String referralDiagnosisCodeICD = (String) visitationData.get(2);
+           // String scheduledProcedure = (String) visitationData.get(8);
+
+            visitationModel = new VisitationModel(diagnosisCodeICPC);
+        }
+
+        return visitationModel;
+
+    }
     private static void databaseWriteHelperFunction(String sqlQuery) throws ClassNotFoundException, SQLException {
         Statement stmt;
         try {
@@ -166,8 +183,11 @@ public class ReferralHandler {
     public static void addICPC(VisitationModel visitationModel) throws SQLException, ClassNotFoundException {
         String updateStmt = null;
         if (visitationModel.getDiagnosisCodeICPC() != null) {
-            updateStmt = "INSERT INTO Henvisning" + "(diagnosisCodeICPC)" + "VALUES('"
-                    + visitationModel.getDiagnosisCodeICPC() + ");'";
+            updateStmt = "INSERT INTO Visitation\n"+"(diagnosisCodeICPC\n)"+"VALUES('"+ visitationModel.getDiagnosisCodeICPC() +"');";
+           
+                    
+                    
+                    //"VALUES ('"+ Main.patient.getCprSerialNumber() ficDrug.getDrug().getGenericName()+"');";
         }
         try {
             databaseWriteHelperFunction(updateStmt);
@@ -177,44 +197,5 @@ public class ReferralHandler {
         }
 
     }
-    // public static void addPatientSpecificDrug(PatientSpecificDrug
-    // patientSpecificDrug) throws SQLException, ClassNotFoundException{
-    // java.sql.Date databaseTmpDrugEndDate;
-    // String updateStmt;
-    // if(patientSpecificDrug.getDrugEndDate() == null){
-    // databaseTmpDrugEndDate = null;
-    // updateStmt = "INSERT INTO MM_PatientSpecificDrug\n"+
-    // "(cprSerialNumber, dateOfBirth, drugStartDateTime\n" +
-    // ",drugEndDate, dosage, strength, frequency, route,
-    // indikation,noteText,doctorId,brandName,genericName)"+
-    // "VALUES ('"+ Main.patient.getCprSerialNumber() +"','"+
-    // Main.patient.getDateOfBirth() + "','"+
-    // patientSpecificDrug.getDrugStartDateTime() +"',"+ databaseTmpDrugEndDate
-    // +",'"+patientSpecificDrug.getDosage()+"','"+patientSpecificDrug.getStrength()+"','"+patientSpecificDrug.getFrequency()+"','"+patientSpecificDrug.getRoute()+"','"+patientSpecificDrug.getIndication()+"','"+patientSpecificDrug.getNoteText()+"','"+
-    // Main.doctor.getId()
-    // +"','"+patientSpecificDrug.getDrug().getBrandName()+"','"+patientSpecificDrug.getDrug().getGenericName()+"');";
-    // }
-    // else {
-    // databaseTmpDrugEndDate = Date.valueOf((LocalDate)
-    // patientSpecificDrug.getDrugEndDate());
-    // updateStmt = "INSERT INTO MM_PatientSpecificDrug\n"+
-    // "(cprSerialNumber, dateOfBirth, drugStartDateTime\n" +
-    // ",drugEndDate, dosage, strength, frequency, route,
-    // indikation,noteText,doctorId,brandName,genericName)"+
-    // "VALUES ('"+ Main.patient.getCprSerialNumber() +"','"+
-    // Main.patient.getDateOfBirth() + "','"+
-    // patientSpecificDrug.getDrugStartDateTime() +"','"+ databaseTmpDrugEndDate
-    // +"','"+patientSpecificDrug.getDosage()+"','"+patientSpecificDrug.getStrength()+"','"+patientSpecificDrug.getFrequency()+"','"+patientSpecificDrug.getRoute()+"','"+patientSpecificDrug.getIndication()+"','"+patientSpecificDrug.getNoteText()+"','"+
-    // Main.doctor.getId()
-    // +"','"+patientSpecificDrug.getDrug().getBrandName()+"','"+patientSpecificDrug.getDrug().getGenericName()+"');";
-    // }
-
-    // try {
-    // databaseWriteHelperFunction(updateStmt);
-    // } catch (SQLException | ClassNotFoundException e) {
-    // System.out.print("Error occurred while trying to insert into database: " +
-    // e.getMessage());
-    // throw e;
-    // }
-    // }
+    
 }

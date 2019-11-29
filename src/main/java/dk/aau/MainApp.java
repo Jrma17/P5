@@ -25,6 +25,7 @@ public class MainApp extends Application {
     public static ReferralModel referralModel = new ReferralModel();
     public static PatientModel patientModel = new PatientModel();
     public static ReferralListModel referralListModel = new ReferralListModel();
+    public static VisitationModel visitationModel = new VisitationModel();
     
     
      //Arrayliste med patientdata og henvisningsdata
@@ -76,6 +77,7 @@ public class MainApp extends Application {
                MainApp.referralModel =  ReferralHandler.readReferral();
                MainApp.patientModel = ReferralHandler.readPatientData();
                MainApp.referralListModel = ReferralHandler.readReferralList();
+               MainApp.visitationModel = ReferralHandler.readVisitation();
                //MainApp.patientModel = PatientModel.readPatientData();
                 // Load Sort List View
                 FXMLLoader loader = new FXMLLoader();

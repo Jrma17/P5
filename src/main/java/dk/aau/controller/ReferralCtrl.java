@@ -1,6 +1,8 @@
 package dk.aau.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import dk.aau.MainApp;
 //import dk.aau.model.PatientModel;
 //import dk.aau.model.ReferralModel;
@@ -28,11 +30,11 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class ReferralCtrl{
+public class ReferralCtrl {
     // private ReferralModel referralModel;
     // private ReferralStatusModel referralStatusModel;
     // private VisitationModel visitationModel;
-     //private PatientModel patientmodel;
+    // private PatientModel patientmodel;
     // private ReferralView referralview;
     // private ReferralStatusView referralStatusView;
     // private VisitationView visitationview;
@@ -123,29 +125,28 @@ public class ReferralCtrl{
     // Construtor
     public ReferralCtrl() {
     }
-    
 
-     public void getPatient() {
+    public void getPatient() {
         // Skriver patientinfo i labels
 
-         name.setText(MainApp.patientModel.getName());
-         adress.setText(MainApp.patientModel.getAdress());
-         cprNumber.setText(MainApp.patientModel.getCprNumber());
-    
-     }
+        name.setText(MainApp.patientModel.getName());
+        adress.setText(MainApp.patientModel.getAddress());
+        cprNumber.setText(MainApp.patientModel.getCprNumber());
+
+    }
 
     public void getReferral() {
         // Skriver text i label
-        
-         course.setText(MainApp.referralModel.getCourse());
-         responsibleUnit.setText(MainApp.referralModel.getResponsibleUnit());
-         referralID.setText(MainApp.referralModel.getReferralID());
+
+        course.setText(MainApp.referralModel.getCourse());
+        responsibleUnit.setText(MainApp.referralModel.getResponsibleUnit());
+        referralID.setText(MainApp.referralModel.getReferralID());
         referralSentDate.setText(MainApp.referralModel.getReferralSentDate());
         referralRecievedDate.setText(MainApp.referralModel.getReferralRecievedDate());
-         referredBy.setText(MainApp.referralModel.getReferredBy());
-         referralType.setText(MainApp.referralModel.getReferralType());
-         anamnesis.setText(MainApp.referralModel.getAnamnesis());
-         diagnosisText.setText(MainApp.referralModel.getDiagnosisText());
+        referredBy.setText(MainApp.referralModel.getReferredBy());
+        referralType.setText(MainApp.referralModel.getReferralType());
+        anamnesis.setText(MainApp.referralModel.getAnamnesis());
+        diagnosisText.setText(MainApp.referralModel.getDiagnosisText());
 
         // Laver liste i combobox + skriver tekst i feltet
         waitingGroup.setValue("Vaelg ventegruppe");
@@ -156,19 +157,19 @@ public class ReferralCtrl{
     public void getVisitation() {
         // Laver liste i combobox + skriver tekst i feltet
         phrase.setValue("Vaelg frase");
-         phrase.setItems(phraseList);
-        //Hvis pladsen i array er optaget skrive dette eller tomt felt.
+        phrase.setItems(phraseList);
+        // Hvis pladsen i array er optaget skrive dette eller tomt felt.
         // if(MainApp.getVisitationData().get(0) != null){
-            // diagnosisCodeICPC.setText(visitation.getDiagnosisCodeICPC());
+        // diagnosisCodeICPC.setText(visitation.getDiagnosisCodeICPC());
 
-         //}
-         //else{
-           // diagnosisCodeICPC.setText("");
-         //}
-        
-        //anamnesis.setText(visitation.getDiagnosisCodeICPC());
-        //MainApp.getVisitationData().get(0);
-        
+        // }
+        // else{
+        // diagnosisCodeICPC.setText("");
+        // }
+
+        // anamnesis.setText(visitation.getDiagnosisCodeICPC());
+        // MainApp.getVisitationData().get(0);
+
         // System.out.println(MainApp.getVisitationData().get(0));
 
     }
@@ -203,22 +204,30 @@ public class ReferralCtrl{
 
     }
 
-    // public void saveButton1(){
-    //     saveButton.setOnAction((Event -> {
-    //         String ICPC = diagnosisCodeICPC.getText();
-    //          System.out.println(diagnosisCodeICPC.getText());
-    //         ReferralHandler.addICPC(ICPC);
-    //         MainApp.getVisitationData().add(new VisitationModel(diagnosisCodeICPC.getText()));
-    //         //getVisitation(MainApp.getVisitationData().get(0));
-    //     }));
-    // }
+    public void saveButton1() {
+        saveButton.setOnAction((Event -> {
+            VisitationModel ICPC = new VisitationModel(diagnosisCodeICPC.getText());
+            System.out.println(diagnosisCodeICPC.getText());
+            try {
+                ReferralHandler.addICPC(ICPC);
+            } catch (ClassNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+             
+            
+         }));
+     }
     
     public void initialize() {
 
         getPatient();
         getReferral();
         getReferralStatus();
-        //saveButton1();
+        saveButton1();
         getVisitation();
    
 
