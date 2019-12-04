@@ -1,7 +1,5 @@
 package dk.aau.model;
 
-import java.time.LocalDate;
-
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -16,26 +14,24 @@ public class ReferralListModel {
      */
 
     // Fra java fx tutorial
-    private final StringProperty recievedDate;
-    private final StringProperty referredDate;
-    private final StringProperty layDays;
-    private final StringProperty status;
-    private final StringProperty assigned;
-    private final StringProperty referredFrom;
-    private final StringProperty patient;
-    private final StringProperty referralCause;
-    private final StringProperty referralID;
-    private final StringProperty referralType;
+    public  StringProperty recievedDate;
+    private  StringProperty referredDate;
+    private  StringProperty layDays;
+    private  StringProperty status;
+    private  StringProperty assigned;
+    private  StringProperty referredFrom;
+    private  StringProperty patient;
+    private StringProperty referralCause;
+    private  StringProperty referralID;
+    private StringProperty referralType;
 
-    /**
-     * Default constructor.
-     */
     public ReferralListModel() {
-        this(null, null, null, null, null, null, null, null, null, null);
+
     }
 
     public ReferralListModel(String recievedDate, String referredDate, String layDays, String status, String assigned,
-            String referredFrom, String patient, String referralCause, String referralID, String referralType) {
+            String referredFrom, String patient, String referralCause, String referralID, String referralType,
+            String string) {
         this.recievedDate = new SimpleStringProperty(recievedDate);
         this.referredDate = new SimpleStringProperty(referredDate);
         this.layDays = new SimpleStringProperty(layDays);

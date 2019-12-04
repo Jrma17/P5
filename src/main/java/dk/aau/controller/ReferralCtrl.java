@@ -1,23 +1,11 @@
 package dk.aau.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
 import dk.aau.MainApp;
-//import dk.aau.model.PatientModel;
-//import dk.aau.model.ReferralModel;
 import dk.aau.model.VisitationModel;
-//import dk.aau.controller.ReferralHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-// import dk.aau.model.ReferralModel;
-// import dk.aau.model.ReferralStatusModel;
-// import dk.aau.model.VisitationModel;
-// import dk.aau.view.PatientView;
-// import dk.aau.view.ReferralStatusView;
-// import dk.aau.view.ReferralView;
-// import dk.aau.view.VisitationView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,16 +19,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class ReferralCtrl {
-    // private ReferralModel referralModel;
-    // private ReferralStatusModel referralStatusModel;
-    // private VisitationModel visitationModel;
-    // private PatientModel patientmodel;
-    // private ReferralView referralview;
-    // private ReferralStatusView referralStatusView;
-    // private VisitationView visitationview;
-    // private PatientView patientview;
-    // private MappingListCtrl mappingListCtrl;
-    // private CatalogCtrl catalogCtrl;
     VisitationModel visitation;
 
     // Patientview
@@ -71,9 +49,9 @@ public class ReferralCtrl {
     @FXML
     private Label referralType;
     @FXML
-    private ComboBox waitingGroup; // Bruges ikke
+    private ComboBox waitingGroup; 
     @FXML
-    private TextField diagnosisText; // Bruges ikke
+    private TextField diagnosisText; 
     @FXML
     private Button catalogButton; // Bruges ikke
 
@@ -123,120 +101,106 @@ public class ReferralCtrl {
     ObservableList<String> phraseList = FXCollections.observableArrayList("Journal Notat", "Akut indlaeggelse");
 
     // Construtor
-    public ReferralCtrl() {
-    }
+      public ReferralCtrl() {
+      }
+      public void getPatient() {
+          // Skriver patientinfo i label
+          name.setText(MainApp.patientModel.getName());
+          adress.setText(MainApp.patientModel.getAddress());
+          cprNumber.setText(MainApp.patientModel.getCprNumber());
 
-    public void getPatient() {
-        // Skriver patientinfo i labels
+      }
 
-        name.setText(MainApp.patientModel.getName());
-        adress.setText(MainApp.patientModel.getAddress());
-        cprNumber.setText(MainApp.patientModel.getCprNumber());
+      public void getReferral() {
+          // Skriver text i label
+          
+          //ReferralListModel id = ReferralListHandler.getReferralList().get(6);
+          ReferralListCtrl i = new ReferralListCtrl();
+        //   String l = i.getPatientFromList();
+          
+          course.setText(ReferralHandler.readReferral().getCourse());
+          responsibleUnit.setText(ReferralHandler.readReferral().getResponsibleUnit());
+          referralID.setText(ReferralHandler.readReferral().getReferralID());
+         referralSentDate.setText(ReferralHandler.readReferral().getReferralSentDate());
+          referralRecievedDate.setText(ReferralHandler.readReferral().getReferralRecievedDate());
+          referredBy.setText(ReferralHandler.readReferral().getReferredBy());
+          referralType.setText(ReferralHandler.readReferral().getReferralType());
+          anamnesis.setText(ReferralHandler.readReferral().getAnamnesis());
+          diagnosisText.setText(ReferralHandler.readReferral().getDiagnosisText());
+         // Laver liste i combobox + skriver tekst i feltet
+          waitingGroup.setValue("Vaelg ventegruppe");
+          waitingGroup.setItems(waitingGroupList);
 
-    }
+      }
+     public void getVisitation() {
+          // Laver liste i combobox + skriver tekst i feltet
+          phrase.setValue("Vaelg frase");
+          phrase.setItems(phraseList);
+          //Skriver data fra databasen i feltet
+          diagnosisCodeICPC.setText(MainApp.visitationModel.getDiagnosisCodeICPC());
+      }
 
-    public void getReferral() {
-        // Skriver text i label
-
-        course.setText(MainApp.referralModel.getCourse());
-        responsibleUnit.setText(MainApp.referralModel.getResponsibleUnit());
-        referralID.setText(MainApp.referralModel.getReferralID());
-        referralSentDate.setText(MainApp.referralModel.getReferralSentDate());
-        referralRecievedDate.setText(MainApp.referralModel.getReferralRecievedDate());
-        referredBy.setText(MainApp.referralModel.getReferredBy());
-        referralType.setText(MainApp.referralModel.getReferralType());
-        anamnesis.setText(MainApp.referralModel.getAnamnesis());
-        diagnosisText.setText(MainApp.referralModel.getDiagnosisText());
-
-        // Laver liste i combobox + skriver tekst i feltet
-        waitingGroup.setValue("Vaelg ventegruppe");
-        waitingGroup.setItems(waitingGroupList);
-
-    }
-
-    public void getVisitation() {
-        // Laver liste i combobox + skriver tekst i feltet
-        phrase.setValue("Vaelg frase");
-        phrase.setItems(phraseList);
-        // Hvis pladsen i array er optaget skrive dette eller tomt felt.
-        // if(MainApp.getVisitationData().get(0) != null){
-        // diagnosisCodeICPC.setText(visitation.getDiagnosisCodeICPC());
-
-        // }
-        // else{
-        // diagnosisCodeICPC.setText("");
-        // }
-
-        // anamnesis.setText(visitation.getDiagnosisCodeICPC());
-        // MainApp.getVisitationData().get(0);
-
-        // System.out.println(MainApp.getVisitationData().get(0));
-
-    }
-
-    public void getReferralStatus() {
-        // Laver liste i combobox + skriver tekst i feltet
-        status.setValue("Vaelg status");
+      public void getReferralStatus() {
+          // Laver liste i combobox + skriver tekst i feltet
+          status.setValue("Vaelg status");
         status.setItems(StatusList);
-        assigned.setValue("Vaelg tildelt");
-        assigned.setItems(assignedList);
-        patientPrivilege.setValue("Vaelg patientrettighed");
-        patientPrivilege.setItems(patientPrivilegeList);
+          assigned.setValue("Vaelg tildelt");
+          assigned.setItems(assignedList);
+          patientPrivilege.setValue("Vaelg patientrettighed");
+          patientPrivilege.setItems(patientPrivilegeList);
+      }
 
-    }
-
-    // Knap til at lukke
-    @FXML
-    public void closeButtonAction(ActionEvent event) throws IOException {
-        // ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
-        // get a handle to the stage
-        Stage stage = (Stage) closeButton.getScene().getWindow();
-        // // do what you have to do
-        stage.close();
-
-        Parent ReferralListViewParent = FXMLLoader.load(getClass().getResource("/ReferralListView.fxml"));
-        Scene ReferralListViewScene = new Scene(ReferralListViewParent);
-
-        Stage window = (Stage) ((Button) event.getSource()).getScene().getWindow();
-
-        window.setScene(ReferralListViewScene);
-        window.show();
-
-    }
-
-    public void saveButton1() {
-        saveButton.setOnAction((Event -> {
-            VisitationModel ICPC = new VisitationModel(diagnosisCodeICPC.getText());
-            System.out.println(diagnosisCodeICPC.getText());
-            try {
-                ReferralHandler.addICPC(ICPC);
-            } catch (ClassNotFoundException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (SQLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+      // Knap til at lukke
+      @FXML
+      public void closeButtonAction(ActionEvent event) throws IOException {
+          Stage stage = (Stage) closeButton.getScene().getWindow();
+          stage.close();
+          Parent ReferralListViewParent = FXMLLoader.load(getClass().getResource("/ReferralListView.fxml"));
+          Scene ReferralListViewScene = new Scene(ReferralListViewParent);
+          Stage window = (Stage) ((Button) event.getSource()).getScene().getWindow();
+          window.setScene(ReferralListViewScene);
+          window.show();
+      }
+//      public void saveButton() {
+//           saveButton.setOnAction((Event -> {
+//               //Henter data fra felterne.
+//               VisitationModel ICPC = new VisitationModel(diagnosisCodeICPC.getText());
+//               ReferralModel diagnosisTextSave = new ReferralModel(diagnosisText.getText(), null, null, null, null,
+//                       null, null, null, null, null);
+//              ReferralModel waitingGroupSave = new ReferralModel(waitingGroup.getSelectionModel());
+//              ReferralStatusModel statusSave = new ReferralStatusModel(status.getSelectionModel());
+//              ReferralStatusModel assignedSave = new ReferralStatusModel(assigned.getSelectionModel());
+//              ReferralStatusModel patientPriviligeSave = new ReferralStatusModel(patientPrivilege.getSelectionModel());
+//               try {
+//                   //Gemmer data som er hentet fra felterne i databasen
+//                 //   ReferralHandler.addICPC(ICPC);
+//                 //   ReferralHandler.addReferral(diagnosisTextSave);
+//                 //   ReferralHandler.addReferral(waitingGroupSave);
+//                 //   ReferralHandler.addReferralStatus(statusSave);
+//                 //   ReferralHandler.addReferralStatus(assignedSave);
+//                 //   ReferralHandler.addReferralStatus(patientPriviligeSave);
+//               } catch (ClassNotFoundException e) {
+//                   // TODO Auto-generated catch block
+//                   e.printStackTrace();
+//               } catch (SQLException e) {
+//                   // TODO Auto-generated catch block
+//                   e.printStackTrace();
+//               }
              
             
-         }));
-     }
+//            }));
+//        }
     
-    public void initialize() {
+      public void initialize() {
 
-        getPatient();
-        getReferral();
-        getReferralStatus();
-        saveButton1();
-        getVisitation();
-   
+          getPatient();
+          getReferral();
+          getReferralStatus();
+          //saveButton();
+          getVisitation();
+      }    
 
-       
-        
-
-    }    
-
-}
+ }
     
     
 

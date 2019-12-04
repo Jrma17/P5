@@ -1,31 +1,47 @@
 package dk.aau.model;
 
-import java.util.Date;
+import javafx.scene.control.SingleSelectionModel;
 
-public class ReferralStatusModel{
-    private Date date;
-    private Date time;
+public class ReferralStatusModel {
+    private String date;
+    private String time;
     private String unit;
     private String patientPrivilege;
     private String status = "Modtaget";
     private String assigned = "Ingen";
     private String visitator;
 
+    public ReferralStatusModel(){
+        
+    }
+    public ReferralStatusModel(SingleSelectionModel selectionModel) {
+    }
 
-    //Getter og Setter
-    public Date getDate() {
+    public ReferralStatusModel(String date, String time, String unit, String patientPrivilege, String status,
+            String assigned, String visitator) {
+        this.date = date;
+        this.time = time;
+        this.unit = unit;
+        this.patientPrivilege = patientPrivilege;
+        this.status = status;
+        this.assigned = assigned;
+        this.visitator = visitator;
+    }
+
+    // Getter og Setter
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

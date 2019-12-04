@@ -1,9 +1,6 @@
 package dk.aau;
 
 import java.io.IOException;
-
-import dk.aau.controller.ReferralCtrl;
-import dk.aau.controller.ReferralHandler;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.collections.FXCollections;
@@ -11,10 +8,9 @@ import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-
-import dk.aau.model.DatabaseManipulator;
 import dk.aau.model.PatientModel;
 import dk.aau.model.ReferralModel;
+import dk.aau.model.ReferralStatusModel;
 import dk.aau.model.ReferralListModel;
 import dk.aau.model.VisitationModel;
 import javafx.stage.Stage;
@@ -26,6 +22,7 @@ public class MainApp extends Application {
     public static PatientModel patientModel = new PatientModel();
     public static ReferralListModel referralListModel = new ReferralListModel();
     public static VisitationModel visitationModel = new VisitationModel();
+    public static ReferralStatusModel referralStatusModel = new ReferralStatusModel();
     
     
      //Arrayliste med patientdata og henvisningsdata
@@ -37,13 +34,7 @@ public class MainApp extends Application {
      //Tilføjer data til arraylisten Patientdata og referralData
      public MainApp() {
          patientData.add(new PatientModel("Hans", "byvej 1", "233492-1233"));
-         // patientData.add(new PatientModel("Ruth", "Årsagvej 1", "290506-1236"));
-         // patientData.add(new PatientModel("Heinz", "Årsagvej 2", "311200-9561"));
-         // patientData.add(new PatientModel("Cornelia ", "Årsagvej 3", "290483-2096"));
-         // patientData.add(new PatientModel("Werner", "Årsagvej 4", " 192835-1023"));
-         // patientData.add(new PatientModel("Lydia", "Årsagvej 5", "101039-5302"));
-        
-         //referralData.add(new ReferralModel("12/1-2019", "12/1-2019", "Laegehus A","Hoste",  "Aarsag 1", "1234567", "ICPC-kode", "XML", "Afdeling 2"));
+         
                   
      }
      
@@ -66,19 +57,25 @@ public class MainApp extends Application {
             this.primaryStage.setTitle("AddressApp");
             this.primaryStage.getIcons().add(new Image("file:resources/images/iconfinder_Address_Book_86957.png"));
     
-            //initRootLayout();
+            
             showReferralListView();
+
+           
+              
+    }
     
-        }
+        
         
           
         public void showReferralListView() {
             try {
-               MainApp.referralModel =  ReferralHandler.readReferral();
-               MainApp.patientModel = ReferralHandler.readPatientData();
-               MainApp.referralListModel = ReferralHandler.readReferralList();
-               MainApp.visitationModel = ReferralHandler.readVisitation();
-               //MainApp.patientModel = PatientModel.readPatientData();
+                                
+                   //MainApp.patientModel = ReferralHandler.readPatientData();
+                   //MainApp.referralModel =  ReferralHandler.readReferral();
+                  //MainApp.visitationModel = ReferralHandler1.readVisitation();
+                   //MainApp.referralStatusModel = ReferralHandler1.readReferralStatus();
+
+            
                 // Load Sort List View
                 FXMLLoader loader = new FXMLLoader();
                 
@@ -99,9 +96,8 @@ public class MainApp extends Application {
                 
                 e.printStackTrace();
             }
+        
         }
-        
-        
         /**
          * Returns the main stage.
          * @return
@@ -113,7 +109,7 @@ public class MainApp extends Application {
         public static void main(String[] args) {
             launch(args);
           
-        
+            
         }
     
     }
