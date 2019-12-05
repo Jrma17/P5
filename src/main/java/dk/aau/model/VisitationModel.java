@@ -4,57 +4,39 @@ public class VisitationModel{
     private String note;
     private String phrase;
     private String diagnosisCodeICPC;
-    private String referralDiagnosisCodeICD = "Ingen";
+    private String referralDiagnosisCodeICD ;
     private String scheduledProcedure;
 
-    public VisitationModel() {
+
+    //Constructor
+    public VisitationModel(String note, String phrase, String diagnosisCodeICPC, String referralDiagnosisCodeICD, String scheduledProcedure) {
+        this.note = note;
+        this.phrase = phrase;
+        this.diagnosisCodeICPC = diagnosisCodeICPC;
+        this.referralDiagnosisCodeICD = referralDiagnosisCodeICD;
+        this.scheduledProcedure = scheduledProcedure;
         
     }
 
-    public VisitationModel(String diagnosisCodeICPC) {
-
-        this.diagnosisCodeICPC = diagnosisCodeICPC;
-
-    }
-    
     //Getter og Setter
     public String getNote() {
         return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
     }
 
     public String getPhrase() {
         return phrase;
     }
 
-    public void setPhrase(String phrase) {
-        this.phrase = phrase;
-    }
-
     public String getDiagnosisCodeICPC() {
         return diagnosisCodeICPC;
-    }
-
-    public void setDiagnosisCodeICPC(String diagnosisCodeICPC) {
-        this.diagnosisCodeICPC = diagnosisCodeICPC;
     }
 
     public String getReferralDiagnosisCodeICD() {
         return referralDiagnosisCodeICD;
     }
 
-    public void setReferralDiagnosisCodeICD(String referralDiagnosisCodeICD) {
-        this.referralDiagnosisCodeICD = referralDiagnosisCodeICD;
-    }
-
     public String getScheduledProcedure() {
         return scheduledProcedure;
     }
-
-    public void setScheduledProcedure(String scheduledProcedure) {
-        this.scheduledProcedure = scheduledProcedure;
-    }
+    
 }

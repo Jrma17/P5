@@ -5,29 +5,30 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="952.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.aau.controller.ReferralCtrl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="952.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.aau.controller.ReferralCtrl">
    <children>
-      <Separator layoutX="1.0" prefHeight="102.0" prefWidth="948.0" AnchorPane.bottomAnchor="496.6" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="1.0" />
+      <Separator layoutX="1.0" prefHeight="94.0" prefWidth="948.0" AnchorPane.bottomAnchor="573.0" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="1.0" />
       <ComboBox fx:id="waitingGroup" editable="true" layoutX="111.0" layoutY="125.0" prefHeight="26.0" prefWidth="474.0" AnchorPane.topAnchor="125.0" />
-      <ButtonBar layoutX="319.0" layoutY="546.0" prefHeight="50.0" prefWidth="616.0">
+      <ButtonBar layoutX="298.0" layoutY="617.0" prefHeight="50.0" prefWidth="639.0">
          <buttons>
-            <Button fx:id="AppendixButton" minWidth="74.0" mnemonicParsing="false" prefHeight="13.0" text="Vis bilag" />
-            <Button fx:id="CorrespondenceButton" mnemonicParsing="false" prefHeight="9.0" text="Opret korrespondance" />
-            <Button fx:id="HistoryButton" mnemonicParsing="false" text="Vis historik" />
-            <Button fx:id="CancelButton" mnemonicParsing="false" text="Anuller" />
+            <Button fx:id="appendixButton" minWidth="74.0" mnemonicParsing="false" prefHeight="13.0" text="Vis bilag" />
+            <Button fx:id="correspondenceButton" mnemonicParsing="false" prefHeight="9.0" text="Opret korrespondance" />
+            <Button fx:id="historyButton" mnemonicParsing="false" text="Vis historik" />
+            <Button fx:id="cancelButton" mnemonicParsing="false" text="Annuller" />
             <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeButtonAction" text="Luk" />
             <Button fx:id="saveButton" mnemonicParsing="false" text="Gem" />
-            <Button fx:id="SaveCloseButton" minWidth="25.0" mnemonicParsing="false" prefHeight="26.0" text="Gem og Luk" />
+            <Button fx:id="saveCloseButton" minWidth="25.0" mnemonicParsing="false" prefHeight="26.0" text="Gem og Luk" />
          </buttons>
       </ButtonBar>
-      <ComboBox fx:id="status" editable="true" layoutX="140.0" layoutY="460.0" prefHeight="26.0" prefWidth="219.0" AnchorPane.bottomAnchor="125.0" AnchorPane.leftAnchor="115.0" />
+      <ComboBox fx:id="status" editable="true" layoutX="97.0" layoutY="496.0" prefHeight="26.0" prefWidth="219.0" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="115.0" />
       <Label layoutX="460.0" layoutY="24.0" text="Forløb:" textOverrun="WORD_ELLIPSIS" AnchorPane.topAnchor="15.0">
          <font>
             <Font size="10.0" />
@@ -94,52 +95,52 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="33.0" layoutY="170.0" text="Diagnosetekst i henvisningen:" AnchorPane.leftAnchor="15.0">
+      <Label layoutX="15.0" layoutY="170.0" text="Diagnosetekst i henvisningen:" AnchorPane.leftAnchor="15.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="diagnosisText" layoutX="201.0" layoutY="166.0" prefHeight="26.0" prefWidth="396.0" />
+      <TextField fx:id="diagnosisText" layoutX="201.0" layoutY="166.0" prefHeight="26.0" prefWidth="408.0" />
       <Button fx:id="catalogButton" layoutX="552.0" layoutY="236.0" mnemonicParsing="false" text="Katalog" />
-      <TextField fx:id="unit" layoutX="140.0" layoutY="375.0" maxHeight="2.0" prefHeight="0.0" prefWidth="100.0" AnchorPane.bottomAnchor="195.0" AnchorPane.leftAnchor="115.0">
+      <TextField fx:id="unit" layoutX="115.0" layoutY="436.0" maxHeight="2.0" prefHeight="0.0" prefWidth="100.0" AnchorPane.bottomAnchor="208.8" AnchorPane.leftAnchor="115.0">
          <font>
             <Font size="10.0" />
          </font>
       </TextField>
-      <Label layoutX="362.0" layoutY="378.0" text="Visitator:" AnchorPane.bottomAnchor="204.4" AnchorPane.leftAnchor="390.0">
+      <Label layoutX="362.0" layoutY="378.0" text="Visitator:" AnchorPane.bottomAnchor="208.8" AnchorPane.leftAnchor="390.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="40.0" layoutY="337.0" text="Dato:" AnchorPane.bottomAnchor="230.0" AnchorPane.leftAnchor="15.0">
+      <Label layoutX="18.0" layoutY="389.0" text="Dato:" AnchorPane.bottomAnchor="250.6" AnchorPane.leftAnchor="15.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="41.0" layoutY="378.0" text="Enhed:" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="15.0">
+      <Label layoutX="11.0" layoutY="441.0" text="Enhed:" AnchorPane.bottomAnchor="209.39999999999998" AnchorPane.leftAnchor="15.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="40.0" layoutY="421.0" text="Patientretighed:" AnchorPane.leftAnchor="15.0">
+      <Label layoutX="12.0" layoutY="524.0" text="Patientrettighed:" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="15.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="41.0" layoutY="465.0" text="Status:" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="15.0">
+      <Label layoutX="11.0" layoutY="501.0" text="Status:" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="15.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <DatePicker fx:id="date" layoutX="139.0" layoutY="333.0" prefHeight="26.0" prefWidth="100.0" AnchorPane.bottomAnchor="225.0" AnchorPane.leftAnchor="115.0" />
-      <ComboBox fx:id="patientPrivilege" editable="true" layoutX="140.0" layoutY="416.0" prefHeight="26.0" prefWidth="503.0" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="115.0" />
-      <Label layoutX="406.0" layoutY="465.0" text="Tildelt:" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="390.0">
+      <DatePicker fx:id="date" layoutX="115.0" layoutY="385.0" prefHeight="26.0" prefWidth="100.0" AnchorPane.bottomAnchor="250.6" AnchorPane.leftAnchor="115.0" />
+      <ComboBox fx:id="patientPrivilege" editable="true" layoutX="115.0" layoutY="454.0" prefHeight="26.0" prefWidth="503.0" AnchorPane.bottomAnchor="165.0" AnchorPane.leftAnchor="115.0" />
+      <Label layoutX="386.0" layoutY="500.0" text="Tildelt:" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="386.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <ComboBox fx:id="assigned" editable="true" layoutX="461.0" layoutY="460.0" prefHeight="26.0" prefWidth="159.0" AnchorPane.bottomAnchor="125.0" />
-      <TextField fx:id="visitator" layoutX="455.0" layoutY="375.0" maxHeight="23.0" prefHeight="23.0" prefWidth="159.0">
+      <ComboBox fx:id="assigned" editable="true" layoutX="455.0" layoutY="495.0" prefHeight="26.0" prefWidth="159.0" AnchorPane.bottomAnchor="120.0" />
+      <TextField fx:id="visitator" layoutX="455.0" layoutY="375.0" maxHeight="23.0" prefHeight="23.0" prefWidth="159.0" AnchorPane.bottomAnchor="208.8">
          <font>
             <Font size="10.0" />
          </font>
@@ -154,26 +155,26 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="34.0" layoutY="270.0" text="Planlagte procedure:" AnchorPane.leftAnchor="15.0">
+      <Label layoutX="13.0" layoutY="269.0" text="Planlagte procedure:" AnchorPane.leftAnchor="15.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="diagnosisCodeICPC" layoutX="174.0" layoutY="201.0" prefHeight="26.0" prefWidth="422.0" />
-      <TextField fx:id="referralDiagnosisCodeICD" layoutX="223.0" layoutY="236.0" prefHeight="26.0" prefWidth="325.0" />
-      <TextArea fx:id="note" layoutX="650.0" layoutY="390.0" prefHeight="156.0" prefWidth="290.0" />
-      <Label layoutX="650.0" layoutY="339.0" text="Vælg frase: ">
+      <TextField fx:id="diagnosisCodeICPC" layoutX="174.0" layoutY="199.0" onKeyTyped="#getdiagnosisCodeICPC" prefHeight="26.0" prefWidth="78.0" promptText="Indtast ICPC kode + tryk &quot;Enter&quot;" />
+      <TextField fx:id="referralDiagnosisCodeICD" layoutX="223.0" layoutY="236.0" prefHeight="26.0" prefWidth="321.0" />
+      <TextArea fx:id="note" layoutX="649.0" layoutY="450.0" prefHeight="139.0" prefWidth="290.0" />
+      <Label layoutX="649.0" layoutY="396.0" text="Vælg frase: " AnchorPane.bottomAnchor="254.4">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="652.0" layoutY="361.0" text="Visitationsnotat:">
+      <Label layoutX="652.0" layoutY="425.0" text="Visitationsnotat:" AnchorPane.bottomAnchor="220.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Separator layoutY="315.0" prefHeight="18.0" prefWidth="950.0" AnchorPane.bottomAnchor="266.6" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="315.0" />
-      <ComboBox fx:id="phrase" editable="true" layoutX="725.0" layoutY="335.0" prefHeight="26.0" prefWidth="204.0" />
+      <Separator layoutX="-12.0" layoutY="346.0" prefHeight="50.0" prefWidth="950.0" AnchorPane.bottomAnchor="272.0" AnchorPane.leftAnchor="-12.0" AnchorPane.topAnchor="346.0" />
+      <ComboBox fx:id="phrase" editable="true" layoutX="725.0" layoutY="391.0" prefHeight="26.0" prefWidth="204.0" AnchorPane.bottomAnchor="250.6" />
       <Label fx:id="cprNumber" layoutX="97.0" layoutY="42.0" text="Label" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="15.0">
          <font>
             <Font size="10.0" />
@@ -194,7 +195,26 @@
             <Font name="System Bold" size="10.0" />
          </font>
       </Label>
-      <ScrollBar layoutX="918.0" layoutY="88.0" orientation="VERTICAL" prefHeight="191.0" prefWidth="14.0" />
-      <ScrollBar layoutX="928.0" layoutY="389.0" orientation="VERTICAL" prefHeight="156.0" prefWidth="14.0" />
+      <Button layoutX="552.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleMapning" prefHeight="25.0" prefWidth="56.0" text="Mapning">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
+      <TextField fx:id="icpcDefLabel" editable="false" layoutX="259.0" layoutY="200.0" prefHeight="25.0" prefWidth="283.0" />
+      <TextField fx:id="time" layoutX="228.0" layoutY="386.0" maxHeight="23.0" prefHeight="23.0" prefWidth="47.0" AnchorPane.bottomAnchor="250.6" AnchorPane.leftAnchor="228.0">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </TextField>
+      <TableView layoutX="14.0" layoutY="305.0" prefHeight="58.0" prefWidth="543.0">
+        <columns>
+          <TableColumn minWidth="-1.0" prefWidth="75.0" text="Tilf/slet" />
+          <TableColumn minWidth="-Infinity" prefWidth="75.20001220703125" text="Type" />
+            <TableColumn prefWidth="237.59999084472656" text="Kode" />
+            <TableColumn prefWidth="73.5999755859375" text="Side" />
+            <TableColumn prefWidth="79.99993896484375" text="Dato" />
+            <TableColumn prefWidth="75.20001220703125" text="Tid" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

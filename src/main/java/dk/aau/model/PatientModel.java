@@ -7,11 +7,9 @@ public class PatientModel {
     private  String adress;
     private  String cprNumber;
 
-    public PatientModel(){
-        this(null, null, null);
-    }
 
-    public PatientModel(String name, String adress, String cprNumber) {
+    //Constructor
+     public PatientModel(String name, String adress, String cprNumber) {
         this.name = name;
         this.adress = adress;
         this.cprNumber = cprNumber;
