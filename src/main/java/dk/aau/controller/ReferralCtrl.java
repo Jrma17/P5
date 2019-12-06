@@ -3,7 +3,7 @@ package dk.aau.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
-import dk.aau.model.ReferralHashMapModel;
+import dk.aau.model.IcpcHashMapModel;
 import dk.aau.model.ReferralModel;
 import dk.aau.model.ReferralStatusModel;
 import dk.aau.model.VisitationModel;
@@ -62,9 +62,9 @@ public class ReferralCtrl {
 
     // VisitationView
     @FXML
-    private TextField diagnosisCodeICPC;
+    private TextField diagnosisCodeIcpc;
     @FXML
-    private TextField referralDiagnosisCodeICD;
+    private TextField referralDiagnosisCodeIcd;
     @FXML
     private TextArea note;
     @FXML
@@ -94,16 +94,17 @@ public class ReferralCtrl {
     @FXML
     private Button closeButton;
 
-    String cpr;
-    String ICPCkode;
-    ReferralHashMapModel referralHashMapstructure = new ReferralHashMapModel();
-    HashMap NewMapLabel;
+    private String cpr;
+    private String icpcCode;
+    private IcpcHashMapModel icpcHashMapstructure = new IcpcHashMapModel();
+    private HashMap NewMapLabel;
+    DatabaseHandlerCtrl database = new DatabaseHandlerCtrl();
 
     // Liste med input til ventegruppe-combobox
     ObservableList<String> waitingGroupList = FXCollections.observableArrayList("ALM ALMINDELIGT AMBULAT",
             "ALS NEUROMED.PTT.MED ALS", "DEL DAGPAT.REUMA");
     // Liste med input til Status-combobox
-    ObservableList<String> StatusList = FXCollections.observableArrayList("Anulleret", "Modtaget", "Visiteret",
+    ObservableList<String> statusList = FXCollections.observableArrayList("Anulleret", "Modtaget", "Visiteret",
             "Klar til visitering", "Afventer", "Faerdigbehandlet", "Omvisiteret(RN)", "Visteret(Haster)",
             "Omvisiteret(Eksternt)", "Tilsyn - Faerdigbehandlet");
     // Liste med input til Tildelt-combobox
@@ -128,57 +129,57 @@ public class ReferralCtrl {
     }
     public void getPatient() {
         // Skriver patientinfo i label
-        name.setText(DatabaseHandlerCtrl.readReferral(cpr).getName());
-        adress.setText(DatabaseHandlerCtrl.readReferral(cpr).getAddress());
-        cprNumber.setText(DatabaseHandlerCtrl.readReferral(cpr).getCprNumber());
+        name.setText(database.readReferral(cpr).getName());
+        adress.setText(database.readReferral(cpr).getAddress());
+        cprNumber.setText(database.readReferral(cpr).getCprNumber());
 
     }
     public void getReferral() {
         // Skriver text i label med data fra database
-        referralSentDate.setText(DatabaseHandlerCtrl.readReferral(cpr).getReferralSentDate());
-        referralRecievedDate.setText(DatabaseHandlerCtrl.readReferral(cpr).getReferralRecievedDate());
-        referredBy.setText(DatabaseHandlerCtrl.readReferral(cpr).getReferredBy());
-        diagnosisText.setText(DatabaseHandlerCtrl.readReferral(cpr).getDiagnosisText());
-        course.setText(DatabaseHandlerCtrl.readReferral(cpr).getCourse());
-        referralID.setText(DatabaseHandlerCtrl.readReferral(cpr).getReferralID());
-        anamnesis.setText(DatabaseHandlerCtrl.readReferral(cpr).getAnamnesis());
-        referralType.setText(DatabaseHandlerCtrl.readReferral(cpr).getReferralType());
-        responsibleUnit.setText(DatabaseHandlerCtrl.readReferral(cpr).getResponsibleUnit());
+        referralSentDate.setText(database.readReferral(cpr).getReferralSentDate());
+        referralRecievedDate.setText(database.readReferral(cpr).getReferralRecievedDate());
+        referredBy.setText(database.readReferral(cpr).getReferredBy());
+        diagnosisText.setText(database.readReferral(cpr).getDiagnosisText());
+        course.setText(database.readReferral(cpr).getCourse());
+        referralID.setText(database.readReferral(cpr).getReferralID());
+        anamnesis.setText(database.readReferral(cpr).getAnamnesis());
+        referralType.setText(database.readReferral(cpr).getReferralType());
+        responsibleUnit.setText(database.readReferral(cpr).getResponsibleUnit());
 
         // Laver liste i combobox + skriver tekst i feltet med data fra database
-        waitingGroup.setValue(DatabaseHandlerCtrl.readReferral(cpr).getWaitingGroup());
+        waitingGroup.setValue(database.readReferral(cpr).getWaitingGroup());
         waitingGroup.setItems(waitingGroupList);
 
     }
 
     public void getVisitation() {
         // Laver liste i combobox + skriver tekst i feltet med data fra database
-        note.setText(DatabaseHandlerCtrl.readVisitation(cpr).getNote());
-        phrase.setValue(DatabaseHandlerCtrl.readVisitation(cpr).getPhrase());
+        note.setText(database.readVisitation(cpr).getNote());
+        phrase.setValue(database.readVisitation(cpr).getPhrase());
         phrase.setItems(phraseList);
-        diagnosisCodeICPC.setText(DatabaseHandlerCtrl.readVisitation(cpr).getDiagnosisCodeICPC());
-        referralDiagnosisCodeICD.setText(DatabaseHandlerCtrl.readVisitation(cpr).getReferralDiagnosisCodeICD());
-        
+        diagnosisCodeIcpc.setText(database.readVisitation(cpr).getDiagnosisCodeIcpc());
+        referralDiagnosisCodeIcd.setText(database.readVisitation(cpr).getReferralDiagnosisCodeIcd());
+
     }
 
     public void getReferralStatus() {
         // Laver liste i combobox + skriver tekst i feltet
 
-        time.setText(DatabaseHandlerCtrl.readReferralStatus(cpr).getTime());
-        unit.setText(DatabaseHandlerCtrl.readReferralStatus(cpr).getUnit());
-        patientPrivilege.setValue(DatabaseHandlerCtrl.readReferralStatus(cpr).getPatientPrivilege());
+        time.setText(database.readReferralStatus(cpr).getTime());
+        unit.setText(database.readReferralStatus(cpr).getUnit());
+        patientPrivilege.setValue(database.readReferralStatus(cpr).getPatientPrivilege());
         patientPrivilege.setItems(patientPrivilegeList);
-        status.setValue(DatabaseHandlerCtrl.readReferralStatus(cpr).getStatus());
-        status.setItems(StatusList);
-        assigned.setValue(DatabaseHandlerCtrl.readReferralStatus(cpr).getAssigned());
+        status.setValue(database.readReferralStatus(cpr).getStatus());
+        status.setItems(statusList);
+        assigned.setValue(database.readReferralStatus(cpr).getAssigned());
         assigned.setItems(assignedList);
-        visitator.setText(DatabaseHandlerCtrl.readReferralStatus(cpr).getVisitator());
-        
+        visitator.setText(database.readReferralStatus(cpr).getVisitator());
+
     }
 
-    //ICPC map
-    public HashMap ICPCMapToDef() {
-        NewMapLabel = referralHashMapstructure.getNewMapLabel();
+    // ICPC map
+    public HashMap icpcMapToDef() {
+        NewMapLabel = icpcHashMapstructure.getNewMapLabel();
         NewMapLabel.put("L80", "L80 - Luksation/subluksation");
         NewMapLabel.put("L81", "L81 - Skade på muskel-/skeletsystem IKA");
         NewMapLabel.put("L82", "L82 - Medfødt misdannelse i muskel-/skeletsystem");
@@ -204,15 +205,15 @@ public class ReferralCtrl {
 
     }
 
-    //Bruges til at få værdien som tastes ind i feltet "diagnosisCodeICPC" i ReferralView.fxml
+    // Bruges til at få værdien som tastes ind i feltet "diagnosisCodeICPC" i
+    // ReferralView.fxml
     @FXML
-    public String getdiagnosisCodeICPC() {
+    public String getDiagnosisCodeIcpc() {
 
-        ICPCkode = diagnosisCodeICPC.getText();
+        icpcCode = diagnosisCodeIcpc.getText();
 
-
-        Object icpcCodeLabel = NewMapLabel.get(ICPCkode); //Henter values fra hashmappet (objekt)
-        String icpcCodeLabelString = String.valueOf(icpcCodeLabel); //Omdanner objekt til String
+        Object icpcCodeLabel = NewMapLabel.get(icpcCode); // Henter values fra hashmappet (objekt)
+        String icpcCodeLabelString = String.valueOf(icpcCodeLabel); // Omdanner objekt til String
         if (icpcCodeLabelString == "null") {
             icpcDefLabel.setText("Ugyldig ICPC-2-DK kode"); // String indsættes i textfeltet "icpcdeflabel"
         }
@@ -220,7 +221,7 @@ public class ReferralCtrl {
         else {
             icpcDefLabel.setText(icpcCodeLabelString); // String indsættes i textfeltet "icpcdeflabel"
         }
-        return ICPCkode; // global
+        return icpcCode; // global
     }
 
     // Funktionen åbner "MappingListView" når der trykkes på knap
@@ -239,16 +240,25 @@ public class ReferralCtrl {
         MappingListCtrl ctrl = fxmlloader.getController(); // "giver" værdien ICPC kode (fra getdiagnosisCodeICPC()) til
                                                            // MappingListCtrl
         System.out.println(ctrl + "this is ctrl");
-        ctrl.setCode(ICPCkode); // samme som ovenstående
-        ctrl.IsolatedICDCodes
-                .addListener((observable, oldValue, newValue) -> referralDiagnosisCodeICD.setText(newValue)); // Laver en listener på variablen "IsolatedICDCodes" fra mappinglistctrl vha. "ctrl"
+        ctrl.setCode(icpcCode); // samme som ovenstående
+        ctrl.IsolatedIcdCodes
+                .addListener((observable, oldValue, newValue) -> referralDiagnosisCodeIcd.setText(newValue)); // Laver
+                                                                                                              // en
+                                                                                                              // listener
+                                                                                                              // på
+                                                                                                              // variablen
+                                                                                                              // "IsolatedICDCodes"
+                                                                                                              // fra
+                                                                                                              // mappinglistctrl
+                                                                                                              // vha.
+                                                                                                              // "ctrl"
         // Listeneren laves i denne ctrl fordi det er denne ctrl der styre det view som
         // skal ændres - men den listener på listview'et i mappinglistctrl
-        StringProperty noget = new SimpleStringProperty(ICPCkode);
+        StringProperty noget = new SimpleStringProperty(icpcCode);
         System.out.println(noget + "this is stringproperty");
     }
 
-     // Knap til at lukke henvisningen
+    // Knap til at lukke henvisningen
     @FXML
     public void closeButtonAction(ActionEvent event) throws IOException {
         Stage stage = (Stage) closeButton.getScene().getWindow();
@@ -261,12 +271,13 @@ public class ReferralCtrl {
 
     }
 
-    //Gemmer data fra henvisning op i database
-     public void saveButton() {
-         saveButton.setOnAction((Event -> {
-             // Henter data fra felterne.
-            
-             VisitationModel visitation = new VisitationModel(note.getText(), phrase.getValue(), diagnosisCodeICPC.getText(), referralDiagnosisCodeICD.getText(), null);
+    // Gemmer data fra henvisning op i database
+    public void saveButton() {
+        saveButton.setOnAction((Event -> {
+            // Henter data fra felterne.
+
+            VisitationModel visitation = new VisitationModel(note.getText(), phrase.getValue(),
+                    diagnosisCodeIcpc.getText(), referralDiagnosisCodeIcd.getText(), null);
              ReferralModel referral = new ReferralModel(name.getText(), adress.getText(), cprNumber.getText(), null, null, null, waitingGroup.getValue(), diagnosisText.getText(), null,
                      null, null, null, null);
              ReferralStatusModel referralStatus = new ReferralStatusModel(null, time.getText(), unit.getText(), patientPrivilege.getValue(), status.getValue(), assigned.getValue(),
@@ -275,9 +286,9 @@ public class ReferralCtrl {
              try {
                  // Gemmer data som er hentet fra felterne i databasen
                
-                 DatabaseHandlerCtrl.addICPC(visitation, cpr);
-                 DatabaseHandlerCtrl.addReferral(referral, cpr);
-                 DatabaseHandlerCtrl.addReferralStatus(referralStatus, cpr);
+                 database.addIcpc(visitation, cpr);
+                 database.addReferral(referral, cpr);
+                 database.addReferralStatus(referralStatus, cpr);
 
              } catch (ClassNotFoundException e) {
                
@@ -292,7 +303,7 @@ public class ReferralCtrl {
 
     public void initialize() {
 
-        ICPCMapToDef();
+        icpcMapToDef();
     }
 
 }
