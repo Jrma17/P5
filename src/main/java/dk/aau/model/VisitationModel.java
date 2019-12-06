@@ -3,17 +3,17 @@ package dk.aau.model;
 public class VisitationModel{
     private String note;
     private String phrase;
-    private String diagnosisCodeICPC;
-    private String referralDiagnosisCodeICD ;
+    private String diagnosisCodeIcpc;
+    private String referralDiagnosisCodeIcd ;
     private String scheduledProcedure;
 
 
     //Constructor
-    public VisitationModel(String note, String phrase, String diagnosisCodeICPC, String referralDiagnosisCodeICD, String scheduledProcedure) {
+    public VisitationModel(String note, String phrase, String diagnosisCodeIcpc, String referralDiagnosisCodeIcd, String scheduledProcedure) {
         this.note = note;
         this.phrase = phrase;
-        this.diagnosisCodeICPC = diagnosisCodeICPC;
-        this.referralDiagnosisCodeICD = referralDiagnosisCodeICD;
+        this.diagnosisCodeIcpc = diagnosisCodeIcpc;
+        this.referralDiagnosisCodeIcd = referralDiagnosisCodeIcd;
         this.scheduledProcedure = scheduledProcedure;
         
     }
@@ -27,12 +27,12 @@ public class VisitationModel{
         return phrase;
     }
 
-    public String getDiagnosisCodeICPC() {
-        return diagnosisCodeICPC;
+    public String getDiagnosisCodeIcpc() {
+        return diagnosisCodeIcpc;
     }
 
-    public String getReferralDiagnosisCodeICD() {
-        return referralDiagnosisCodeICD;
+    public String getReferralDiagnosisCodeIcd() {
+        return referralDiagnosisCodeIcd;
     }
 
     public String getScheduledProcedure() {

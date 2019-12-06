@@ -54,6 +54,7 @@ public class ReferralListCtrl implements Initializable {
     private Label searchLabelTest;
 
     String cpr;
+    DatabaseHandlerCtrl database = new DatabaseHandlerCtrl();
 
     //Knap til sortering af dato og status
     @FXML
@@ -64,7 +65,7 @@ public class ReferralListCtrl implements Initializable {
             sortingPolicyStatus();
 
         } else {
-            referralListTable.setItems(DatabaseHandlerCtrl.readReferralList1());
+            referralListTable.setItems(database.readReferralList());
         }
     }
 
@@ -120,7 +121,8 @@ public class ReferralListCtrl implements Initializable {
         referralTypeColumn.setCellValueFactory(new PropertyValueFactory<ReferralListModel, String>("referralType"));
 
         //Sætter data i table view
-        referralListTable.setItems(DatabaseHandlerCtrl.readReferralList1());
+        
+        referralListTable.setItems(database.readReferralList());
 
     }
 
