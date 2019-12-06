@@ -213,8 +213,8 @@ public class MappingListCtrl {
 
         List<String> icdToL88 = new ArrayList<String>();
         icdToL88.add("dm088 Anden form for juvenil artritis"); icdToL88.add("dm068 Anden form for reumatoid artritis "); 
-        icdToL88.add("dm089 Juvenil artritis UNS"); icdToL88.add("dm084 Pauciartikulær juvenil artritis"); 
-        icdToL88.add("dm083 Juvenil seronegativ polyartritis"); icdToL88.add("dm082 Juvenil artritis med ekstra-artikulære manifestationer"); 
+        icdToL88.add("dm089 Juvenil artritis UNS"); icdToL88.add("dm084 Pauciartikul\u00E6r juvenil artritis"); 
+        icdToL88.add("dm083 Juvenil seronegativ polyartritis"); icdToL88.add("dm082 Juvenil artritis med ekstra-artikul\u00E6re manifestationer"); 
         icdToL88.add("dm081 Juvenil ankyloserende spondylitis"); icdToL88.add("dm080 Juvenil reumatoid artritis"); 
         icdToL88.add("dm069 Reumatoid artritis UNS"); icdToL88.add("dm053 Reumatoid artritis med involvering af andre organsystemer"); 
         icdToL88.add("dm459 Ankyloserende spondylitis"); icdToL88.add("dm064 Polyarthritis inflammatorica"); 
@@ -224,28 +224,28 @@ public class MappingListCtrl {
         icdToL88.add("dm062 Bursitis rheumatoides"); icdToL88.add("dm063 Noduli rheumatici"); icdToL88.add("dm052 Reumatoid vaskulitis");
 
         List<String> icdToL89 = new ArrayList<String>();
-        icdToL89.add("dm167 - Anden form for sekundær enkeltsidig hofteledsartrose"); icdToL89.add("dm165 - Posttraumatisk enkeltsidig hofteledsartrose"); 
-        icdToL89.add("dm169 - Hofteledsartrose UNS"); icdToL89.add("dm166 - Anden form for sekundær dobbeltsidig hofteledsartrose"); 
-        icdToL89.add("dm161 - Primær enkeltsidig hofteledsartrose"); icdToL89.add("dm163 - Dysplastisk enkeltsidig hofteledsartrose"); 
-        icdToL89.add("dm160 - Primær dobbeltsidig hofteledsartrose"); icdToL89.add("dm162 - Dysplastisk dobbeltsidig hofteledsartrose"); 
+        icdToL89.add("dm167 - Anden form for sekund\u00E6r enkeltsidig hofteledsartrose"); icdToL89.add("dm165 - Posttraumatisk enkeltsidig hofteledsartrose"); 
+        icdToL89.add("dm169 - Hofteledsartrose UNS"); icdToL89.add("dm166 - Anden form for sekund\u00E6r dobbeltsidig hofteledsartrose"); 
+        icdToL89.add("dm161 - Prim\u00E6r enkeltsidig hofteledsartrose"); icdToL89.add("dm163 - Dysplastisk enkeltsidig hofteledsartrose"); 
+        icdToL89.add("dm160 - Prim\u00E6r dobbeltsidig hofteledsartrose"); icdToL89.add("dm162 - Dysplastisk dobbeltsidig hofteledsartrose"); 
         icdToL89.add("dm164 - Posttraumatisk dobbeltsidig hofteledsartrose"); 
 
         List<String> icdToL90 = new ArrayList<String>();
-        icdToL90.add("dm170 - Primær dobbeltsidig knæledsartrose"); icdToL90.add("dm179 - Knæledsartrose UNS"); 
-        icdToL90.add("dm175 - Anden form for sekundær enkeltsidig knæledsartrose"); icdToL90.add("dm174 - Anden form for sekundær bilateral knæledsartrose"); 
-        icdToL90.add("dm173 - Posttraumatisk enkeltsidig knæledsartrose"); icdToL90.add("dm172 - Posttraumatisk dobbeltsidig knæledsartrose"); 
-        icdToL90.add("dm171 - Primær enkeltsidig knæledsartrose"); 
+        icdToL90.add("dm170 - Prim\u00E6r dobbeltsidig kn\u00E6ledsartrose"); icdToL90.add("dm179 - Kn\u00E6ledsartrose UNS"); 
+        icdToL90.add("dm175 - Anden form for sekund\u00E6r enkeltsidig kn\u00E6ledsartrose"); icdToL90.add("dm174 - Anden form for sekund\u00E6r bilateral kn\u00E6ledsartrose"); 
+        icdToL90.add("dm173 - Posttraumatisk enkeltsidig kn\u00E6ledsartrose"); icdToL90.add("dm172 - Posttraumatisk dobbeltsidig kn\u00E6ledsartrose"); 
+        icdToL90.add("dm171 - Prim\u00E6r enkeltsidig kn\u00E6ledsartrose"); 
 
         List<String> icdToL91 = new ArrayList<String>();
-        icdToL91.add("dm181 - Primær enkeltsidig artrose i tommelfingers rodled"); icdToL91.add("dm192 - Anden sekundær artrose i andet (andre) led"); 
-        icdToL91.add("dm191 - Posttraumatisk artrose i andet (andre) led"); icdToL91.add("dm190 - Primær artrose i andet (andre) led"); 
-        icdToL91.add("dm189 - Artrose i tommelfingers rodled UNS"); icdToL91.add("dm185 - Anden form for sekundær enkeltsidig artrose i tommelfingers rodled"); 
-        icdToL91.add("dm184 - Anden form for sekundær bilateral artrose i tommelfingers rodled"); icdToL91.add("dm183 - Posttraumatisk enkeltsidig artrose i tommelfingers rodled"); 
+        icdToL91.add("dm181 - Prim\u00E6r enkeltsidig artrose i tommelfingers rodled"); icdToL91.add("dm192 - Anden sekund\u00E6r artrose i andet (andre) led"); 
+        icdToL91.add("dm191 - Posttraumatisk artrose i andet (andre) led"); icdToL91.add("dm190 - Prim\u00E6r artrose i andet (andre) led"); 
+        icdToL91.add("dm189 - Artrose i tommelfingers rodled UNS"); icdToL91.add("dm185 - Anden form for sekund\u00E6r enkeltsidig artrose i tommelfingers rodled"); 
+        icdToL91.add("dm184 - Anden form for sekund\u00E6r bilateral artrose i tommelfingers rodled"); icdToL91.add("dm183 - Posttraumatisk enkeltsidig artrose i tommelfingers rodled"); 
         icdToL91.add("dm182 - Posttraumatisk dobbeltsidig artrose i tommelfingers rodled"); icdToL91.add("dm199 - Artrose UNS"); 
-        icdToL91.add("dm150 - Primær generaliseret artrose"); icdToL91.add("dm180 - Primær dobbeltsidig artrose i tommelfingers rodled"); 
+        icdToL91.add("dm150 - Prim\u00E6r generaliseret artrose"); icdToL91.add("dm180 - Prim\u00E6r dobbeltsidig artrose i tommelfingers rodled"); 
         icdToL91.add("dm198 - Anden artrose"); icdToL91.add("dm130 - Polyartritis UNS"); icdToL91.add("dm131 - Monoartritis IKA"); 
         icdToL91.add("dm139 - Artritis UNS"); icdToL91.add("dm151 - Heberdens knuder ved artrose"); icdToL91.add("dm152 - Bouchards knuder ved artrose"); 
-        icdToL91.add("dm153 - Sekundær multipel artrose"); icdToL91.add("dm154 - Erosiv artrose"); icdToL91.add("dm158 - Anden polyartrose"); 
+        icdToL91.add("dm153 - Sekund\u00E6r multipel artrose"); icdToL91.add("dm154 - Erosiv artrose"); icdToL91.add("dm158 - Anden polyartrose"); 
         icdToL91.add("dm159 - Polyartrose UNS"); icdToL91.add("dm138 - Anden artritis"); 
 
         List<String> icdToL92 = new ArrayList<String>();
