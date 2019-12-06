@@ -7,11 +7,9 @@ public class PatientModel {
     private  String adress;
     private  String cprNumber;
 
-    public PatientModel(){
-        this(null, null, null);
-    }
 
-    public PatientModel(String name, String adress, String cprNumber) {
+    //Constructor
+     public PatientModel(String name, String adress, String cprNumber) {
         this.name = name;
         this.adress = adress;
         this.cprNumber = cprNumber;
@@ -27,11 +25,11 @@ public class PatientModel {
     }
 
     public String getAddress() {
-        return address;
+        return adress;
     }
 
-    public void setAdress(String adress) {
-        this.address = address;
+    public void setAddress(String adress) {
+        this.adress = adress;
     }
 
     public String getCprNumber() {
@@ -42,12 +40,6 @@ public class PatientModel {
         this.cprNumber = cprNumber;
     }
 
-    public int getPostcode() {
-        return postcode;
-    }
-
-    public void setPostcode(int postcode) {
-        this.postcode = postcode;
-    }
+    
     
 }
