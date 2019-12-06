@@ -220,7 +220,7 @@ public class MappingListCtrl {
         icdToL88.add("dm459 Ankyloserende spondylitis"); icdToL88.add("dm064 Polyarthritis inflammatorica"); 
         icdToL88.add("dm051 Reumatoid artritis med lungemanifestationer"); icdToL88.add("dm050 Feltys syndrom"); 
         icdToL88.add("dm058 Anden form for seropositiv reumatoid artritis"); icdToL88.add("dm059 Seropositiv reumatoid artritis UNS"); 
-        icdToL88.add("dm060 Seronegativ reumatoid artritis"); icdToL88.add("dm061 Stills sygdom med debut efter det fyldte 16. år"); 
+        icdToL88.add("dm060 Seronegativ reumatoid artritis"); icdToL88.add("dm061 Stills sygdom med debut efter det fyldte 16.  \u00E5r"); 
         icdToL88.add("dm062 Bursitis rheumatoides"); icdToL88.add("dm063 Noduli rheumatici"); icdToL88.add("dm052 Reumatoid vaskulitis");
 
         List<String> icdToL89 = new ArrayList<String>();
