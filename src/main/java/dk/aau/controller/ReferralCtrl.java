@@ -259,6 +259,8 @@ public class ReferralCtrl {
         window.setScene(ReferralListViewScene);
         window.show();
 
+            MainApp.getVisitationData().add(new VisitationModel(diagnosisCodeICPC.getText()));
+        }));
     }
 
     //Gemmer data fra henvisning op i database

@@ -2,6 +2,8 @@ package dk.aau.model;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 public class ReferralListModel {
@@ -31,7 +33,6 @@ public class ReferralListModel {
         this.referralCause = new SimpleStringProperty(referralCause);
         this.referralID = new SimpleStringProperty(referralID);
         this.referralType = new SimpleStringProperty(referralType);
-
     }
 
     public String getRecievedDate() {
