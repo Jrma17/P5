@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 
 public class ReferralListModel {
 
-    public  StringProperty recievedDate;
+    private  StringProperty recievedDate;
     private  StringProperty referredDate;
     private  StringProperty layDays;
     private  StringProperty status;

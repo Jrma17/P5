@@ -8,6 +8,7 @@ import dk.aau.model.MappingListModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 
@@ -15,22 +16,30 @@ public class MappingListCtrl {
 
     @FXML
     public ListView<String> listView;
+    @FXML
+    private Label Icpc;
 
-    public StringProperty IsolatedICDCodes = new SimpleStringProperty(""); 
-    MappingListModel MapStructure = new MappingListModel();
-    HashMap NewMap;
+    public StringProperty IsolatedIcdCodes = new SimpleStringProperty(""); 
+    private MappingListModel MapStructure = new MappingListModel();
+    private HashMap NewMap;
 
-    String ICPCkode;
+    private String icpcCode;
 
     public MappingListCtrl() {
 
     }
 
     public void setCode(String code) { // Henter ICPCkode værdien fra ReferralCtrl.
-        ICPCkode = code;
-        //System.out.println(ICPCkode + " ICPCKODE in setcode"); //Printer ICPC-koden som er tastet ind i feltet, og kommer fra "ReferralCtrl"
+        icpcCode = code;
+        // System.out.println(ICPCkode + " ICPCKODE in setcode"); //Printer ICPC-koden
+        // som er tastet ind i feltet, og kommer fra "ReferralCtrl"
+        
+        Icpc.setText(icpcCode);
 
-        Object relevanteICD = NewMap.get(ICPCkode); //Isolere values fra "NewMap" (HashMap som har ICPC som Key, som hver har en liste af ICD10 values tilkoblet), som har "ICPCKode" (se ^) som key. (Hashmaps returnere objects!) Output eks: (object) [ICD1,ICD2]
+        Object relevanteICD = NewMap.get(icpcCode); // Isolere values fra "NewMap" (HashMap som har ICPC som Key, som
+                                                    // hver har en liste af ICD10 values tilkoblet), som har "ICPCKode"
+                                                    // (se ^) som key. (Hashmaps returnere objects!) Output eks:
+                                                    // (object) [ICD1,ICD2]
         //System.out.println(relevanteICD + "This is object"); // Printer de isolerede values i NewMap ud fra "ICPCkode"
 
         String val = String.valueOf(relevanteICD); //Omdanner objectet til en string (vi skal bruge en string når vi skal sætte det ind i vores view (ListView)) - Output eks: (String) [ICD1,ICD2]
@@ -53,7 +62,9 @@ public class MappingListCtrl {
         {
             //System.out.println("der er dobbeltklikket");
             
-            IsolatedICDCodes.set(listView.getSelectionModel().getSelectedItem()); //Tjekker hvilken værdi der er trykket på i listView og sætter denne i IsolatedICDCodes
+            IsolatedIcdCodes.set(listView.getSelectionModel().getSelectedItem()); // Tjekker hvilken værdi der er
+                                                                                  // trykket på i listView og sætter
+                                                                                  // denne i IsolatedICDCodes
             //System.out.println(IsolatedICDCodes + "this is a");
 
             listView.getScene().getWindow().hide(); //Lukker vinduet når der er dobbeltklikket. 

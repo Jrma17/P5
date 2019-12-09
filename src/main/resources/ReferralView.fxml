@@ -160,8 +160,8 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="diagnosisCodeICPC" layoutX="174.0" layoutY="199.0" onKeyTyped="#getdiagnosisCodeICPC" prefHeight="26.0" prefWidth="78.0" promptText="Indtast ICPC kode + tryk &quot;Enter&quot;" />
-      <TextField fx:id="referralDiagnosisCodeICD" layoutX="223.0" layoutY="236.0" prefHeight="26.0" prefWidth="321.0" />
+      <TextField fx:id="diagnosisCodeIcpc" layoutX="174.0" layoutY="199.0" onKeyTyped="#getDiagnosisCodeIcpc" prefHeight="26.0" prefWidth="78.0" promptText="Indtast ICPC kode + tryk &quot;Enter&quot;" />
+      <TextField fx:id="referralDiagnosisCodeIcd" layoutX="223.0" layoutY="236.0" prefHeight="26.0" prefWidth="321.0" />
       <TextArea fx:id="note" layoutX="649.0" layoutY="450.0" prefHeight="139.0" prefWidth="290.0" />
       <Label layoutX="649.0" layoutY="396.0" text="Vælg frase: " AnchorPane.bottomAnchor="254.4">
          <font>
