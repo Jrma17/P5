@@ -8,6 +8,7 @@ import dk.aau.model.MappingListModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 
@@ -15,6 +16,8 @@ public class MappingListCtrl {
 
     @FXML
     public ListView<String> listView;
+    @FXML
+    private Label Icpc;
 
     public StringProperty IsolatedIcdCodes = new SimpleStringProperty(""); 
     private MappingListModel MapStructure = new MappingListModel();
@@ -30,6 +33,8 @@ public class MappingListCtrl {
         icpcCode = code;
         // System.out.println(ICPCkode + " ICPCKODE in setcode"); //Printer ICPC-koden
         // som er tastet ind i feltet, og kommer fra "ReferralCtrl"
+        
+        Icpc.setText(icpcCode);
 
         Object relevanteICD = NewMap.get(icpcCode); // Isolere values fra "NewMap" (HashMap som har ICPC som Key, som
                                                     // hver har en liste af ICD10 values tilkoblet), som har "ICPCKode"
