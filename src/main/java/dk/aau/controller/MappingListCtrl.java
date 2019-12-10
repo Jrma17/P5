@@ -54,10 +54,10 @@ public class MappingListCtrl {
     }
 
     public void initialize() { // Initialize køres som det første, efterfølgende køres det resterende
-        MappingMethod(); // Opsætter hashmappet og dermed mapningen
+        mappingMethod(); // Opsætter hashmappet og dermed mapningen
     }
 
-    public HashMap<String, List<String>> MappingMethod() { // Metode som opsætter mapning
+    public HashMap<String, List<String>> mappingMethod() { // Metode som opsætter mapning
         
         NewMap = MapStructure.getNewMap(); // NewMap består af MapStructure (som er en struktur for mappet og hentes (getMap) fra "MappingListModel")
         

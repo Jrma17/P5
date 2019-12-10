@@ -218,7 +218,7 @@ public class ReferralCtrl {
     // Funktionen åbner "MappingListView" når der trykkes på knap
     // Funktionen er tilsluttet knappen "Mapning" via scenebuilder, "MappinglistView"
     @FXML
-    public void handleMapning(ActionEvent event) throws IOException { 
+    public void handleMapping(ActionEvent event) throws IOException { 
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/MappingListView.fxml")); // Ny loader som henter "Mappinglistview"
         // Laver en ny parent + scene og sætter denne scene som parent (så det fylder hele vinduet)
         Parent root1 = (Parent) fxmlloader.load(); 
