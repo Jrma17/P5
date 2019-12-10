@@ -19,9 +19,9 @@
           <TableColumn fx:id="layDaysColumn" prefWidth="70.0" text="Liggedage" />
             <TableColumn fx:id="statusColumn" prefWidth="110.0" text="Status" />
             <TableColumn fx:id="assignedColumn" prefWidth="90.0" text="Tildelt" />
-            <TableColumn fx:id="referredFromColumn" prefWidth="170.0" text="Henvist fra" />
+            <TableColumn fx:id="referredFromColumn" prefWidth="165.0" text="Henvist fra" />
             <TableColumn fx:id="patientColumn" prefWidth="95.0" text="Patient" />
-            <TableColumn fx:id="referralCauseColumn" prefWidth="170.0" text="Henv. årsag" />
+            <TableColumn fx:id="referralCauseColumn" prefWidth="165.0" text="Henv. årsag" />
             <TableColumn fx:id="referralIDColumn" text="Henv. id" />
             <TableColumn fx:id="referralTypeColumn" text="Henv. type" />
         </columns>
@@ -29,10 +29,10 @@
       <AnchorPane layoutX="10.0" layoutY="20.0" prefHeight="109.0" prefWidth="1001.0" AnchorPane.leftAnchor="0.0">
          <children>
             <DatePicker layoutX="85.0" layoutY="47.0" prefHeight="10.0" prefWidth="200.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="716.0" />
-            <DatePicker layoutX="380.0" layoutY="47.0" prefHeight="10.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="380.0" AnchorPane.rightAnchor="422.0" />
-            <Label layoutX="5.0" layoutY="50.0" text="Fra dato:" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="938.0" />
-            <Label layoutX="300.0" layoutY="50.0" prefHeight="21.0" prefWidth="58.0" text="Til dato: " AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="643.0" />
-            <Label layoutX="4.0" layoutY="11.0" text="Filtrer på: " AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="10.0" />
+            <DatePicker layoutX="373.0" layoutY="65.0" prefHeight="10.0" prefWidth="200.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="373.0" AnchorPane.rightAnchor="429.0" />
+            <Label layoutX="14.0" layoutY="69.0" text="Fra dato:" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="929.0" />
+            <Label layoutX="305.0" layoutY="67.0" prefHeight="21.0" prefWidth="58.0" text="Til dato: " AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="305.0" AnchorPane.rightAnchor="638.0" />
+            <Label layoutX="8.0" layoutY="15.0" text="Filtrer på: " AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="15.0" />
             <HBox layoutX="72.0" prefHeight="41.0" prefWidth="362.0">
                <children>
                   <CheckBox fx:id="sortByDateBtn" mnemonicParsing="false" text="Modtaget Dato">
