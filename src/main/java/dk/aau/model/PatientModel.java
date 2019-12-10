@@ -4,14 +4,14 @@ package dk.aau.model;
 
 public class PatientModel {
     private  String name;
-    private  String adress;
+    private  String address;
     private  String cprNumber;
 
 
     //Constructor
-     public PatientModel(String name, String adress, String cprNumber) {
+     public PatientModel(String name, String address, String cprNumber) {
         this.name = name;
-        this.adress = adress;
+        this.address = address;
         this.cprNumber = cprNumber;
     }
 
@@ -20,26 +20,15 @@ public class PatientModel {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  
 
     public String getAddress() {
-        return adress;
+        return address;
     }
 
-    public void setAddress(String adress) {
-        this.adress = adress;
-    }
-
+ 
     public String getCprNumber() {
         return cprNumber;
     }
-
-    public void setCprNumber(String cprNumber) {
-        this.cprNumber = cprNumber;
-    }
-
-    
     
 }

@@ -8,7 +8,6 @@ import java.sql.SQLDataException;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import dk.aau.model.DatabaseDetails;
 import dk.aau.model.ReferralListModel;
 import dk.aau.model.ReferralModel;
 import dk.aau.model.ReferralStatusModel;
@@ -18,10 +17,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class DatabaseHandlerCtrl {
+    private final static String username = "hst_2019_19gr5402";
+    private final static String password = "aiyozatheiyaigageize";
+    private final static String host = "jdbc:mysql://db.course.hst.aau.dk:3306/hst_2019_19gr5402?serverTimezone=UTC";
 
-    private static ArrayList databaseReaderHelperFunction(String sqlQuery) {
+    private static ArrayList databaseReadHelp(String sqlQuery) {
         Connection conn = null;
         ResultSet rs = null;
+
         ArrayList<Object> referralList = new ArrayList<>(); // resultList er en erstatning for at returnere et
                                                             // ResultSet. resultList er en ArrayList som indeholder
                                                             // flere ArrayLists der indeholder typen Object
@@ -29,8 +32,7 @@ public class DatabaseHandlerCtrl {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(DatabaseDetails.host, DatabaseDetails.username,
-                    DatabaseDetails.password);
+            conn = DriverManager.getConnection(host, username, password);
 
             rs = conn.prepareStatement(sqlQuery).executeQuery(); // Bruges til at vælge data i database
             ResultSetMetaData metaData = rs.getMetaData(); // Metadata for ResultSet indeholder data om tabellen der
@@ -67,7 +69,7 @@ public class DatabaseHandlerCtrl {
     }
 
     // Henter data som indsætte i table view i referralListCtrl
-    public static ObservableList<ReferralListModel> readReferralList1() {
+    public ObservableList<ReferralListModel> readReferralList() {
         Connection conn = null;
         ResultSet rs = null;
         ObservableList<ReferralListModel> referralList = FXCollections.observableArrayList(); // resultList er en
@@ -76,8 +78,7 @@ public class DatabaseHandlerCtrl {
         String sqlQuery = "SELECT Referral.referralSentDate, Referral.referralRecievedDate, Referral.referredBy, Referral.referralType, Referral.referralID, Referral.referralDiagnosisCodeICD, Patient.cprNumber, Patient.name, Referral.referralStatus, Referral.assigned, DATEDIFF(CURDATE(), Referral.referralSentDate) AS layDays FROM Referral JOIN Patient ON Referral.cprNumber=Patient.cprNumber";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(DatabaseDetails.host, DatabaseDetails.username,
-                    DatabaseDetails.password);
+            conn = DriverManager.getConnection(host, username, password);
 
             rs = conn.prepareStatement(sqlQuery).executeQuery(); // Bruges til at vælge data i database
 
@@ -111,11 +112,11 @@ public class DatabaseHandlerCtrl {
     }
 
     // Henter data fra databasen som indsætte i referralCtrl
-    public static ReferralModel readReferral(String id) {
+    public ReferralModel readReferral(String id) {
         String sqlQuery = "SELECT Patient.name, Patient.address, Patient.cprNumber, Referral.referralSentDate, Referral.referralRecievedDate, Referral.referredBy, Referral.waitingGroup, Referral.diagnosisText, Referral.course, Referral.referralID, Referral.anamnesis, Referral.referralType, Referral.responsibleUnit FROM Referral JOIN Patient ON Referral.cprNumber=Patient.cprNumber WHERE Referral.cprNumber ="
                 + id;
 
-        ArrayList referralList = databaseReaderHelperFunction(sqlQuery);
+        ArrayList referralList = databaseReadHelp(sqlQuery);
         ReferralModel referralModel = null;
         for (Object referral : referralList) {
             ArrayList<Object> referralData = (ArrayList<Object>) referral;
@@ -141,10 +142,10 @@ public class DatabaseHandlerCtrl {
     }
 
     // Henter data fra databasen som indsætte i referralCtrl
-    public static VisitationModel readVisitation(String id) {
+    public VisitationModel readVisitation(String id) {
         String sqlQuery = "SELECT referralSentDate, referralRecievedDate, referredBy, referralType, waitingGroup, diagnosisText, course, responsibleUnit, referralID, anamnesis, layDays, note, phrase, diagnosisCodeICPC, referralDiagnosisCodeICD, scheduledProcedure, date, unit, time, patientPrivilege, referralStatus, assigned, visitator FROM Referral WHERE cprNumber= "
                 + id;
-        ArrayList referralList = databaseReaderHelperFunction(sqlQuery); // Anvender hjælperfunktionen til at definere
+        ArrayList referralList = databaseReadHelp(sqlQuery); // Anvender hjælperfunktionen til at definere
                                                                          // et ResultSet med resultatet af forespørgslen
 
         VisitationModel visitationModel = null;
@@ -163,13 +164,13 @@ public class DatabaseHandlerCtrl {
 
     }
 
-    //Henter data fra databasen som indsætte i referralCtrl
-    public static ReferralStatusModel readReferralStatus(String id) {
+    // Henter data fra databasen som indsætte i referralCtrl
+    public ReferralStatusModel readReferralStatus(String id) {
 
         String sqlQuery = "SELECT referralSentDate, referralRecievedDate, referredBy, referralType, waitingGroup, diagnosisText, course, responsibleUnit, referralID, anamnesis, layDays, note, phrase, diagnosisCodeICPC, referralDiagnosisCodeICD, scheduledProcedure, date, unit, time, patientPrivilege, referralStatus, assigned, visitator FROM Referral WHERE cprNumber= "
                 + id;
 
-        ArrayList referralList = databaseReaderHelperFunction(sqlQuery); // Anvender hjælperfunktionen til at definere
+        ArrayList referralList = databaseReadHelp(sqlQuery); // Anvender hjælperfunktionen til at definere
                                                                          // et ResultSet med resultatet af forespørgslen
         ReferralStatusModel referralStatusModel = null;
         for (Object referral : referralList) {
@@ -189,13 +190,13 @@ public class DatabaseHandlerCtrl {
         return referralStatusModel;
 
     }
-    //Hjælper med at skrive forespøgelser til databasen
-    private static void databaseWriteHelperFunction(String sqlQuery) throws ClassNotFoundException, SQLException {
+
+    // Hjælper med at skrive forespøgelser til databasen
+    private static void databaseWriteHelp(String sqlQuery) throws ClassNotFoundException, SQLException {
         Statement stmt;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(DatabaseDetails.host, DatabaseDetails.username,
-                    DatabaseDetails.password);
+            Connection conn = DriverManager.getConnection(host, username, password);
             stmt = conn.createStatement();
             stmt.executeUpdate(sqlQuery);
             conn.close();
@@ -204,20 +205,21 @@ public class DatabaseHandlerCtrl {
         }
     }
 
-    // NEDENSTÅENDE FUNKTIONER BRUGES TIL AT TILFØJE DATA TIL DATABASEN I EKSISTERENDE RÆKKER - BRUGES I REFERRALCTRL
-    public static void addICPC(VisitationModel visitationModel, String id) throws SQLException, ClassNotFoundException {
+    // NEDENSTÅENDE FUNKTIONER BRUGES TIL AT TILFØJE DATA TIL DATABASEN I
+    // EKSISTERENDE RÆKKER - BRUGES I REFERRALCTRL
+    public void addIcpc(VisitationModel visitationModel, String id) throws SQLException, ClassNotFoundException {
         String updateStmt = null;
 
-        if (visitationModel.getDiagnosisCodeICPC() != null || visitationModel.getReferralDiagnosisCodeICD() != null
+        if (visitationModel.getDiagnosisCodeIcpc() != null || visitationModel.getReferralDiagnosisCodeIcd() != null
                 || visitationModel.getNote() != null || visitationModel.getPhrase() != null) {
             updateStmt = "UPDATE Referral SET referralDiagnosisCodeICD = '"
-                    + visitationModel.getReferralDiagnosisCodeICD() + "', diagnosisCodeICPC = '"
-                    + visitationModel.getDiagnosisCodeICPC() + "', note = '" + visitationModel.getNote()
+                    + visitationModel.getReferralDiagnosisCodeIcd() + "', diagnosisCodeICPC = '"
+                    + visitationModel.getDiagnosisCodeIcpc() + "', note = '" + visitationModel.getNote()
                     + "', phrase = '" + visitationModel.getPhrase() + "'WHERE cprNumber ='" + id + "'";
 
         }
         try {
-            databaseWriteHelperFunction(updateStmt);
+            databaseWriteHelp(updateStmt);
         } catch (SQLException | ClassNotFoundException e) {
             System.out.print("Error occurred while trying to insert into database: " + e.getMessage());
             throw e;
@@ -225,7 +227,7 @@ public class DatabaseHandlerCtrl {
 
     }
 
-    public static void addReferral(ReferralModel referralModel, String id) throws SQLException, ClassNotFoundException {
+    public void addReferral(ReferralModel referralModel, String id) throws SQLException, ClassNotFoundException {
         String updateStmt = null;
         if (referralModel.getWaitingGroup() != null || referralModel.getDiagnosisText() != null) {
             updateStmt = "UPDATE Referral SET diagnosisText = '" + referralModel.getDiagnosisText()
@@ -233,7 +235,7 @@ public class DatabaseHandlerCtrl {
 
         }
         try {
-            databaseWriteHelperFunction(updateStmt);
+            databaseWriteHelp(updateStmt);
         } catch (SQLException | ClassNotFoundException e) {
             System.out.print("Error occurred while trying to insert into database: " + e.getMessage());
             throw e;
@@ -241,7 +243,7 @@ public class DatabaseHandlerCtrl {
 
     }
 
-    public static void addReferralStatus(ReferralStatusModel referralStatusModel, String id)
+    public void addReferralStatus(ReferralStatusModel referralStatusModel, String id)
             throws SQLException, ClassNotFoundException {
         String updateStmt = null;
         if (referralStatusModel.getAssigned() != null || referralStatusModel.getDate() != null
@@ -255,7 +257,7 @@ public class DatabaseHandlerCtrl {
 
         }
         try {
-            databaseWriteHelperFunction(updateStmt);
+            databaseWriteHelp(updateStmt);
         } catch (SQLException | ClassNotFoundException e) {
             System.out.print("Error occurred while trying to insert into database: " + e.getMessage());
             throw e;

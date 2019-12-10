@@ -33,7 +33,6 @@ repositories {
     mavenCentral()
 }
 
-
 mainClassName = 'dk.aau.MainApp'
 version = '0.0.1'
 

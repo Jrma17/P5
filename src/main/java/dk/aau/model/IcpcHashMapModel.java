@@ -1,7 +1,7 @@
 package dk.aau.model;
 import java.util.HashMap;
 
-public class ReferralHashMapModel {
+public class IcpcHashMapModel {
 
     private HashMap<String, String> NewMapLabel = new HashMap<String, String>();
 
