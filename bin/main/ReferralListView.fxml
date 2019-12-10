@@ -10,20 +10,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.aau.controller.ReferralListCtrl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.aau.controller.ReferralListCtrl">
    <children>
       <TableView fx:id="referralListTable" layoutX="-1.0" layoutY="107.0" onMouseClicked="#clickItemList" prefHeight="400.0" prefWidth="1001.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="130.0">
         <columns>
-            <TableColumn fx:id="recievedDateColumn" prefWidth="100.0" text="Modt. dato" />
-          <TableColumn fx:id="referredDateColumn" prefWidth="100.0" text="Henv. dato" />
-          <TableColumn fx:id="layDaysColumn" prefWidth="100.0" text="Liggedage" />
-            <TableColumn fx:id="statusColumn" prefWidth="100.0" text="Status" />
-            <TableColumn fx:id="assignedColumn" prefWidth="100.0" text="Tildelt" />
-            <TableColumn fx:id="referredFromColumn" prefWidth="100.0" text="Henvist fra" />
-            <TableColumn fx:id="patientColumn" prefWidth="100.0" text="Patient" />
-            <TableColumn fx:id="referralCauseColumn" prefWidth="100.0" text="Henv. årsag" />
-            <TableColumn fx:id="referralIDColumn" prefWidth="100.0" text="Henv. id" />
-            <TableColumn fx:id="referralTypeColumn" prefWidth="100.0" text="Henv. type" />
+            <TableColumn fx:id="recievedDateColumn" text="Modt. dato" />
+          <TableColumn fx:id="referredDateColumn" text="Henv. dato" />
+          <TableColumn fx:id="layDaysColumn" prefWidth="70.0" text="Liggedage" />
+            <TableColumn fx:id="statusColumn" prefWidth="110.0" text="Status" />
+            <TableColumn fx:id="assignedColumn" prefWidth="90.0" text="Tildelt" />
+            <TableColumn fx:id="referredFromColumn" prefWidth="170.0" text="Henvist fra" />
+            <TableColumn fx:id="patientColumn" prefWidth="95.0" text="Patient" />
+            <TableColumn fx:id="referralCauseColumn" prefWidth="170.0" text="Henv. årsag" />
+            <TableColumn fx:id="referralIDColumn" text="Henv. id" />
+            <TableColumn fx:id="referralTypeColumn" text="Henv. type" />
         </columns>
       </TableView>
       <AnchorPane layoutX="10.0" layoutY="20.0" prefHeight="109.0" prefWidth="1001.0" AnchorPane.leftAnchor="0.0">

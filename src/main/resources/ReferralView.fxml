@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -17,17 +16,6 @@
    <children>
       <Separator layoutX="1.0" prefHeight="94.0" prefWidth="948.0" AnchorPane.bottomAnchor="573.0" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="1.0" />
       <ComboBox fx:id="waitingGroup" editable="true" layoutX="111.0" layoutY="125.0" prefHeight="26.0" prefWidth="474.0" AnchorPane.topAnchor="125.0" />
-      <ButtonBar layoutX="298.0" layoutY="617.0" prefHeight="50.0" prefWidth="639.0">
-         <buttons>
-            <Button fx:id="appendixButton" minWidth="74.0" mnemonicParsing="false" prefHeight="13.0" text="Vis bilag" />
-            <Button fx:id="correspondenceButton" mnemonicParsing="false" prefHeight="9.0" text="Opret korrespondance" />
-            <Button fx:id="historyButton" mnemonicParsing="false" text="Vis historik" />
-            <Button fx:id="cancelButton" mnemonicParsing="false" text="Annuller" />
-            <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeButtonAction" text="Luk" />
-            <Button fx:id="saveButton" mnemonicParsing="false" text="Gem" />
-            <Button fx:id="saveCloseButton" minWidth="25.0" mnemonicParsing="false" prefHeight="26.0" text="Gem og Luk" />
-         </buttons>
-      </ButtonBar>
       <ComboBox fx:id="status" editable="true" layoutX="97.0" layoutY="496.0" prefHeight="26.0" prefWidth="219.0" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="115.0" />
       <Label layoutX="460.0" layoutY="24.0" text="Forløb:" textOverrun="WORD_ELLIPSIS" AnchorPane.topAnchor="15.0">
          <font>
@@ -216,5 +204,12 @@
             <TableColumn prefWidth="75.20001220703125" text="Tid" />
         </columns>
       </TableView>
+      <Button fx:id="saveCloseButton" layoutX="827.0" layoutY="619.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Gem og Luk" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="10.0" />
+      <Button fx:id="appendixButton" layoutX="163.0" layoutY="617.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Vis bilag" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="680.0" />
+      <Button fx:id="correspondenceButton" layoutX="266.0" layoutY="618.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="140.0" text="Opret korrespondance" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="535.0" />
+      <Button fx:id="historyButton" layoutX="410.0" layoutY="619.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Vis historik" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="430.0" />
+      <Button fx:id="cancelButton" layoutX="514.0" layoutY="619.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Annuller" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="325.0" />
+      <Button fx:id="closeButton" layoutX="618.0" layoutY="619.0" mnemonicParsing="false" onAction="#closeButtonAction" prefHeight="26.0" prefWidth="100.0" text="Luk" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="220.0" />
+      <Button fx:id="saveButton" layoutX="723.0" layoutY="619.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Gem" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="115.0" />
    </children>
 </AnchorPane>
