@@ -7,18 +7,16 @@ public class VisitationModel{
     private String referralDiagnosisCodeIcd ;
     private String scheduledProcedure;
 
-
-    //Constructor
+    // Constructor
     public VisitationModel(String note, String phrase, String diagnosisCodeIcpc, String referralDiagnosisCodeIcd, String scheduledProcedure) {
         this.note = note;
         this.phrase = phrase;
         this.diagnosisCodeIcpc = diagnosisCodeIcpc;
         this.referralDiagnosisCodeIcd = referralDiagnosisCodeIcd;
-        this.scheduledProcedure = scheduledProcedure;
-        
+        this.scheduledProcedure = scheduledProcedure; 
     }
 
-    //Getter og Setter
+    // Getters
     public String getNote() {
         return note;
     }

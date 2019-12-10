@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class ReferralListCtrl implements Initializable {
-
+    
     @FXML
     private TableView<ReferralListModel> referralListTable;
     @FXML
@@ -45,35 +45,34 @@ public class ReferralListCtrl implements Initializable {
     private TableColumn<ReferralListModel, String> referralIDColumn;
     @FXML
     private TableColumn<ReferralListModel, String> referralTypeColumn;
-
     @FXML
     private CheckBox sortByDateBtn;
     @FXML
     private CheckBox sortByStatusBtn;
     @FXML
     private Label searchLabelTest;
-
+    
     String cpr;
     DatabaseHandlerCtrl database = new DatabaseHandlerCtrl();
-
-    //Knap til sortering af dato og status
+    
+    // Knap til sortering af dato og status
     @FXML
     public void searchButtonPressed() {
         if (sortByDateBtn.isSelected()) {
             sortingPolicyDate();
         } else if (sortByStatusBtn.isSelected()) {
             sortingPolicyStatus();
-
+            
         } else {
             referralListTable.setItems(database.readReferralList());
         }
     }
-
-    //Sortering af dato
-
+    
+    // Sortering af dato
+    
     public void sortingPolicyDate() {
         referralListTable.sortPolicyProperty().set(new Callback<TableView<ReferralListModel>, Boolean>() {
-           
+            
             @Override
             public Boolean call(TableView<ReferralListModel> param) {
                 Comparator<ReferralListModel> comparatorDate = new Comparator<ReferralListModel>() {
@@ -82,17 +81,16 @@ public class ReferralListCtrl implements Initializable {
                         return r1.getRecievedDate().compareTo(r2.getRecievedDate());
                     }
                 };
-
                 FXCollections.sort(referralListTable.getItems(), comparatorDate); 
                 return true;
             }
         });
     }
-
-    //Sortering af status
+    
+    // Sortering af status
     public void sortingPolicyStatus() {
         referralListTable.sortPolicyProperty().set(new Callback<TableView<ReferralListModel>, Boolean>() {
-
+            
             @Override
             public Boolean call(TableView<ReferralListModel> param) {
                 Comparator<ReferralListModel> comparatorStatus = new Comparator<ReferralListModel>() {
@@ -107,7 +105,6 @@ public class ReferralListCtrl implements Initializable {
         });
     }
     
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         recievedDateColumn.setCellValueFactory(new PropertyValueFactory<ReferralListModel, String>("recievedDate"));
@@ -120,41 +117,39 @@ public class ReferralListCtrl implements Initializable {
         referralCauseColumn.setCellValueFactory(new PropertyValueFactory<ReferralListModel, String>("referralCause"));
         referralIDColumn.setCellValueFactory(new PropertyValueFactory<ReferralListModel, String>("referralID"));
         referralTypeColumn.setCellValueFactory(new PropertyValueFactory<ReferralListModel, String>("referralType"));
-
-        //Sætter data i table view
         
+        // Sætter data i table view
         referralListTable.setItems(database.readReferralList());
-
     }
-
-    //Muligør åbning af henvisningen ved dobbelt klik
+    
+    // Muligør åbning af henvisning ved dobbelt klik
     @FXML
     public void clickItemList(MouseEvent event) throws IOException {
-        if (event.getClickCount() == 2) // Checking double click
+        if (event.getClickCount() == 2) // Tjekker efter dobbeltklik
         {
             getPatientFromList();
-
+            
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ReferralView.fxml"));
-
+            
             Parent ReferralViewParent = (Parent) fxmlLoader.load();
             Scene ReferralViewScene = new Scene(ReferralViewParent);
-
+            
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
+            
             window.setScene(ReferralViewScene);
             window.show();
-
-            //Muliggør at cpr nr. bliver overført til ReferralCtrl
+            
+            // Muliggør at cpr nr. bliver overført til ReferralCtrl
             ReferralCtrl refctrl = fxmlLoader.getController();
             
-            refctrl.setCode(cpr);
+            refctrl.getReferralInformation(cpr);
         }
     }
-
-    //Henter cpr nr. fra table view 
+    
+    // Henter cpr nr. fra table view 
     public String getPatientFromList() {
         cpr = referralListTable.getSelectionModel().getSelectedItem().getPatient();
         return cpr;
     }
-
+    
 }

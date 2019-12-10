@@ -19,68 +19,49 @@ public class MappingListCtrl {
     @FXML
     private Label Icpc;
 
-    public StringProperty IsolatedIcdCodes = new SimpleStringProperty(""); 
+    public StringProperty isolatedIcdCodes = new SimpleStringProperty(""); 
     private MappingListModel MapStructure = new MappingListModel();
-    private HashMap NewMap;
+    private HashMap<String, List<String>> NewMap;
 
     private String icpcCode;
 
-    public MappingListCtrl() {
-
-    }
-
-    public void setCode(String code) { // Henter ICPCkode værdien fra ReferralCtrl.
-        icpcCode = code;
-        // System.out.println(ICPCkode + " ICPCKODE in setcode"); //Printer ICPC-koden
-        // som er tastet ind i feltet, og kommer fra "ReferralCtrl"
-        
+    public void setCode(String code) { // Henter ICPC kode værdien fra "ReferralCtrl"
+        icpcCode = code;        
         Icpc.setText(icpcCode);
-
-        Object relevanteICD = NewMap.get(icpcCode); // Isolere values fra "NewMap" (HashMap som har ICPC som Key, som
-                                                    // hver har en liste af ICD10 values tilkoblet), som har "ICPCKode"
-                                                    // (se ^) som key. (Hashmaps returnere objects!) Output eks:
-                                                    // (object) [ICD1,ICD2]
-        //System.out.println(relevanteICD + "This is object"); // Printer de isolerede values i NewMap ud fra "ICPCkode"
-
-        String val = String.valueOf(relevanteICD); //Omdanner objectet til en string (vi skal bruge en string når vi skal sætte det ind i vores view (ListView)) - Output eks: (String) [ICD1,ICD2]
         
-        String[] arrOfStr = val.split(",", 0);// && val.split("[",0); - Splitter en String i flere Strings hver gang der er et ",":
-        //Output eks: String 1 [ICD1
-                    //String 2 ICD2]   (ja det ser lidt wack ud - se næste)
+        // Isolerer values fra "NewMap" (HashMap som har ICPC kode som key, og en tilhørende liste af ICD-10 koder som value), som har "icpcCode" som key
+        Object relevanteICD = NewMap.get(icpcCode); // Hashmaps returnere objects
+        String val = String.valueOf(relevanteICD); // Omdanner Object til String (det skal være String, når det skal sættes ind i listview'et)
+        
+        String[] arrOfStr = val.split("0,", 0); // Splitter en String i flere Strings, hver gang der er et "0," (vi bruger "0," da der kan forekomme "," i koden)
 
-        for (String IsolatedICDCodes : arrOfStr) { //Gør efterfølgende for alle strings i arrayet. 
-            IsolatedICDCodes = IsolatedICDCodes.replace("[", ""); //Erstatter [ med ingenting
-            IsolatedICDCodes = IsolatedICDCodes.replace("]", ""); //Erstatter ] med ingenting
-            IsolatedICDCodes = IsolatedICDCodes.trim(); //Fjerner eventuelle overskydende mellemrum
-            listView.getItems().add(IsolatedICDCodes); //Tilføjer de isolerede og tilpassede værdier til listview (listiew = FXML listView)
+        for (String isolatedICDCodes : arrOfStr) { // Gør efterfølgende for alle strings i arrayet
+            isolatedICDCodes = isolatedICDCodes.replace("[", ""); // Erstatter [ med ingenting
+            isolatedICDCodes = isolatedICDCodes.replace("]", ""); // Erstatter ] med ingenting
+            isolatedICDCodes = isolatedICDCodes.trim(); // Fjerner eventuelle overskydende mellemrum
+            listView.getItems().add(isolatedICDCodes); // Tilføjer de isolerede og tilpassede værdier til listview
         }
     }
 
-    @FXML //Funktionen er tilkoblet ListView i MappingListView.fxml under code -> on mouse clicked og styrer hvad der sker når der klikkes. 
+    @FXML // Funktionen er tilkoblet ListView i "MappingListView" under code (on mouse clicked) og styrer hvad der sker når der klikkes
     public void clickItemMap(MouseEvent event) throws IOException {
         if (event.getClickCount() == 2) // Der skal dobbelt-klikkes. 
         {
-            //System.out.println("der er dobbeltklikket");
-            
-            IsolatedIcdCodes.set(listView.getSelectionModel().getSelectedItem()); // Tjekker hvilken værdi der er
-                                                                                  // trykket på i listView og sætter
-                                                                                  // denne i IsolatedICDCodes
-            //System.out.println(IsolatedICDCodes + "this is a");
-
-            listView.getScene().getWindow().hide(); //Lukker vinduet når der er dobbeltklikket. 
+            // Tjekker hvilken værdi der er dobbeltklikket på i listView og sætter denne i "isolatedIcdCodes"
+            isolatedIcdCodes.set(listView.getSelectionModel().getSelectedItem()); 
+            listView.getScene().getWindow().hide(); // Lukker vinduet når der er dobbeltklikket
         }
     }
 
-    public void initialize() { //Initialize køres som det første, efterfølgende køres resterende
-        //System.out.println("this is initialize");
-        MappingMethod(); //Opsætter hashmappet og dermed mapningen
+    public void initialize() { // Initialize køres som det første, efterfølgende køres det resterende
+        MappingMethod(); // Opsætter hashmappet og dermed mapningen
     }
 
-    public HashMap MappingMethod() { //Metode som opsætter mapning
+    public HashMap<String, List<String>> MappingMethod() { // Metode som opsætter mapning
         
-        NewMap = MapStructure.getNewMap(); //NewMap består af MapStructure (som er en struktur for mappet og hentes (getMap) fra mappinglistmodel)
+        NewMap = MapStructure.getNewMap(); // NewMap består af MapStructure (som er en struktur for mappet og hentes (getMap) fra "MappingListModel")
         
-        //Alle values er en liste (fordi der kan være flere ICD10 koder til én ICPC kode) - disse oprettes her: 
+        // Alle values er en liste (fordi der kan være flere ICD-10 koder til én ICPC kode) - disse oprettes her: 
         List<String> icdToL70 = new ArrayList<String>();
         icdToL70.add("dm865"); icdToL70.add("dm650"); icdToL70.add("dm651"); icdToL70.add("dm710"); icdToL70.add("dm711"); icdToL70.add("dm860"); 
         icdToL70.add("dm861"); icdToL70.add("dm862"); icdToL70.add("dm864"); icdToL70.add("dm866"); icdToL70.add("dm868"); icdToL70.add("dm869"); 
@@ -208,150 +189,150 @@ public class MappingListCtrl {
         icdToL85.add("dm438"); icdToL85.add("dm439"); icdToL85.add("dm415"); icdToL85.add("dm414");
 
         List<String> icdToL86 = new ArrayList<String>();
-        icdToL86.add("dm514 - Schmorlsk impression"); icdToL86.add("dm544 - L\u00E6ndesmerter med ischias"); 
-        icdToL86.add("dm543 - Ischias"); icdToL86.add("dm518 - Anden sygdom i lumbal eller torakal b\u00E5ndskive"); 
-        icdToL86.add("dm512 - Anden form for torakolumbal diskusprolaps"); icdToL86.add("dm511 - Lumbal eller torakal diskusprolaps med radikulopati"); 
-        icdToL86.add("dm472 - Anden spondylose med radikulopati"); icdToL86.add("dm471 - Anden spondylose med myelopati"); 
-        icdToL86.add("dg558 - Kompression af nerverod eller nerveplexus ved anden sygdom klassificeret andetsteds"); 
-        icdToL86.add("dg553 - Kompression af nerverod eller nerveplexus ved anden ryglidelse"); 
-        icdToL86.add("dg552 - Kompression af nerverod eller nerveplexus ved spondylose"); 
-        icdToL86.add("dg551 - Kompression af nerverod eller nerveplexus ved diskuslidelse i rygs\u00F8jlen"); 
-        icdToL86.add("dg550 - Kompression af nerverod eller nerveplexus ved neoplastisk sygdom"); 
-        icdToL86.add("dm510 - Lumbal eller torakal diskusprolaps med myelopati"); icdToL86.add("dm519 - Sygdom i lumbal eller torakal b\u00E5ndskive UNS"); 
+        icdToL86.add("dm514 - Schmorlsk impression0"); icdToL86.add("dm544 - L\u00E6ndesmerter med ischias0"); 
+        icdToL86.add("dm543 - Ischias0"); icdToL86.add("dm518 - Anden sygdom i lumbal eller torakal b\u00E5ndskive0"); 
+        icdToL86.add("dm512 - Anden form for torakolumbal diskusprolaps0"); icdToL86.add("dm511 - Lumbal eller torakal diskusprolaps med radikulopati0"); 
+        icdToL86.add("dm472 - Anden spondylose med radikulopati0"); icdToL86.add("dm471 - Anden spondylose med myelopati0"); 
+        icdToL86.add("dg558 - Kompression af nerverod eller nerveplexus ved anden sygdom klassificeret andetsteds0"); 
+        icdToL86.add("dg553 - Kompression af nerverod eller nerveplexus ved anden ryglidelse0"); 
+        icdToL86.add("dg552 - Kompression af nerverod eller nerveplexus ved spondylose0"); 
+        icdToL86.add("dg551 - Kompression af nerverod eller nerveplexus ved diskuslidelse i rygs\u00F8jlen0"); 
+        icdToL86.add("dg550 - Kompression af nerverod eller nerveplexus ved neoplastisk sygdom0"); 
+        icdToL86.add("dm510 - Lumbal eller torakal diskusprolaps med myelopati0"); icdToL86.add("dm519 - Sygdom i lumbal eller torakal b\u00E5ndskive UNS"); 
 
         List<String> icdToL87 = new ArrayList<String>();
-        icdToL87.add("dm723 - HER MANGLER EN DIAGNOSTEKST"); icdToL87.add("dm764 - Tibial kollateral bursitis"); 
-        icdToL87.add("dm763 - Pes anserinus-syndrom"); icdToL87.add("dm762 - Calcar cristae iliacae"); 
-        icdToL87.add("dm761 - Tendinitis iliopsoas"); icdToL87.add("dm760 - Tendinitis glutealis"); 
-        icdToL87.add("dm729 - Fibroblastsygdom UNS"); icdToL87.add("dm728 - Anden fibroblastsygdom"); 
-        icdToL87.add("dm724 - Pseudosarkomat\u00F8s fibromatose"); icdToL87.add("dm765 - Tendinitis patellaris"); 
-        icdToL87.add("dm725 - HER MANGLER EN DIAGNOSETEKST"); icdToL87.add("dm766 - Achilles tendinitis"); 
-        icdToL87.add("dm767 - Tendinitis peronealis"); icdToL87.add("dm768 - Anden entesopati p\u00E5 underekstremitet"); 
-        icdToL87.add("dm769 - Entesopati p\u00E5 underekstremitet UNS"); icdToL87.add("dm770 - Epicondylitis medialis"); 
-        icdToL87.add("dm772 - Periartritis i h\u00E5ndled"); icdToL87.add("dm773 - H\u00E6lspore"); 
-        icdToL87.add("dm775 - Anden entesopati p\u00E5 fod"); icdToL87.add("dm722 - Contractura aponeuroseos plantaris"); 
-        icdToL87.add("dm779 - Entesopati UNS"); icdToL87.add("dm713 - Anden bursacyste"); 
-        icdToL87.add("dm778 - Anden entesopati IKA"); icdToL87.add("dm702 - Bursitis olecrani"); 
-        icdToL87.add("dm652 - Tendinitis med forkalkning"); icdToL87.add("dm653 - Springfinger"); 
-        icdToL87.add("dm654 - Tenovaginitis styloideae radii"); icdToL87.add("dm658 - Anden form for synovitis eller tenosynovitis"); 
-        icdToL87.add("dm659 - Synovitis eller tenosynovitis UNS"); icdToL87.add("dm673 - Forbig\u00E5ende synovitis"); 
-        icdToL87.add("dm674 - Ganglion"); icdToL87.add("dm715 - Anden bursitis IKA"); 
-        icdToL87.add("dm701 - Bursitis i h\u00E5nd"); icdToL87.add("dm721 - Knofortykkelse"); 
-        icdToL87.add("dm703 - Anden bursitis i albue"); icdToL87.add("dm704 - Bursitis i slims\u00E6kken over kn\u00E6skallen"); 
-        icdToL87.add("dm718 - Anden sygdom i slims\u00E6k"); icdToL87.add("dm700 - Kronisk krepiterende synovitis i h\u00E5nd eller h\u00E5ndled"); 
-        icdToL87.add("dm719 - Sygdom i slims\u00E6k UNS"); icdToL87.add("dm705 - Anden bursitis i kn\u00E6"); 
-        icdToL87.add("dm714 - Bursitis med forkalkning"); icdToL87.add("dm712 - Synovialcyste i kn\u00E6hase"); 
-        icdToL87.add("dm709 - Bl\u00F8ddelsgigt UNS opst\u00E5et ved belastning, overbelastning eller tryk"); 
-        icdToL87.add("dm708 - Anden bl\u00F8ddelsgigt opst\u00E5et ved belastning, overbelastning eller tryk"); icdToL87.add("dm707 - Anden bursitis i hofte"); 
-        icdToL87.add("dm706 - Bursitis trochanterica"); icdToL87.add("dm720 - Dupuytrens kontraktur"); 
+        icdToL87.add("dm723 - HER MANGLER EN DIAGNOSTEKST0"); icdToL87.add("dm764 - Tibial kollateral bursitis0"); 
+        icdToL87.add("dm763 - Pes anserinus-syndrom0"); icdToL87.add("dm762 - Calcar cristae iliacae0"); 
+        icdToL87.add("dm761 - Tendinitis iliopsoas0"); icdToL87.add("dm760 - Tendinitis glutealis0"); 
+        icdToL87.add("dm729 - Fibroblastsygdom UNS0"); icdToL87.add("dm728 - Anden fibroblastsygdom0"); 
+        icdToL87.add("dm724 - Pseudosarkomat\u00F8s fibromatose0"); icdToL87.add("dm765 - Tendinitis patellaris0"); 
+        icdToL87.add("dm725 - HER MANGLER EN DIAGNOSETEKST0"); icdToL87.add("dm766 - Achilles tendinitis0"); 
+        icdToL87.add("dm767 - Tendinitis peronealis0"); icdToL87.add("dm768 - Anden entesopati p\u00E5 underekstremitet0"); 
+        icdToL87.add("dm769 - Entesopati p\u00E5 underekstremitet UNS0"); icdToL87.add("dm770 - Epicondylitis medialis0"); 
+        icdToL87.add("dm772 - Periartritis i h\u00E5ndled0"); icdToL87.add("dm773 - H\u00E6lspore0"); 
+        icdToL87.add("dm775 - Anden entesopati p\u00E5 fod0"); icdToL87.add("dm722 - Contractura aponeuroseos plantaris0"); 
+        icdToL87.add("dm779 - Entesopati UNS0"); icdToL87.add("dm713 - Anden bursacyste0"); 
+        icdToL87.add("dm778 - Anden entesopati IKA0"); icdToL87.add("dm702 - Bursitis olecrani0"); 
+        icdToL87.add("dm652 - Tendinitis med forkalkning0"); icdToL87.add("dm653 - Springfinger0"); 
+        icdToL87.add("dm654 - Tenovaginitis styloideae radii0"); icdToL87.add("dm658 - Anden form for synovitis eller tenosynovitis0"); 
+        icdToL87.add("dm659 - Synovitis eller tenosynovitis UNS0"); icdToL87.add("dm673 - Forbig\u00E5ende synovitis0"); 
+        icdToL87.add("dm674 - Ganglion0"); icdToL87.add("dm715 - Anden bursitis IKA0"); 
+        icdToL87.add("dm701 - Bursitis i h\u00E5nd0"); icdToL87.add("dm721 - Knofortykkelse0"); 
+        icdToL87.add("dm703 - Anden bursitis i albue0"); icdToL87.add("dm704 - Bursitis i slims\u00E6kken over kn\u00E6skallen0"); 
+        icdToL87.add("dm718 - Anden sygdom i slims\u00E6k0"); icdToL87.add("dm700 - Kronisk krepiterende synovitis i h\u00E5nd eller h\u00E5ndled0"); 
+        icdToL87.add("dm719 - Sygdom i slims\u00E6k UNS0"); icdToL87.add("dm705 - Anden bursitis i kn\u00E60"); 
+        icdToL87.add("dm714 - Bursitis med forkalkning0"); icdToL87.add("dm712 - Synovialcyste i kn\u00E6hase0"); 
+        icdToL87.add("dm709 - Bl\u00F8ddelsgigt UNS opst\u00E5et ved belastning, overbelastning eller tryk0"); 
+        icdToL87.add("dm708 - Anden bl\u00F8ddelsgigt opst\u00E5et ved belastning, overbelastning eller tryk0"); 
+        icdToL87.add("dm707 - Anden bursitis i hofte0"); icdToL87.add("dm706 - Bursitis trochanterica0"); 
+        icdToL87.add("dm720 - Dupuytrens kontraktur"); 
 
         List<String> icdToL88 = new ArrayList<String>();
-        icdToL88.add("dm088 Anden form for juvenil artritis"); icdToL88.add("dm068 Anden form for reumatoid artritis "); 
-        icdToL88.add("dm089 Juvenil artritis UNS"); icdToL88.add("dm084 Pauciartikul\u00E6r juvenil artritis"); 
-        icdToL88.add("dm083 Juvenil seronegativ polyartritis"); icdToL88.add("dm082 Juvenil artritis med ekstra-artikul\u00E6re manifestationer"); 
-        icdToL88.add("dm081 Juvenil ankyloserende spondylitis"); icdToL88.add("dm080 Juvenil reumatoid artritis"); 
-        icdToL88.add("dm069 Reumatoid artritis UNS"); icdToL88.add("dm053 Reumatoid artritis med involvering af andre organsystemer"); 
-        icdToL88.add("dm459 Ankyloserende spondylitis"); icdToL88.add("dm064 Polyarthritis inflammatorica"); 
-        icdToL88.add("dm051 Reumatoid artritis med lungemanifestationer"); icdToL88.add("dm050 Feltys syndrom"); 
-        icdToL88.add("dm058 Anden form for seropositiv reumatoid artritis"); icdToL88.add("dm059 Seropositiv reumatoid artritis UNS"); 
-        icdToL88.add("dm060 Seronegativ reumatoid artritis"); icdToL88.add("dm061 Stills sygdom med debut efter det fyldte 16. \u00E5r"); 
-        icdToL88.add("dm062 Bursitis rheumatoides"); icdToL88.add("dm063 Noduli rheumatici"); icdToL88.add("dm052 Reumatoid vaskulitis");
+        icdToL88.add("dm088 - Anden form for juvenil artritis0"); icdToL88.add("dm068 - Anden form for reumatoid artritis0"); 
+        icdToL88.add("dm089 - Juvenil artritis UNS0"); icdToL88.add("dm084 - Pauciartikul\u00E6r juvenil artritis0"); 
+        icdToL88.add("dm083 - Juvenil seronegativ polyartritis0"); icdToL88.add("dm082 - Juvenil artritis med ekstra-artikul\u00E6re manifestationer0"); 
+        icdToL88.add("dm081 - Juvenil ankyloserende spondylitis0"); icdToL88.add("dm080 - Juvenil reumatoid artritis0"); 
+        icdToL88.add("dm069 - Reumatoid artritis UNS0"); icdToL88.add("dm053 - Reumatoid artritis med involvering af andre organsystemer0"); 
+        icdToL88.add("dm459 - Ankyloserende spondylitis0"); icdToL88.add("dm064 - Polyarthritis inflammatorica0"); 
+        icdToL88.add("dm051 - Reumatoid artritis med lungemanifestationer0"); icdToL88.add("dm050 - Feltys syndrom0"); 
+        icdToL88.add("dm058 - Anden form for seropositiv reumatoid artritis0"); icdToL88.add("dm059 - Seropositiv reumatoid artritis UNS0"); 
+        icdToL88.add("dm060 - Seronegativ reumatoid artritis0"); icdToL88.add("dm061 - Stills sygdom med debut efter det fyldte 16. \u00E5r0"); 
+        icdToL88.add("dm062 - Bursitis rheumatoides0"); icdToL88.add("dm063 - Noduli rheumatici0"); icdToL88.add("dm052 - Reumatoid vaskulitis");
 
         List<String> icdToL89 = new ArrayList<String>();
-        icdToL89.add("dm167 - Anden form for sekund\u00E6r enkeltsidig hofteledsartrose"); icdToL89.add("dm165 - Posttraumatisk enkeltsidig hofteledsartrose"); 
-        icdToL89.add("dm169 - Hofteledsartrose UNS"); icdToL89.add("dm166 - Anden form for sekund\u00E6r dobbeltsidig hofteledsartrose"); 
-        icdToL89.add("dm161 - Prim\u00E6r enkeltsidig hofteledsartrose"); icdToL89.add("dm163 - Dysplastisk enkeltsidig hofteledsartrose"); 
-        icdToL89.add("dm160 - Prim\u00E6r dobbeltsidig hofteledsartrose"); icdToL89.add("dm162 - Dysplastisk dobbeltsidig hofteledsartrose"); 
+        icdToL89.add("dm167 - Anden form for sekund\u00E6r enkeltsidig hofteledsartrose0"); icdToL89.add("dm165 - Posttraumatisk enkeltsidig hofteledsartrose0"); 
+        icdToL89.add("dm169 - Hofteledsartrose UNS0"); icdToL89.add("dm166 - Anden form for sekund\u00E6r dobbeltsidig hofteledsartrose0"); 
+        icdToL89.add("dm161 - Prim\u00E6r enkeltsidig hofteledsartrose0"); icdToL89.add("dm163 - Dysplastisk enkeltsidig hofteledsartrose0"); 
+        icdToL89.add("dm160 - Prim\u00E6r dobbeltsidig hofteledsartrose0"); icdToL89.add("dm162 - Dysplastisk dobbeltsidig hofteledsartrose0"); 
         icdToL89.add("dm164 - Posttraumatisk dobbeltsidig hofteledsartrose"); 
 
         List<String> icdToL90 = new ArrayList<String>();
-        icdToL90.add("dm170 - Prim\u00E6r dobbeltsidig kn\u00E6ledsartrose"); icdToL90.add("dm179 - Kn\u00E6ledsartrose UNS"); 
-        icdToL90.add("dm175 - Anden form for sekund\u00E6r enkeltsidig kn\u00E6ledsartrose"); 
-        icdToL90.add("dm174 - Anden form for sekund\u00E6r bilateral kn\u00E6ledsartrose"); 
-        icdToL90.add("dm173 - Posttraumatisk enkeltsidig kn\u00E6ledsartrose"); icdToL90.add("dm172 - Posttraumatisk dobbeltsidig kn\u00E6ledsartrose"); 
+        icdToL90.add("dm170 - Prim\u00E6r dobbeltsidig kn\u00E6ledsartrose0"); icdToL90.add("dm179 - Kn\u00E6ledsartrose UNS0"); 
+        icdToL90.add("dm175 - Anden form for sekund\u00E6r enkeltsidig kn\u00E6ledsartrose0"); 
+        icdToL90.add("dm174 - Anden form for sekund\u00E6r bilateral kn\u00E6ledsartrose0"); 
+        icdToL90.add("dm173 - Posttraumatisk enkeltsidig kn\u00E6ledsartrose0"); icdToL90.add("dm172 - Posttraumatisk dobbeltsidig kn\u00E6ledsartrose0"); 
         icdToL90.add("dm171 - Prim\u00E6r enkeltsidig kn\u00E6ledsartrose"); 
 
         List<String> icdToL91 = new ArrayList<String>();
-        icdToL91.add("dm181 - Prim\u00E6r enkeltsidig artrose i tommelfingers rodled"); icdToL91.add("dm192 - Anden sekund\u00E6r artrose i andet (andre) led"); 
-        icdToL91.add("dm191 - Posttraumatisk artrose i andet (andre) led"); icdToL91.add("dm190 - Prim\u00E6r artrose i andet (andre) led"); 
-        icdToL91.add("dm189 - Artrose i tommelfingers rodled UNS"); icdToL91.add("dm185 - Anden form for sekund\u00E6r enkeltsidig artrose i tommelfingers rodled"); 
-        icdToL91.add("dm184 - Anden form for sekund\u00E6r bilateral artrose i tommelfingers rodled"); 
-        icdToL91.add("dm183 - Posttraumatisk enkeltsidig artrose i tommelfingers rodled"); 
-        icdToL91.add("dm182 - Posttraumatisk dobbeltsidig artrose i tommelfingers rodled"); icdToL91.add("dm199 - Artrose UNS"); 
-        icdToL91.add("dm150 - Prim\u00E6r generaliseret artrose"); icdToL91.add("dm180 - Prim\u00E6r dobbeltsidig artrose i tommelfingers rodled"); 
-        icdToL91.add("dm198 - Anden artrose"); icdToL91.add("dm130 - Polyartritis UNS"); icdToL91.add("dm131 - Monoartritis IKA"); 
-        icdToL91.add("dm139 - Artritis UNS"); icdToL91.add("dm151 - Heberdens knuder ved artrose"); icdToL91.add("dm152 - Bouchards knuder ved artrose"); 
-        icdToL91.add("dm153 - Sekund\u00E6r multipel artrose"); icdToL91.add("dm154 - Erosiv artrose"); icdToL91.add("dm158 - Anden polyartrose"); 
-        icdToL91.add("dm159 - Polyartrose UNS"); icdToL91.add("dm138 - Anden artritis"); 
+        icdToL91.add("dm181 - Prim\u00E6r enkeltsidig artrose i tommelfingers rodled0"); icdToL91.add("dm192 - Anden sekund\u00E6r artrose i andet (andre) led0"); 
+        icdToL91.add("dm191 - Posttraumatisk artrose i andet (andre) led0"); icdToL91.add("dm190 - Prim\u00E6r artrose i andet (andre) led0"); 
+        icdToL91.add("dm189 - Artrose i tommelfingers rodled UNS0"); icdToL91.add("dm185 - Anden form for sekund\u00E6r enkeltsidig artrose i tommelfingers rodled0"); 
+        icdToL91.add("dm184 - Anden form for sekund\u00E6r bilateral artrose i tommelfingers rodled0"); 
+        icdToL91.add("dm183 - Posttraumatisk enkeltsidig artrose i tommelfingers rodled0"); 
+        icdToL91.add("dm182 - Posttraumatisk dobbeltsidig artrose i tommelfingers rodled0"); icdToL91.add("dm199 - Artrose UNS0"); 
+        icdToL91.add("dm150 - Prim\u00E6r generaliseret artrose0"); icdToL91.add("dm180 - Prim\u00E6r dobbeltsidig artrose i tommelfingers rodled0"); 
+        icdToL91.add("dm198 - Anden artrose0"); icdToL91.add("dm130 - Polyartritis UNS0"); icdToL91.add("dm131 - Monoartritis IKA0"); 
+        icdToL91.add("dm139 - Artritis UNS0"); icdToL91.add("dm151 - Heberdens knuder ved artrose0"); icdToL91.add("dm152 - Bouchards knuder ved artrose0"); 
+        icdToL91.add("dm153 - Sekund\u00E6r multipel artrose0"); icdToL91.add("dm154 - Erosiv artrose0"); icdToL91.add("dm158 - Anden polyartrose0"); 
+        icdToL91.add("dm159 - Polyartrose UNS0"); icdToL91.add("dm138 - Anden artritis"); 
 
         List<String> icdToL92 = new ArrayList<String>();
-        icdToL92.add("dm754 - Afklemningssyndrom i skulder"); icdToL92.add("dm755 - Bursitis i skulder"); 
-        icdToL92.add("dm759 - Skulderlidelse UNS"); icdToL92.add("dm753 - Tendinitis med forkalkning i skulderen ");
-        icdToL92.add("dm752 - Bicepstendinitis"); icdToL92.add("dm750 - Periarthrosis humeroscapularis");
-        icdToL92.add("dm751 - Rotator cuff-syndrom"); icdToL92.add("dm758 - Anden skulderlidelse");
-
+        icdToL92.add("dm754 - Afklemningssyndrom i skulder0"); icdToL92.add("dm755 - Bursitis i skulder0"); 
+        icdToL92.add("dm759 - Skulderlidelse UNS0"); icdToL92.add("dm753 - Tendinitis med forkalkning i skulderen0");
+        icdToL92.add("dm752 - Bicepstendinitis0"); icdToL92.add("dm750 - Periarthrosis humeroscapularis0");
+        icdToL92.add("dm751 - Rotator cuff-syndrom0"); icdToL92.add("dm758 - Anden skulderlidelse");
 
         List<String> icdToL93 = new ArrayList<String>();
         icdToL93.add("dm771 - Epicondylitis lateralis");
 
         List<String> icdToL94 = new ArrayList<String>();
-        icdToL94.add("dm931 - Osteokondrose i os lunatum hos voksen"); icdToL94.add("dm925 - Juvenil osteokondrose i underben"); 
-        icdToL94.add("dm926 - Juvenil osteokondrose i fodrod"); icdToL94.add("dm927 - Juvenil osteokondrose i mellemfod"); 
-        icdToL94.add("dm928 - Anden juvenil brusklidelse"); icdToL94.add("dm930 - Juvenil ikke-traumatisk hofteepifysiolyse"); 
-        icdToL94.add("dm913 - Pseudocoxalgia"); icdToL94.add("dm932 - Osteochondritis dissecans"); 
-        icdToL94.add("dm938 - Anden osteokondropati"); icdToL94.add("dm939 - Osteokondropati UNS"); 
-        icdToL94.add("dm924 - Juvenil osteokondrose i kn\u00E6skal"); icdToL94.add("dm929 - Juvenil brusklidelse UNS"); 
-        icdToL94.add("dm910 - Juvenil b\u00E6kkenosteokondrose"); icdToL94.add("dm919 - Juvenil brusklidelse i hofte eller b\u00E6kken UNS"); 
-        icdToL94.add("dm923 - Anden juvenil osteokondrose i overekstremitet"); icdToL94.add("dm429 - Osteokondrose i rygs\u00F8jlen UNS"); 
-        icdToL94.add("dm420 - Juvenil osteokondrose i rygs\u00F8jlen"); icdToL94.add("dm911 - Juvenil deformerende hofteosteokondrose"); 
-        icdToL94.add("dm912 - Coxa plana"); icdToL94.add("dm918 - Anden form for juvenil brusklidelse i hofte eller b\u00E6kken"); 
-        icdToL94.add("dm920 - Juvenil osteokondrose i overarm"); icdToL94.add("dm921 - Juvenil osteokondrose i underarm"); 
-        icdToL94.add("dm922 - Juvenil osteokondrose i h\u00E5nd"); icdToL94.add("dm421 - Adult osteokondrose i rygs\u00F8jlen"); 
+        icdToL94.add("dm931 - Osteokondrose i os lunatum hos voksen0"); icdToL94.add("dm925 - Juvenil osteokondrose i underben0"); 
+        icdToL94.add("dm926 - Juvenil osteokondrose i fodrod0"); icdToL94.add("dm927 - Juvenil osteokondrose i mellemfod0"); 
+        icdToL94.add("dm928 - Anden juvenil brusklidelse0"); icdToL94.add("dm930 - Juvenil ikke-traumatisk hofteepifysiolyse0"); 
+        icdToL94.add("dm913 - Pseudocoxalgia0"); icdToL94.add("dm932 - Osteochondritis dissecans0"); 
+        icdToL94.add("dm938 - Anden osteokondropati0"); icdToL94.add("dm939 - Osteokondropati UNS0"); 
+        icdToL94.add("dm924 - Juvenil osteokondrose i kn\u00E6skal0"); icdToL94.add("dm929 - Juvenil brusklidelse UNS0"); 
+        icdToL94.add("dm910 - Juvenil b\u00E6kkenosteokondrose0"); icdToL94.add("dm919 - Juvenil brusklidelse i hofte eller b\u00E6kken UNS0"); 
+        icdToL94.add("dm923 - Anden juvenil osteokondrose i overekstremitet0"); icdToL94.add("dm429 - Osteokondrose i rygs\u00F8jlen UNS0"); 
+        icdToL94.add("dm420 - Juvenil osteokondrose i rygs\u00F8jlen0"); icdToL94.add("dm911 - Juvenil deformerende hofteosteokondrose0"); 
+        icdToL94.add("dm912 - Coxa plana0"); icdToL94.add("dm918 - Anden form for juvenil brusklidelse i hofte eller b\u00E6kken0"); 
+        icdToL94.add("dm920 - Juvenil osteokondrose i overarm0"); icdToL94.add("dm921 - Juvenil osteokondrose i underarm0"); 
+        icdToL94.add("dm922 - Juvenil osteokondrose i h\u00E5nd0"); icdToL94.add("dm421 - Adult osteokondrose i rygs\u00F8jlen"); 
 
         List<String> icdToL95 = new ArrayList<String>();
-        icdToL95.add("dm818 - Anden osteoporose"); icdToL95.add("dm814 - Osteoporose for\u00E5rsaget af l\u00E6gemiddel"); 
-        icdToL95.add("dm815 - Idiopatisk osteoporose"); icdToL95.add("dm816 - Lokaliseret osteoporose"); 
-        icdToL95.add("dm819 - Osteoporose UNS"); icdToL95.add("dm820 - Osteoporose ved myelomatose"); 
-        icdToL95.add("dm821 - Osteoporose ved endokrin sygdom"); icdToL95.add("dm828 - Osteoporose ved andre sygdomme klassificeret andetsteds"); 
-        icdToL95.add("dm813 - Osteoporose for\u00E5rsaget af malabsorption efter operation"); icdToL95.add("dm808 - Anden form for osteoporose med patologisk fraktur"); 
-        icdToL95.add("dm800 - Postmenopausal osteoporose med patologisk fraktur"); icdToL95.add("dm811 - Osteoporose efter ooforektomi"); 
-        icdToL95.add("dm812 - Immobilisationsosteoporose"); icdToL95.add("dm809 - Osteoporose UNS med patologisk fraktur"); 
-        icdToL95.add("dm810 - Postmenopausal osteoporose"); icdToL95.add("dm805 - Idiopatisk osteoporose med patologisk fraktur"); 
-        icdToL95.add("dm804 - Osteoporose med patologisk fraktur for\u00E5rsaget af l\u00E6gemiddel"); 
-        icdToL95.add("dm803 - Osteoporose med patologisk fraktur for\u00E5rsaget af malabsorption efter operation"); 
-        icdToL95.add("dm802 - Immobilisationsosteoporose med patologisk fraktur"); icdToL95.add("dm801 - Osteoporose efter ooforektomi med patologisk fraktur"); 
+        icdToL95.add("dm818 - Anden osteoporose0"); icdToL95.add("dm814 - Osteoporose for\u00E5rsaget af l\u00E6gemiddel0"); 
+        icdToL95.add("dm815 - Idiopatisk osteoporose0"); icdToL95.add("dm816 - Lokaliseret osteoporose0"); 
+        icdToL95.add("dm819 - Osteoporose UNS0"); icdToL95.add("dm820 - Osteoporose ved myelomatose0"); 
+        icdToL95.add("dm821 - Osteoporose ved endokrin sygdom0"); icdToL95.add("dm828 - Osteoporose ved andre sygdomme klassificeret andetsteds0"); 
+        icdToL95.add("dm813 - Osteoporose for\u00E5rsaget af malabsorption efter operation0"); icdToL95.add("dm808 - Anden form for osteoporose med patologisk fraktur0"); 
+        icdToL95.add("dm800 - Postmenopausal osteoporose med patologisk fraktur0"); icdToL95.add("dm811 - Osteoporose efter ooforektomi0"); 
+        icdToL95.add("dm812 - Immobilisationsosteoporose0"); icdToL95.add("dm809 - Osteoporose UNS med patologisk fraktur0"); 
+        icdToL95.add("dm810 - Postmenopausal osteoporose0"); icdToL95.add("dm805 - Idiopatisk osteoporose med patologisk fraktur0"); 
+        icdToL95.add("dm804 - Osteoporose med patologisk fraktur for\u00E5rsaget af l\u00E6gemiddel0"); 
+        icdToL95.add("dm803 - Osteoporose med patologisk fraktur for\u00E5rsaget af malabsorption efter operation0"); 
+        icdToL95.add("dm802 - Immobilisationsosteoporose med patologisk fraktur0"); icdToL95.add("dm801 - Osteoporose efter ooforektomi med patologisk fraktur"); 
 
         List<String> icdToL96 = new ArrayList<String>();
-        icdToL96.add("ds835 - L\u00E6sion af korsb\u00E5nd i kn\u00E6led"); icdToL96.add("ds833 - Fraktur af ledbrusk i kn\u00E6led"); 
-        icdToL96.add("ds832 - Traumatisk ruptur af menisk i kn\u00E6led"); icdToL96.add("ds837 - Multiple l\u00E6sioner af strukturer i kn\u00E6led"); 
+        icdToL96.add("ds835 - L\u00E6sion af korsb\u00E5nd i kn\u00E6led0"); icdToL96.add("ds833 - Fraktur af ledbrusk i kn\u00E6led0"); 
+        icdToL96.add("ds832 - Traumatisk ruptur af menisk i kn\u00E6led0"); icdToL96.add("ds837 - Multiple l\u00E6sioner af strukturer i kn\u00E6led"); 
 
         List<String> icdToL97 = new ArrayList<String>();
-        icdToL97.add("dd167 - Godartet tumor i knogle eller ledbrusk i ribben, brystben eller clavicula"); 
-        icdToL97.add("dd212 - Godartet tumor i bindev\u00E6v i underekstremitet"); icdToL97.add("dd481 - Ikke specificeret tumor i bindev\u00E6v eller andre bl\u00F8ddele"); 
-        icdToL97.add("dd480 - Ikke specificeret tumor i knogle eller ledbrusk"); icdToL97.add("dd219 - Godartet tumor i bindev\u00E6v UNS"); 
-        icdToL97.add("dd217 - Godartet tumor i bindev\u00E6v med anden lokalisation"); icdToL97.add("dd216 - Godartet tumor i bindev\u00E6v i kroppen UNS"); 
-        icdToL97.add("dd215 - Godartet tumor i bindev\u00E6v i b\u00E6kkenet"); icdToL97.add("dd214 - Godartet tumor i bindev\u00E6v i abdomen"); 
-        icdToL97.add("dd213 - Godartet tumor i bindev\u00E6v i thorax"); icdToL97.add("dd163 - Godartet tumor i knogle eller ledbrusk i kort knogle i underekstremitet"); 
-        icdToL97.add("dd160 - Godartet tumor i knogle eller ledbrusk i skulderblad eller lang knogle i overekstremitet"); 
-        icdToL97.add("dd169 - Godartet tumor i knogle eller ledbrusk UNS"); 
-        icdToL97.add("dd162 - Godartet tumor i knogle eller ledbrusk i lang knogle i underekstremitet"); 
-        icdToL97.add("dd211 - Godartet tumor i bindev\u00E6v i overekstremitet"); 
-        icdToL97.add("dd164 - Godartet tumor i knogle eller ledbrusk i kranie eller ansigt"); 
-        icdToL97.add("dd165 - Godartet tumor i knogle eller ledbrusk i underk\u00E6ben"); 
-        icdToL97.add("dd166 - Godartet tumor i knogle eller ledbrusk i rygs\u00F8jlen"); 
-        icdToL97.add("dd168 - Godartet tumor i knogle eller ledbrusk i b\u00E6kken, os sacrum eller os coccygis"); 
-        icdToL97.add("dd210 - Godartet tumor i bindev\u00E6v eller andre bl\u00F8ddele i hoved, ansigt eller hals"); 
+        icdToL97.add("dd167 - Godartet tumor i knogle eller ledbrusk i ribben, brystben eller clavicula0"); 
+        icdToL97.add("dd212 - Godartet tumor i bindev\u00E6v i underekstremitet0"); icdToL97.add("dd481 - Ikke specificeret tumor i bindev\u00E6v eller andre bl\u00F8ddele0"); 
+        icdToL97.add("dd480 - Ikke specificeret tumor i knogle eller ledbrusk0"); icdToL97.add("dd219 - Godartet tumor i bindev\u00E6v UNS0"); 
+        icdToL97.add("dd217 - Godartet tumor i bindev\u00E6v med anden lokalisation0"); icdToL97.add("dd216 - Godartet tumor i bindev\u00E6v i kroppen UNS0"); 
+        icdToL97.add("dd215 - Godartet tumor i bindev\u00E6v i b\u00E6kkenet0"); icdToL97.add("dd214 - Godartet tumor i bindev\u00E6v i abdomen0"); 
+        icdToL97.add("dd213 - Godartet tumor i bindev\u00E6v i thorax0"); icdToL97.add("dd163 - Godartet tumor i knogle eller ledbrusk i kort knogle i underekstremitet0"); 
+        icdToL97.add("dd160 - Godartet tumor i knogle eller ledbrusk i skulderblad eller lang knogle i overekstremitet0"); 
+        icdToL97.add("dd169 - Godartet tumor i knogle eller ledbrusk UNS0"); 
+        icdToL97.add("dd162 - Godartet tumor i knogle eller ledbrusk i lang knogle i underekstremitet0"); 
+        icdToL97.add("dd211 - Godartet tumor i bindev\u00E6v i overekstremitet0"); 
+        icdToL97.add("dd164 - Godartet tumor i knogle eller ledbrusk i kranie eller ansigt0"); 
+        icdToL97.add("dd165 - Godartet tumor i knogle eller ledbrusk i underk\u00E6ben0"); 
+        icdToL97.add("dd166 - Godartet tumor i knogle eller ledbrusk i rygs\u00F8jlen0"); 
+        icdToL97.add("dd168 - Godartet tumor i knogle eller ledbrusk i b\u00E6kken, os sacrum eller os coccygis0"); 
+        icdToL97.add("dd210 - Godartet tumor i bindev\u00E6v eller andre bl\u00F8ddele i hoved, ansigt eller hals0"); 
         icdToL97.add("dd161 - Godartet tumor i knogle eller ledbrusk i kort knogle i overekstremitet"); 
 
         List<String> icdToL98 = new ArrayList<String>();
-        icdToL98.add("dm204 - Hammert\u00E5 UNS"); icdToL98.add("dm213 - Erhvervet dropfod"); 
-        icdToL98.add("dm219 - Erhvervet ekstremitetsdeformitet UNS"); icdToL98.add("dm218 - Anden erhvervet ekstremitetsdeformitet"); 
-        icdToL98.add("dm217 - Erhvervet anisomeli"); icdToL98.add("dm216 - Anden erhvervet deformitet af ankel eller fod"); 
-        icdToL98.add("dm215 - Erhvervet kloh\u00E5nd, klofod, klumph\u00E5nd eller klumpfod"); icdToL98.add("dm214 - Erhvervet platfod"); 
-        icdToL98.add("dm211 - Varusdeformitet IKA"); icdToL98.add("dm210 - Valgusdeformitet IKA"); 
-        icdToL98.add("dm205 - Anden erhvervet deformitet af t\u00E5"); icdToL98.add("dm203 - Anden erhvervet deformitet af storet\u00E5"); 
-        icdToL98.add("dm202 - Hallux rigidus"); icdToL98.add("dm201 - Erhvervet hallux valgus"); 
-        icdToL98.add("dm200 - Deformitet af fingre"); icdToL98.add("dm206 - Erhvervet t\u00E5deformitet UNS"); icdToL98.add("dm212 - Fleksionsdeformitet"); 
+        icdToL98.add("dm204 - Hammert\u00E5 UNS0"); icdToL98.add("dm213 - Erhvervet dropfod0"); 
+        icdToL98.add("dm219 - Erhvervet ekstremitetsdeformitet UNS0"); icdToL98.add("dm218 - Anden erhvervet ekstremitetsdeformitet0"); 
+        icdToL98.add("dm217 - Erhvervet anisomeli0"); icdToL98.add("dm216 - Anden erhvervet deformitet af ankel eller fod0"); 
+        icdToL98.add("dm215 - Erhvervet kloh\u00E5nd, klofod, klumph\u00E5nd eller klumpfod0"); icdToL98.add("dm214 - Erhvervet platfod0"); 
+        icdToL98.add("dm211 - Varusdeformitet IKA0"); icdToL98.add("dm210 - Valgusdeformitet IKA0"); 
+        icdToL98.add("dm205 - Anden erhvervet deformitet af t\u00E50"); icdToL98.add("dm203 - Anden erhvervet deformitet af storet\u00E50"); 
+        icdToL98.add("dm202 - Hallux rigidus0"); icdToL98.add("dm201 - Erhvervet hallux valgus0"); 
+        icdToL98.add("dm200 - Deformitet af fingre0"); icdToL98.add("dm206 - Erhvervet t\u00E5deformitet UNS0"); icdToL98.add("dm212 - Fleksionsdeformitet"); 
 
         List<String> icdToL99 = new ArrayList<String>();
         icdToL99.add("dm840"); icdToL99.add("dm850"); icdToL99.add("dm849"); icdToL99.add("dm848"); icdToL99.add("dm844"); icdToL99.add("dm843"); 
@@ -394,24 +375,24 @@ public class MappingListCtrl {
 
 
 
-        //ICPC-2-dk koden sættes som key (i " ") og values sættes som de forud indtastede lister.  
+        // ICPC-2-dk koden sættes som key (i " ") og values sættes som de forud indtastede lister.  
 
-        NewMap.put("L70",icdToL80);
-        NewMap.put("L71",icdToL81);
-        NewMap.put("L72",icdToL82);
-        NewMap.put("L73",icdToL83);
-        NewMap.put("L74",icdToL84);
-        NewMap.put("L75",icdToL85);
-        NewMap.put("L76",icdToL86);
-        NewMap.put("L77",icdToL87);
-        NewMap.put("L78",icdToL88);
-        NewMap.put("L79",icdToL89);
-        NewMap.put("L80",icdToL80);
-        NewMap.put("L81",icdToL81);
-        NewMap.put("L82",icdToL82);
-        NewMap.put("L83",icdToL83);
-        NewMap.put("L84",icdToL84);
-        NewMap.put("L85",icdToL85);
+        // NewMap.put("L70",icdToL80);
+        // NewMap.put("L71",icdToL81);
+        // NewMap.put("L72",icdToL82);
+        // NewMap.put("L73",icdToL83);
+        // NewMap.put("L74",icdToL84);
+        // NewMap.put("L75",icdToL85);
+        // NewMap.put("L76",icdToL86);
+        // NewMap.put("L77",icdToL87);
+        // NewMap.put("L78",icdToL88);
+        // NewMap.put("L79",icdToL89);
+        // NewMap.put("L80",icdToL80);
+        // NewMap.put("L81",icdToL81);
+        // NewMap.put("L82",icdToL82);
+        // NewMap.put("L83",icdToL83);
+        // NewMap.put("L84",icdToL84);
+        // NewMap.put("L85",icdToL85);
         NewMap.put("L86",icdToL86);
         NewMap.put("L87",icdToL87);
         NewMap.put("L88",icdToL88);
@@ -425,34 +406,9 @@ public class MappingListCtrl {
         NewMap.put("L96",icdToL96);
         NewMap.put("L97",icdToL97);
         NewMap.put("L98",icdToL98);
-        NewMap.put("L99",icdToL99);
-
-        // DUMMY MAPNING!! 
-        // 
-        // List<String> ICD10List1 = new ArrayList<String>();
-        // ICD10List1.add("ICD1");
-        // ICD10List1.add("ICD2");
-
-        // List<String> ICD10List2 = new ArrayList<String>();
-        // ICD10List2.add("ICD3");
-        // ICD10List2.add("ICD4");
-        // ICD10List2.add("ICD5");
-
-        // List<String> ICD10List3 = new ArrayList<String>();
-        // ICD10List3.add("ICD6");
-        // ICD10List3.add("ICD7");
-        // ICD10List3.add("ICD8");
-        // ICD10List3.add("ICD9");
-
-        // NewMap.put("ICPC1", ICD10List1);
-        // NewMap.put("ICPC2", ICD10List2);
-        // NewMap.put("ICPC3", ICD10List3);
-
-        // System.out.println(NewMap + "this is mappingMethod()");
+        // NewMap.put("L99",icdToL99);
 
         return NewMap;
     }
-    // KODE DATABASE
-    // SLUT*****************************************************************************
 
 }
