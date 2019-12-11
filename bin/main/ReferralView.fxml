@@ -183,7 +183,7 @@
             <Font name="System Bold" size="10.0" />
          </font>
       </Label>
-      <Button layoutX="552.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleMapning" prefHeight="25.0" prefWidth="56.0" text="Mapning">
+      <Button layoutX="552.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleMapping" prefHeight="25.0" prefWidth="56.0" text="Mapning">
          <font>
             <Font size="10.0" />
          </font>
