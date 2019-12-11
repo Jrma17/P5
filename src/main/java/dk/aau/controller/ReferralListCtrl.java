@@ -94,9 +94,23 @@ public class ReferralListCtrl implements Initializable {
             @Override
             public Boolean call(TableView<ReferralListModel> param) {
                 Comparator<ReferralListModel> comparatorStatus = new Comparator<ReferralListModel>() {
+                    final String firstFIX = "Modtaget";
+                    final String secondFIX= "Klar til visitering";
+                    final String ENDFIX = "Færdigbehandlet";
                     @Override
                     public int compare(ReferralListModel r1, ReferralListModel r2) {
-                        return r1.getStatus().compareTo(r2.getStatus());
+                        if (r1.getStatus().contains(firstFIX) && r2.getStatus().contains(firstFIX)) return r1.getStatus().compareTo(r2.getStatus());
+                        if (r1.getStatus().contains(firstFIX) && !r2.getStatus().contains(firstFIX)) return -1;
+                        if (!r1.getStatus().contains(firstFIX) && r2.getStatus().contains(firstFIX)) return 1;
+
+                        if (r1.getStatus().contains(secondFIX) && r2.getStatus().contains(secondFIX)) return r1.getStatus().compareTo(r2.getStatus());
+                        if (r1.getStatus().contains(secondFIX) && !r2.getStatus().contains(secondFIX)) return -1;
+                        if (!r1.getStatus().contains(secondFIX) && r2.getStatus().contains(secondFIX)) return 1;
+
+                        if (r1.getStatus().contains(ENDFIX) && r2.getStatus().contains(ENDFIX)) return r1.getStatus().compareTo(r2.getStatus());
+                        if (!r1.getStatus().contains(ENDFIX) && r2.getStatus().contains(ENDFIX)) return -1;
+                        if (r1.getStatus().contains(ENDFIX) && !r2.getStatus().contains(ENDFIX)) return 1;
+                        return 0;
                     }
                 };
                 FXCollections.sort(referralListTable.getItems(), comparatorStatus);
