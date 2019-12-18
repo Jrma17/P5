@@ -164,7 +164,7 @@ public class ReferralListCtrl implements Initializable {
     // Henter cpr nr. fra table view 
     public String getPatientFromList() {
         id = referralListTable.getSelectionModel().getSelectedItem().getReferralID();
-        System.out.println(id);
+        //System.out.println(id);
         return id;
     }
     

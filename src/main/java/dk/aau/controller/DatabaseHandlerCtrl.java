@@ -78,9 +78,9 @@ public class DatabaseHandlerCtrl {
                                                                                               // til en ObservableList
                                                                                               // for at kunne lægges i
                                                                                               // tableview
-        //String sqlQuery = "SELECT referralDiagnosisCodeICD, referralStatus, assigned FROM Visitation2 (SELECT Referral.referralSentDate, Referral.referralReceivedDate,  Referral.referredBy,  Referral.referralID, Referral.referralType, Patient.cprNumber, Patient.name, DATEDIFF(CURDATE(), Referral.referralSentDate) AS layDays FROM Referral JOIN Patient ON Referral.cprNumber=Patient.cprNumber) ORDER BY Visitation2.statusTime AND Visitation2.statusDate DESC";// JOIN Visitation2 ON Referral.referralID=Visitation2.visitationID"; //WHERE Visitation2.referralID = "+id+" ORDER BY Visitation2.statusTime AND Visitation2.statusDate DESC ";
+        
         String sqlQuery = "SELECT Referral.referralSentDate, Referral.referralReceivedDate,  Referral.referredBy,  Referral.referralID, Referral.referralType, Patient.cprNumber, Patient.name, DATEDIFF(CURDATE(), Referral.referralSentDate) AS layDays, Visitation.assigned, Visitation.referralStatus, Visitation.referralDiagnosisCodeICD, Visitation.statusTime, Visitation.statusDate FROM Referral JOIN Patient ON Referral.cprNumber=Patient.cprNumber JOIN Visitation ON Referral.referralID=Visitation.visitationID ORDER BY Visitation.statusTime AND Visitation.statusDate DESC";
-        //String sqlQuery = "SELECT Referral2.referralID, Visitation.referralStatus, Visitation.statusDate, Visitation.statusTime FROM Referral2 JOIN Visitation ON Referral2.referralID = Visitation.visitationID WHERE Visitation.referralStatus IN(SELECT referralStatus FROM Visitation ORDER BY Visitation.statusDate DESC )";
+        
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(host, username, password);
@@ -89,7 +89,6 @@ public class DatabaseHandlerCtrl {
 
             while (rs.next()) {
 
-                //ReferralListModel referralListData = new ReferralListModel(null, null, null, rs.getString("referralStatus"),null, null, null, null, rs.getString("referralID"), null);
                      ReferralListModel referralListData = new ReferralListModel(rs.getString("Referral.referralSentDate"),
                              rs.getString("Referral.referralReceivedDate"), rs.getString("layDays"),
                              rs.getString("Visitation.referralStatus"), rs.getString("Visitation.assigned"),
@@ -179,7 +178,7 @@ public class DatabaseHandlerCtrl {
     public ReferralStatusModel readReferralStatus(String id) {
 
         String sqlQuery = "SELECT Visitation.statusDate, Visitation.statusTime, Visitator.unit, Visitation.patientPrivilege, Visitation.referralstatus, Visitation.assigned, Visitator.visitator FROM Visitation JOIN Visitator ON Visitation.visitator=Visitator.visitator WHERE Visitation.visitationID="
-                + id;//+" ORDER BY Visitation.statusTime AND Visitation.statusDate DESC LIMIT 1";
+                + id;
         
         ArrayList<Object> referralList = databaseReadHelp(sqlQuery); // Anvender hjælperfunktionen til at definere et
                                                                      // ResultSet med resultatet af forespørgslen
