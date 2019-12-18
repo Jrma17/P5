@@ -1,9 +1,8 @@
 package dk.aau.model;
 
-import java.sql.Date;
 
 public class ReferralStatusModel {
-    private Date date;
+    private String date;
     private String time;
     private String unit;
     private String patientPrivilege;
@@ -12,7 +11,7 @@ public class ReferralStatusModel {
     private String visitator;
     
     // Constructor
-    public ReferralStatusModel(Date date, String time, String unit, String patientPrivilege, String status, String assigned, String visitator) {
+    public ReferralStatusModel(String date, String time, String unit, String patientPrivilege, String status, String assigned, String visitator) {
         this.date = date;
         this.time = time;
         this.unit = unit;
@@ -23,7 +22,7 @@ public class ReferralStatusModel {
     }
     
     // Getters
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
     

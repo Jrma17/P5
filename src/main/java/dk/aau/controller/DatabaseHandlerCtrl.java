@@ -1,6 +1,7 @@
 package dk.aau.controller;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -20,28 +21,34 @@ public class DatabaseHandlerCtrl {
     private final static String username = "hst_2019_19gr5402";
     private final static String password = "aiyozatheiyaigageize";
     private final static String host = "jdbc:mysql://db.course.hst.aau.dk:3306/hst_2019_19gr5402?serverTimezone=UTC";
-    
+
     private static ArrayList<Object> databaseReadHelp(String sqlQuery) {
         Connection conn = null;
         ResultSet rs = null;
-        
-        // "referralList" er en erstatning for at returnere et ResultSet. referralList er en ArrayList som indeholder flere ArrayLists der indeholder typen Object
-        ArrayList<Object> referralList = new ArrayList<>(); 
-        ArrayList<Object> row = null; // "row" er en ArrayList som indeholder information om en enkelt række i databasen
-        
+
+        // "referralList" er en erstatning for at returnere et ResultSet. referralList
+        // er en ArrayList som indeholder flere ArrayLists der indeholder typen Object
+        ArrayList<Object> referralList = new ArrayList<>();
+        ArrayList<Object> row = null; // "row" er en ArrayList som indeholder information om en enkelt række i
+                                      // databasen
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(host, username, password);
-            
+
             rs = conn.prepareStatement(sqlQuery).executeQuery(); // Bruges til at vælge data i database
-            ResultSetMetaData metaData = rs.getMetaData(); // Metadata for ResultSet indeholder data om tabellen der returneres fra databasen
-            Integer columnCount = metaData.getColumnCount(); // Metadata indeholder antal kolonner i tabellen, hvilket gemmes i værdien columnCount
+            ResultSetMetaData metaData = rs.getMetaData(); // Metadata for ResultSet indeholder data om tabellen der
+                                                           // returneres fra databasen
+            Integer columnCount = metaData.getColumnCount(); // Metadata indeholder antal kolonner i tabellen, hvilket
+                                                             // gemmes i værdien columnCount
             while (rs.next()) {
                 row = new ArrayList<Object>(); // For hver RÆKKE i databasen oprettes en ny Arraylist
                 for (int i = 1; i <= columnCount; i++) {
-                    row.add(rs.getObject(i)); // For hver database-KOLONNE i den aktuelle række, tilføjes kolonnens værdi til ArrayList "row" som et Object
+                    row.add(rs.getObject(i)); // For hver database-KOLONNE i den aktuelle række, tilføjes kolonnens
+                                              // værdi til ArrayList "row" som et Object
                 }
-                referralList.add(row); // Den ArrayList som repræsenterer den aktuelle række, tilføjes til ArrayList "referralList", som er erstatning for ResultSet
+                referralList.add(row); // Den ArrayList som repræsenterer den aktuelle række, tilføjes til ArrayList
+                                       // "referralList", som er erstatning for ResultSet
             }
         } catch (Exception e) {
             System.err.println("Cannot connect to database server");
@@ -52,135 +59,147 @@ public class DatabaseHandlerCtrl {
                     rs.close(); // Lukker ResultSet
                 }
             } catch (Exception e) {
-            /* ignored */ }
+                /* ignored */ }
             try {
                 if (conn != null) {
                     conn.close(); // Lukker Connection
                 }
             } catch (Exception e) {
-            /* ignored */ }
+                /* ignored */ }
         }
         return referralList; // Returnerer "referralList" som er en ArrayList
     }
-    
+
     // Henter data som indsættes i tableview i "ReferralListCtrl"
     public ObservableList<ReferralListModel> readReferralList() {
         Connection conn = null;
         ResultSet rs = null;
-        ObservableList<ReferralListModel> referralList = FXCollections.observableArrayList(); // "referralList" laves om til en ObservableList for at kunne lægges i tableview
-        String sqlQuery = "SELECT Referral.referralSentDate, Referral.referralRecievedDate, Referral.referredBy, Referral.referralType, Referral.referralID, Referral.referralDiagnosisCodeICD, Patient.cprNumber, Patient.name, Referral.referralStatus, Referral.assigned, DATEDIFF(CURDATE(), Referral.referralSentDate) AS layDays FROM Referral JOIN Patient ON Referral.cprNumber=Patient.cprNumber";
+        ObservableList<ReferralListModel> referralList = FXCollections.observableArrayList(); // "referralList" laves om
+                                                                                              // til en ObservableList
+                                                                                              // for at kunne lægges i
+                                                                                              // tableview
+        //String sqlQuery = "SELECT referralDiagnosisCodeICD, referralStatus, assigned FROM Visitation2 (SELECT Referral.referralSentDate, Referral.referralReceivedDate,  Referral.referredBy,  Referral.referralID, Referral.referralType, Patient.cprNumber, Patient.name, DATEDIFF(CURDATE(), Referral.referralSentDate) AS layDays FROM Referral JOIN Patient ON Referral.cprNumber=Patient.cprNumber) ORDER BY Visitation2.statusTime AND Visitation2.statusDate DESC";// JOIN Visitation2 ON Referral.referralID=Visitation2.visitationID"; //WHERE Visitation2.referralID = "+id+" ORDER BY Visitation2.statusTime AND Visitation2.statusDate DESC ";
+        String sqlQuery = "SELECT Referral.referralSentDate, Referral.referralReceivedDate,  Referral.referredBy,  Referral.referralID, Referral.referralType, Patient.cprNumber, Patient.name, DATEDIFF(CURDATE(), Referral.referralSentDate) AS layDays, Visitation.assigned, Visitation.referralStatus, Visitation.referralDiagnosisCodeICD, Visitation.statusTime, Visitation.statusDate FROM Referral JOIN Patient ON Referral.cprNumber=Patient.cprNumber JOIN Visitation ON Referral.referralID=Visitation.visitationID ORDER BY Visitation.statusTime AND Visitation.statusDate DESC";
+        //String sqlQuery = "SELECT Referral2.referralID, Visitation.referralStatus, Visitation.statusDate, Visitation.statusTime FROM Referral2 JOIN Visitation ON Referral2.referralID = Visitation.visitationID WHERE Visitation.referralStatus IN(SELECT referralStatus FROM Visitation ORDER BY Visitation.statusDate DESC )";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(host, username, password);
-            
+
             rs = conn.prepareStatement(sqlQuery).executeQuery(); // Bruges til at vælge data i database
-            
+
             while (rs.next()) {
-                ReferralListModel referralListData = new ReferralListModel(rs.getString("Referral.referralSentDate"),
-                rs.getString("Referral.referralRecievedDate"), rs.getString("layDays"),
-                rs.getString("Referral.referralStatus"), rs.getString("Referral.assigned"),
-                rs.getString("Referral.referredBy"), rs.getString("Patient.cprNumber"),
-                rs.getString("Referral.ReferralDiagnosisCodeICD"), rs.getString("Referral.referralID"),
-                rs.getString("Referral.referralType"));
+
+                //ReferralListModel referralListData = new ReferralListModel(null, null, null, rs.getString("referralStatus"),null, null, null, null, rs.getString("referralID"), null);
+                     ReferralListModel referralListData = new ReferralListModel(rs.getString("Referral.referralSentDate"),
+                             rs.getString("Referral.referralReceivedDate"), rs.getString("layDays"),
+                             rs.getString("Visitation.referralStatus"), rs.getString("Visitation.assigned"),
+                             rs.getString("Referral.referredBy"), rs.getString("Patient.cprNumber") + "\n" + rs.getString("Patient.name"),
+                             rs.getString("Visitation.referralDiagnosisCodeICD"), rs.getString("Referral.referralID"),
+                            rs.getString("Referral.referralType"));
                 referralList.add(referralListData);
             }
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
             System.err.println("Cannot connect to database server");
             e.printStackTrace();
-        } 
-        finally {
+        } finally {
             try {
                 if (rs != null) {
                     rs.close(); // Lukker ResultSet
                 }
-            } 
-            catch (Exception e) {
-            /* ignored */ }
+            } catch (Exception e) {
+                /* ignored */ }
             try {
                 if (conn != null) {
                     conn.close(); // Lukker Connection
                 }
             } catch (Exception e) {
-            /* ignored */ }
+                /* ignored */ }
         }
         return referralList; // Returnerer referralList som er en ObservableList
     }
-    
-    // Henter data fra databasen som lægges i "ReferralModel" og metoden indsættes i "ReferralCtrl"
+
+    // Henter data fra databasen som lægges i "ReferralModel" og metoden indsættes i
+    // "ReferralCtrl"
     public ReferralModel readReferral(String id) {
-        String sqlQuery = "SELECT Patient.name, Patient.address, Patient.cprNumber, Referral.referralSentDate, Referral.referralRecievedDate, Referral.referredBy, Referral.waitingGroup, Referral.diagnosisText, Referral.course, Referral.referralID, Referral.anamnesis, Referral.referralType, Referral.responsibleUnit FROM Referral JOIN Patient ON Referral.cprNumber=Patient.cprNumber WHERE Referral.cprNumber =" 
-        + id;
-        
-        ArrayList<Object> referralList = databaseReadHelp(sqlQuery); // Anvender hjælperfunktionen til at definere et ResultSet med resultatet af forespørgslen
+
+        String sqlQuery = "SELECT Patient.name, Patient.address, Patient.cprNumber, Patient.postalCode, Patient.city, Referral.referralSentDate, Referral.referralReceivedDate, Referral.referredBy, Visitation.waitingGroup, Referral.diagnosisText, Referral.referralID, ResponsibleUnit.course, Referral.anamnesis, Referral.referralType, ResponsibleUnit.responsibleUnit FROM Patient JOIN Referral ON Patient.cprNumber=Referral.cprNumber JOIN Visitation ON Referral.referralID=Visitation.visitationID JOIN ResponsibleUnit ON Visitation.responsibleUnit=ResponsibleUnit.responsibleUnit WHERE Visitation.visitationID = "+id+" ORDER BY Visitation.statusTime AND Visitation.statusDate DESC LIMIT 1";
+
+        ArrayList<Object> referralList = databaseReadHelp(sqlQuery); // Anvender hjælperfunktionen til at definere et
+                                                                     // ResultSet med resultatet af forespørgslen
         ReferralModel referralModel = null;
         for (Object referral : referralList) {
             ArrayList<Object> referralData = (ArrayList<Object>) referral;
             String name = (String) referralData.get(0);
             String address = (String) referralData.get(1);
-            String cprNumber = (String) referralData.get(2);
-            String referralSentDate = (String) referralData.get(3);
-            String referralRecievedDate = (String) referralData.get(4);
-            String referredBy = (String) referralData.get(5);
-            String waitingGroup = (String) referralData.get(6);
-            String diagnosisText = (String) referralData.get(7);
-            String course = (String) referralData.get(8);
-            String referralID = (String) referralData.get(9);
-            String anamnesis = (String) referralData.get(10);
-            String referralType = (String) referralData.get(11);
-            String responsibleUnit = (String) referralData.get(12);
-            
-            referralModel = new ReferralModel(name, address, cprNumber, referralSentDate, referralRecievedDate,
-            referredBy, waitingGroup, diagnosisText, course, referralID, anamnesis, referralType,
-            responsibleUnit);
+            Integer cprNumber = (Integer) referralData.get(2);
+            Integer postalCode = (Integer) referralData.get(3);
+            String city = (String) referralData.get(4);
+            Date referralSentDate = (Date) referralData.get(5);
+            Date referralRecievedDate = (Date) referralData.get(6);
+            String referredBy = (String) referralData.get(7);
+            String waitingGroup = (String) referralData.get(8);
+            String diagnosisText = (String) referralData.get(9);
+            String course = (String) referralData.get(11);
+            String referralID = (String) referralData.get(10);
+            String anamnesis = (String) referralData.get(12);
+            String referralType = (String) referralData.get(13);
+            String responsibleUnit = (String) referralData.get(14);
+
+            referralModel = new ReferralModel(name, address, cprNumber, postalCode, city, referralSentDate,
+                    referralRecievedDate, referredBy, waitingGroup, diagnosisText, course, referralID, anamnesis,
+                    referralType, responsibleUnit);
         }
         return referralModel;
     }
-    
-    // Henter data fra databasen som lægges i "VisitationModel" og metoden indsættes i "ReferralCtrl"
+
+    // Henter data fra databasen som lægges i "VisitationModel" og metoden indsættes
+    // i "ReferralCtrl"
     public VisitationModel readVisitation(String id) {
-        String sqlQuery = "SELECT referralSentDate, referralRecievedDate, referredBy, referralType, waitingGroup, diagnosisText, course, responsibleUnit, referralID, anamnesis, layDays, note, phrase, diagnosisCodeICPC, referralDiagnosisCodeICD, scheduledProcedure, date, unit, time, patientPrivilege, referralStatus, assigned, visitator FROM Referral WHERE cprNumber= "
-        + id;
+        String sqlQuery = "SELECT note, phrase, diagnosisCodeIcpc, referralDiagnosisCodeIcd, scheduledProcedure FROM Visitation WHERE Visitation.visitationID = "+id;
         
-        ArrayList<Object> referralList = databaseReadHelp(sqlQuery); // Anvender hjælperfunktionen til at definere et ResultSet med resultatet af forespørgslen
+
+        ArrayList<Object> referralList = databaseReadHelp(sqlQuery); // Anvender hjælperfunktionen til at definere et
+                                                                     // ResultSet med resultatet af forespørgslen
         VisitationModel visitationModel = null;
         for (Object referral : referralList) {
             ArrayList<Object> visitationData = (ArrayList<Object>) referral;
-            String note = (String) visitationData.get(11);
-            String phrase = (String) visitationData.get(12);
-            String diagnosisCodeICPC = (String) visitationData.get(13);
-            String referralDiagnosisCodeICD = (String) visitationData.get(14);
-            // String scheduledProcedure = (String) visitationData.get(16);
-            
+            String note = (String) visitationData.get(0);
+            String phrase = (String) visitationData.get(1);
+            String diagnosisCodeICPC = (String) visitationData.get(2);
+            String referralDiagnosisCodeICD = (String) visitationData.get(3);
+            // String scheduledProcedure = (String) visitationData.get(4);
+
             visitationModel = new VisitationModel(note, phrase, diagnosisCodeICPC, referralDiagnosisCodeICD, null);
         }
         return visitationModel;
     }
-    
-    // Henter data fra databasen som lægges i "ReferralStatusModel" og metoden indsættes i "ReferralCtrl"
+
+    // Henter data fra databasen som lægges i "ReferralStatusModel" og metoden
+    // indsættes i "ReferralCtrl"
     public ReferralStatusModel readReferralStatus(String id) {
+
+        String sqlQuery = "SELECT Visitation.statusDate, Visitation.statusTime, Visitator.unit, Visitation.patientPrivilege, Visitation.referralstatus, Visitation.assigned, Visitator.visitator FROM Visitation JOIN Visitator ON Visitation.visitator=Visitator.visitator WHERE Visitation.visitationID="
+                + id;//+" ORDER BY Visitation.statusTime AND Visitation.statusDate DESC LIMIT 1";
         
-        String sqlQuery = "SELECT referralSentDate, referralRecievedDate, referredBy, referralType, waitingGroup, diagnosisText, course, responsibleUnit, referralID, anamnesis, layDays, note, phrase, diagnosisCodeICPC, referralDiagnosisCodeICD, scheduledProcedure, date, unit, time, patientPrivilege, referralStatus, assigned, visitator FROM Referral WHERE cprNumber= "
-        + id;
-        
-        ArrayList<Object> referralList = databaseReadHelp(sqlQuery); // Anvender hjælperfunktionen til at definere et ResultSet med resultatet af forespørgslen
+        ArrayList<Object> referralList = databaseReadHelp(sqlQuery); // Anvender hjælperfunktionen til at definere et
+                                                                     // ResultSet med resultatet af forespørgslen
         ReferralStatusModel referralStatusModel = null;
         for (Object referral : referralList) {
             ArrayList<Object> referralStatus = (ArrayList<Object>) referral;
-            // Date date = (Date) referralStatus.get(16);
-            String time = (String) referralStatus.get(18);
-            String unit = (String) referralStatus.get(17);
-            String patientPrivilege = (String) referralStatus.get(19);
-            String status = (String) referralStatus.get(20);
-            String assigned = (String) referralStatus.get(21);
-            String visitator = (String) referralStatus.get(22);
-            
-            referralStatusModel = new ReferralStatusModel(null, time, unit, patientPrivilege, status, assigned,
-            visitator);
+            String date = (String) referralStatus.get(0);
+            String time = (String) referralStatus.get(1);
+            String unit = (String) referralStatus.get(2);
+            String patientPrivilege = (String) referralStatus.get(3);
+            String status = (String) referralStatus.get(4);
+            String assigned = (String) referralStatus.get(5);
+            String visitator = (String) referralStatus.get(6);
+
+            referralStatusModel = new ReferralStatusModel(date, time, unit, patientPrivilege, status, assigned,
+                    visitator);
         }
         return referralStatusModel;
     }
-    
+
     // Hjælper med at skrive forespøgelser til databasen
     private static void databaseWriteHelp(String sqlQuery) throws ClassNotFoundException, SQLException {
         Statement stmt;
@@ -190,62 +209,55 @@ public class DatabaseHandlerCtrl {
             stmt = conn.createStatement();
             stmt.executeUpdate(sqlQuery);
             conn.close();
-        } 
-        catch (SQLDataException e) {
+        } catch (SQLDataException e) {
             throw e;
         }
     }
+
+    // Nedenstående funktioner bruges til at tilføje data til databasen i
+    // eksisterende rækker - bruges i "ReferralCtrl"
     
-    // Nedenstående funktioner bruges til at tilføje data til databasen i eksisterende rækker - bruges i "ReferralCtrl"
-    public void addVisitation(VisitationModel visitationModel, String id) throws SQLException, ClassNotFoundException {
+
+
+    public void addReferralStatus(ReferralStatusModel referralStatusModel)
+            throws SQLException, ClassNotFoundException {
         String updateStmt = null;
-        
-        if (visitationModel.getDiagnosisCodeIcpc() != null || visitationModel.getReferralDiagnosisCodeIcd() != null || visitationModel.getNote() != null || visitationModel.getPhrase() != null) {
-            updateStmt = "UPDATE Referral SET referralDiagnosisCodeICD = '"
-            + visitationModel.getReferralDiagnosisCodeIcd() + "', diagnosisCodeICPC = '"
-            + visitationModel.getDiagnosisCodeIcpc() + "', note = '" + visitationModel.getNote()
-            + "', phrase = '" + visitationModel.getPhrase() + "'WHERE cprNumber ='" + id + "'";
+        if (referralStatusModel.getVisitator() != null || referralStatusModel.getUnit()!= null) {
+            updateStmt = "INSERT INTO Visitator\n"
+                    + "(visitator, unit\n)" + "VALUE('"
+                    + referralStatusModel.getVisitator() + "','" + referralStatusModel.getUnit() + "');";
+
         }
         try {
             databaseWriteHelp(updateStmt);
-        } 
-        catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             System.out.print("Error occurred while trying to insert into database: " + e.getMessage());
             throw e;
         }
     }
-    
-    public void addReferral(ReferralModel referralModel, String id) throws SQLException, ClassNotFoundException {
+
+    public void addVisitation(ReferralModel referralModel, ReferralStatusModel referralStatusModel,
+            VisitationModel visitationModel) throws SQLException, ClassNotFoundException {
         String updateStmt = null;
-        if (referralModel.getWaitingGroup() != null || referralModel.getDiagnosisText() != null) {
-            updateStmt = "UPDATE Referral SET diagnosisText = '" + referralModel.getDiagnosisText()
-            + "', waitingGroup = '" + referralModel.getWaitingGroup() + "'WHERE cprNumber ='" + id + "'";
+        if (referralStatusModel.getAssigned() != null || referralStatusModel.getDate() != null
+                || referralStatusModel.getPatientPrivilege() != null || referralStatusModel.getStatus() != null
+                || referralStatusModel.getUnit() != null || visitationModel.getDiagnosisCodeIcpc() != null
+                || visitationModel.getReferralDiagnosisCodeIcd() != null || visitationModel.getNote() != null
+                || visitationModel.getPhrase() != null || referralModel.getWaitingGroup() != null ||referralStatusModel.getVisitator() != null || referralModel.getReferralID() != null) {
+            updateStmt = "INSERT INTO Visitation\n"
+                    + "(PatientPrivilege, referralStatus, assigned, statusTime, statusDate, diagnosisCodeIcpc, referralDiagnosisCodeIcd, note, phrase, waitingGroup, visitator, responsibleUnit, visitationID\n)"
+                    + "VALUE('" + referralStatusModel.getPatientPrivilege() + "','" + referralStatusModel.getStatus()
+                    + "','" + referralStatusModel.getAssigned() + "','" + referralStatusModel.getTime() + "','"
+                    + referralStatusModel.getDate() + "','" + visitationModel.getDiagnosisCodeIcpc() + "','"
+                    + visitationModel.getReferralDiagnosisCodeIcd() + "','" + visitationModel.getNote() + "','"
+                    + visitationModel.getPhrase() +"','"+ referralModel.getWaitingGroup()+"','" + referralStatusModel.getVisitator() + "','"+ referralStatusModel.getUnit()+"','" + referralModel.getReferralID()+ "');";
         }
+
         try {
             databaseWriteHelp(updateStmt);
-        } 
-        catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             System.out.print("Error occurred while trying to insert into database: " + e.getMessage());
             throw e;
         }
     }
-    
-    public void addReferralStatus(ReferralStatusModel referralStatusModel, String id)
-    throws SQLException, ClassNotFoundException {
-        String updateStmt = null;
-        if (referralStatusModel.getAssigned() != null || referralStatusModel.getDate() != null || referralStatusModel.getPatientPrivilege() != null || referralStatusModel.getStatus() != null || referralStatusModel.getUnit() != null || referralStatusModel.getVisitator() != null) {
-            updateStmt = "UPDATE Referral SET unit = '" + referralStatusModel.getUnit() + "', visitator = '"
-            + referralStatusModel.getVisitator() + "', patientPrivilege = '"
-            + referralStatusModel.getPatientPrivilege() + "', referralStatus = '"
-            + referralStatusModel.getStatus() + "', assigned = '" + referralStatusModel.getAssigned()
-            + "', time = '" + referralStatusModel.getTime() + "'WHERE cprNumber ='" + id + "'";
-        }
-        try {
-            databaseWriteHelp(updateStmt);
-        } 
-        catch (SQLException | ClassNotFoundException e) {
-            System.out.print("Error occurred while trying to insert into database: " + e.getMessage());
-            throw e;
-        }
-    } 
 }

@@ -5,10 +5,10 @@ import java.util.List;
 
 public class MappingListModel {
     
-    private HashMap<String, List<String>> NewMap = new HashMap<String, List<String>>();
+    private HashMap<String, List<String>> icpcToIcdMap = new HashMap<String, List<String>>();
     
-    public HashMap<String, List<String>> getNewMap() {
-        return NewMap;
+    public HashMap<String, List<String>> getIcpcToIcdMap() {
+        return icpcToIcdMap;
     } 
     
 }
