@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
@@ -100,7 +99,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="18.0" layoutY="389.0" text="Dato:" AnchorPane.bottomAnchor="250.6" AnchorPane.leftAnchor="15.0">
+      <Label layoutX="18.0" layoutY="389.0" text="Dato &amp; Tid:" AnchorPane.bottomAnchor="250.6" AnchorPane.leftAnchor="15.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -120,7 +119,6 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <DatePicker fx:id="date" layoutX="115.0" layoutY="385.0" prefHeight="26.0" prefWidth="100.0" AnchorPane.bottomAnchor="250.6" AnchorPane.leftAnchor="115.0" />
       <ComboBox fx:id="patientPrivilege" editable="true" layoutX="115.0" layoutY="454.0" prefHeight="26.0" prefWidth="503.0" AnchorPane.bottomAnchor="165.0" AnchorPane.leftAnchor="115.0" />
       <Label layoutX="386.0" layoutY="500.0" text="Tildelt:" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="386.0">
          <font>
@@ -168,12 +166,12 @@
             <Font size="10.0" />
          </font>
       </Label>
-      <Label fx:id="name" layoutX="138.0" layoutY="42.0" text="Label" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="15.0">
+      <Label fx:id="name" layoutX="138.0" layoutY="42.0" prefHeight="15.0" prefWidth="96.0" text="Label" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="15.0">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label fx:id="adress" layoutX="174.0" layoutY="42.0" text="Label" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="15.0">
+      <Label fx:id="adress" layoutX="275.0" layoutY="15.0" prefHeight="15.0" prefWidth="140.0" text="Label" AnchorPane.leftAnchor="275.0" AnchorPane.topAnchor="15.0">
          <font>
             <Font size="10.0" />
          </font>
@@ -189,7 +187,7 @@
          </font>
       </Button>
       <TextField fx:id="icpcDefLabel" editable="false" layoutX="259.0" layoutY="200.0" prefHeight="25.0" prefWidth="283.0" />
-      <TextField fx:id="time" layoutX="228.0" layoutY="386.0" maxHeight="23.0" prefHeight="23.0" prefWidth="47.0" AnchorPane.bottomAnchor="250.6" AnchorPane.leftAnchor="228.0">
+      <TextField fx:id="time" layoutX="228.0" layoutY="386.0" maxHeight="23.0" prefHeight="23.0" prefWidth="47.0" AnchorPane.bottomAnchor="250.0" AnchorPane.leftAnchor="228.0">
          <font>
             <Font size="10.0" />
          </font>
@@ -211,5 +209,10 @@
       <Button fx:id="cancelButton" layoutX="514.0" layoutY="619.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Annuller" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="325.0" />
       <Button fx:id="closeButton" layoutX="618.0" layoutY="619.0" mnemonicParsing="false" onAction="#closeButtonAction" prefHeight="26.0" prefWidth="100.0" text="Luk" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="220.0" />
       <Button fx:id="saveButton" layoutX="723.0" layoutY="619.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Gem" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="115.0" />
+      <TextField fx:id="date" layoutX="116.0" layoutY="397.0" maxHeight="23.0" prefHeight="23.0" prefWidth="100.0" AnchorPane.bottomAnchor="250.60000000000002" AnchorPane.leftAnchor="115.0">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>

@@ -3,10 +3,10 @@ import java.util.HashMap;
 
 public class IcpcHashMapModel {
     
-    private HashMap<String, String> NewMapLabel = new HashMap<String, String>();
+    private HashMap<String, String> icpcCodesMap = new HashMap<String, String>();
     
-    public HashMap<String, String> getNewMapLabel() {
-        return NewMapLabel;
+    public HashMap<String, String> getIcpcCodesMap() {
+        return icpcCodesMap;
     }
     
 }

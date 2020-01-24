@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class ReferralListCtrl implements Initializable {
-    
+
     @FXML
     private TableView<ReferralListModel> referralListTable;
     @FXML
@@ -51,8 +51,8 @@ public class ReferralListCtrl implements Initializable {
     private CheckBox sortByStatusBtn;
     @FXML
     private Label searchLabelTest;
-    
-    String cpr;
+
+    String id;
     DatabaseHandlerCtrl database = new DatabaseHandlerCtrl();
     
     // Knap til sortering af dato og status
@@ -156,14 +156,16 @@ public class ReferralListCtrl implements Initializable {
             // Muliggør at cpr nr. bliver overført til ReferralCtrl
             ReferralCtrl refctrl = fxmlLoader.getController();
             
-            refctrl.getReferralInformation(cpr);
+            refctrl.getReferralInformation(id);
         }
     }
+
     
     // Henter cpr nr. fra table view 
     public String getPatientFromList() {
-        cpr = referralListTable.getSelectionModel().getSelectedItem().getPatient();
-        return cpr;
+        id = referralListTable.getSelectionModel().getSelectedItem().getReferralID();
+        //System.out.println(id);
+        return id;
     }
     
 }
